@@ -26,7 +26,7 @@ module.exports = {
     devtool: process.env.NODE_ENV === 'production' ? false : 'cheap-eval-source-map',
     plugins: [
       new StyleLintPlugin({
-        files: 'src/**/*.{vue,scss}',
+        files: 'src/**/*.{vue,css}',
       }),
     ],
     resolve: {
