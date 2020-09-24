@@ -136,6 +136,5 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/ui'),
-    require('@onexer/postcss-tailwind-rtl'),
   ],
 };

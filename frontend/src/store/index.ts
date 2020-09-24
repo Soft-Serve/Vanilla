@@ -1,12 +1,9 @@
-import { createStore } from 'vuex';
+import Vue from 'vue';
+import Vuex from 'vuex';
 
-export default createStore({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-  },
-});
+Vue.use(Vuex);
+
+export interface RootState {
+  User: Record<string, string>;
+}
+export default new Vuex.Store<RootState>({});
