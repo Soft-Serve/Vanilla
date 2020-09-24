@@ -1,16 +1,16 @@
 module Api
-    class DietaryFiltersController < ApplicationController  
+    class DietariesController < ApplicationController  
         before_action :fetch, only: %i[show update destroy]
 
         def index
-            render json: (collection.filter.map { |dietary_filter| serialize(dietary_filter) })
+            render json: (collection.filter.map { |dietary| serialize(dietary) })
         end
 
         def create
         end
 
         def show
-            render json: serialize(@dietary_filter)
+            render json: serialize(@dietary)
         end
 
         def update
@@ -21,8 +21,8 @@ module Api
 
         private
 
-        def serialize(dietary_filter)
-            DietaryFilterPresenter.new(dietary_filter).serialize
+        def serialize(dietary)
+            DietaryPresenter.new(dietary).serialize
         end
 
         def menu_item
@@ -30,11 +30,11 @@ module Api
         end
 
         def collection
-            DietaryFiltersCollection.new(menu_item)
+            DietariesCollection.new(menu_item)
         end
 
         def fetch
-            @dietary_filter = DietaryFilter.find(params[:id])
+            @dietary = Dietary.find(params[:id])
         end
 
         def strong_params

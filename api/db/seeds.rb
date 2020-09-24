@@ -524,72 +524,72 @@ Api::ItemSize.create!(
 
 puts 'Creating dietary filters 🥖'
 
-Api::DietaryFilter.create!(
+Api::Dietary.create!(
   name: 'Gluten',
   menu_item_id: margarita_pizza.id
 )
 
-Api::DietaryFilter.create!(
+Api::Dietary.create!(
   name: 'Gluten',
   menu_item_id: salami_pizza_lunch.id
 )
 
-Api::DietaryFilter.create!(
+Api::Dietary.create!(
   name: 'Gluten',
   menu_item_id: margarita_pizza_lunch.id
 )
 
-Api::DietaryFilter.create!(
+Api::Dietary.create!(
   name: 'Gluten',
   menu_item_id: salami_pizza.id
 )
 
-Api::DietaryFilter.create!(
+Api::Dietary.create!(
   name: 'Gluten',
   menu_item_id: club_sandwich.id
 )
 
-Api::DietaryFilter.create!(
+Api::Dietary.create!(
   name: 'Gluten',
   menu_item_id: burger.id
 )
 
-Api::DietaryFilter.create!(
+Api::Dietary.create!(
   name: 'Gluten',
   menu_item_id: mac_and_cheese.id
 )
 
-Api::DietaryFilter.create!(
+Api::Dietary.create!(
   name: 'Gluten',
   menu_item_id: mac_and_cheese_lunch.id
 )
 
-Api::DietaryFilter.create!(
+Api::Dietary.create!(
   name: 'Dairy',
   menu_item_id: mac_and_cheese.id
 )
 
-Api::DietaryFilter.create!(
+Api::Dietary.create!(
   name: 'Dairy',
   menu_item_id: mac_and_cheese_lunch.id
 )
 
-Api::DietaryFilter.create!(
+Api::Dietary.create!(
   name: 'Dairy',
   menu_item_id: margarita_pizza.id
 )
 
-Api::DietaryFilter.create!(
+Api::Dietary.create!(
   name: 'Dairy',
   menu_item_id: salami_pizza_lunch.id
 )
 
-Api::DietaryFilter.create!(
+Api::Dietary.create!(
   name: 'Dairy',
   menu_item_id: margarita_pizza_lunch.id
 )
 
-Api::DietaryFilter.create!(
+Api::Dietary.create!(
   name: 'Dairy',
   menu_item_id: salami_pizza.id
 )

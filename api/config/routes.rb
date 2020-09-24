@@ -6,7 +6,7 @@ Rails.application.routes.draw do
         resources :menu_categories, only: %i[index show create update destroy] do
           resources :menu_items, only: %i[index show create update destroy] do
             resources :item_sizes, only: %i[index create update destroy]
-            resources :dietary_filters, only: %i[index create destroy]
+            resources :dietaries, only: %i[index create destroy]
           end
         end
       end

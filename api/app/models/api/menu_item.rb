@@ -3,7 +3,7 @@ module Api
         # Relations
         belongs_to :menu_category
         has_many :item_sizes
-        has_many :dietary_filters
+        has_many :dietaries
 
         mount_uploader :photo, PhotoUploader
 
