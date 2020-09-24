@@ -20,7 +20,6 @@ module Api
 
       def body
         restaurant.save!
-        byebug
 
         ::Result::Ok.new(restaurant)
       end

@@ -1,34 +1,29 @@
 module Api
   module ItemSizeInteractor
     class Create
-      ItemSizeCreated = Class.new(EventSystem::Event)
-
       def initialize(author:, params:)
         @author = author
         @params = params.to_h
-        @item_size = ItemSize.new(params)
       end
 
       def call
-        EnsureTransaction.new(
-          body: -> { body }
-        ).call
+        body
       end
 
       private
 
-      attr_reader :item_size, :params, :author
+      attr_reader :params, :author
+
+      def item_size
+        @item_size ||= ItemSize.new(params)
+      end
 
       def body
         item_size.save!
 
-        EventSystem::Publishing::FromCreate.new(
-          type: ItemSizeCreated,
-          target: item_size
-        ).call
-
-        Result::Ok.new(item_size)
+        ::Result::Ok.new(item_size)
       end
     end
   end
 end
+
