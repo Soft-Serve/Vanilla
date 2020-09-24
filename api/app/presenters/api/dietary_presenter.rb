@@ -1,5 +1,5 @@
 module Api
-  class DietaryFilterPresenter
+  class DietaryPresenter
 
     attr_reader :item
     

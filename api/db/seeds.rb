@@ -12,6 +12,26 @@ restaurant = Api::Restaurant.create!(
   logo: 'https://res.cloudinary.com/dnyjzmdsk/image/upload/v1598203753/o_b_jmfyov.png'
 )
 
+puts 'Creating 2 admins 👩🏽‍💻'
+
+User.create!(
+  first_name: 'Rachel',
+  last_name: 'Green',
+  email: 'rachel@green.com',
+  restaurant_id: restaurant.id,
+  role: 'admin',
+  password: 'friends'
+)
+
+User.create!(
+  first_name: 'Monica',
+  last_name: 'Geller',
+  email: 'monica@geller.com',
+  restaurant_id: restaurant.id,
+  role: 'admin',
+  password: 'friends'
+)
+
 puts 'Creating 3 menus 📄'
 
 lunch = Api::Menu.create!(
@@ -504,72 +524,72 @@ Api::ItemSize.create!(
 
 puts 'Creating dietary filters 🥖'
 
-Api::DietaryFilter.create!(
+Api::Dietary.create!(
   name: 'Gluten',
   menu_item_id: margarita_pizza.id
 )
 
-Api::DietaryFilter.create!(
+Api::Dietary.create!(
   name: 'Gluten',
   menu_item_id: salami_pizza_lunch.id
 )
 
-Api::DietaryFilter.create!(
+Api::Dietary.create!(
   name: 'Gluten',
   menu_item_id: margarita_pizza_lunch.id
 )
 
-Api::DietaryFilter.create!(
+Api::Dietary.create!(
   name: 'Gluten',
   menu_item_id: salami_pizza.id
 )
 
-Api::DietaryFilter.create!(
+Api::Dietary.create!(
   name: 'Gluten',
   menu_item_id: club_sandwich.id
 )
 
-Api::DietaryFilter.create!(
+Api::Dietary.create!(
   name: 'Gluten',
   menu_item_id: burger.id
 )
 
-Api::DietaryFilter.create!(
+Api::Dietary.create!(
   name: 'Gluten',
   menu_item_id: mac_and_cheese.id
 )
 
-Api::DietaryFilter.create!(
+Api::Dietary.create!(
   name: 'Gluten',
   menu_item_id: mac_and_cheese_lunch.id
 )
 
-Api::DietaryFilter.create!(
+Api::Dietary.create!(
   name: 'Dairy',
   menu_item_id: mac_and_cheese.id
 )
 
-Api::DietaryFilter.create!(
+Api::Dietary.create!(
   name: 'Dairy',
   menu_item_id: mac_and_cheese_lunch.id
 )
 
-Api::DietaryFilter.create!(
+Api::Dietary.create!(
   name: 'Dairy',
   menu_item_id: margarita_pizza.id
 )
 
-Api::DietaryFilter.create!(
+Api::Dietary.create!(
   name: 'Dairy',
   menu_item_id: salami_pizza_lunch.id
 )
 
-Api::DietaryFilter.create!(
+Api::Dietary.create!(
   name: 'Dairy',
   menu_item_id: margarita_pizza_lunch.id
 )
 
-Api::DietaryFilter.create!(
+Api::Dietary.create!(
   name: 'Dairy',
   menu_item_id: salami_pizza.id
 )

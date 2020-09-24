@@ -1,6 +1,6 @@
-class AddDietaryFilters < ActiveRecord::Migration[5.2]
+class AddDietaries < ActiveRecord::Migration[5.2]
   def change
-    create_table :dietary_filters do |t|
+    create_table :dietaries do |t|
       t.string :name, null: false
       t.references :menu_item, foreign_key: { on_delete: :cascade }, index: true, null: false
     end  

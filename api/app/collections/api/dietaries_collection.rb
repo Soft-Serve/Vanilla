@@ -1,5 +1,5 @@
 module Api
-  class DietaryFiltersCollection
+  class DietariesCollection
 
     def initialize(menu_item)
       @menu_item = menu_item
@@ -15,7 +15,7 @@ module Api
     attr_reader :menu_item
 
     def scope_by_menu_item
-      menu_item.dietary_filters
+      menu_item.dietaries
     end
   end
 end
