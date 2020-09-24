@@ -7,6 +7,12 @@ module Api
         end
 
         def create
+            dietary = DietaryInteractor::Create.new(
+                author: current_user,
+                params: strong_params
+              ).call.unwrap!
+        
+            render json: serialize(dietary), status: :created
         end
 
         def show
@@ -14,9 +20,20 @@ module Api
         end
 
         def update
+            dietary = DietaryInteractor::Update.new(
+                team: @dietary,
+                team_params: strong_params
+            ).call.unwrap!
+        
+            render json: serialize(dietary)
         end
 
         def destroy
+            DietaryInteractor::Delete.new(
+                dietary: @dietary
+            ).call.unwrap!
+        
+            head :no_content
         end
 
         private

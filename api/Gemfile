@@ -30,6 +30,10 @@ gem 'devise', '4.7.1' # Authentication
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
+
+# Event-sourcing
+gem 'rails_event_store', '0.43.0'
+
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
@@ -38,6 +42,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 
   gem 'rspec-rails', '~> 4.0.1'
+
+  gem 'rails_event_store-rspec'
 end
 
 group :development do

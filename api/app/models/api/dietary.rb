@@ -1,5 +1,5 @@
 module Api
-    class Dietaries < ApplicationRecord
+    class Dietary < ApplicationRecord
         # Relations
         belongs_to :menu_item
     

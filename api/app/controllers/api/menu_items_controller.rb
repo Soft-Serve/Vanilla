@@ -7,6 +7,12 @@ module Api
         end
 
         def create
+            menu_item = MenuItemInteractor::Create.new(
+                author: current_user,
+                params: strong_params
+              ).call.unwrap!
+        
+            render json: serialize(menu_item), status: :created
         end
 
         def show
@@ -14,9 +20,20 @@ module Api
         end
 
         def update
+            menu_item = MenuItemInteractor::Update.new(
+                team: @menu_item,
+                team_params: strong_params
+            ).call.unwrap!
+        
+            render json: serialize(menu_item)
         end
 
         def destroy
+            MenuItemInteractor::Delete.new(
+                menu_item: @menu_item
+            ).call.unwrap!
+        
+            head :no_content
         end
 
         private

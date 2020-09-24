@@ -3,6 +3,12 @@ module Api
         before_action :fetch, only: %i[show update destroy]
 
         def create
+            restaurant = RestaurantInteractor::Create.new(
+                author: current_user,
+                params: strong_params
+              ).call.unwrap!
+        
+            render json: serialize(restaurant), status: :created
         end
 
         def show
@@ -10,9 +16,20 @@ module Api
         end
 
         def update
+            restaurant = RestaurantInteractor::Update.new(
+                team: @restaurant,
+                team_params: strong_params
+            ).call.unwrap!
+        
+            render json: serialize(restaurant)
         end
 
         def destroy
+            RestaurantInteractor::Delete.new(
+                restaurant: @restaurant
+            ).call.unwrap!
+        
+            head :no_content
         end
 
         private
@@ -30,6 +47,8 @@ module Api
             :name,
             :primary_colour,
             :secondary_colour,
+            :currency
+            :logo
             )
         end 
     end

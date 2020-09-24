@@ -7,6 +7,12 @@ module Api
         end
 
         def create
+            item_size = ItemSizeInteractor::Create.new(
+                author: current_access,
+                params: strong_params
+              ).call.unwrap!
+        
+            render json: serialize(item_size), status: :created
         end
 
         def show
@@ -14,9 +20,20 @@ module Api
         end
 
         def update
+            item_size = ItemSizeInteractor::Update.new(
+                team: @item_size,
+                team_params: strong_params
+            ).call.unwrap!
+        
+            render json: serialize(item_size)
         end
 
         def destroy
+            ItemSizeInteractor::Delete.new(
+                item_size: @item_size
+            ).call.unwrap!
+        
+            head :no_content
         end
 
         private

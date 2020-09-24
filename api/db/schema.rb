@@ -15,10 +15,10 @@ ActiveRecord::Schema.define(version: 2020_09_24_124404) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "dietary_filters", force: :cascade do |t|
+  create_table "dietaries", force: :cascade do |t|
     t.string "name", null: false
     t.bigint "menu_item_id", null: false
-    t.index ["menu_item_id"], name: "index_dietary_filters_on_menu_item_id"
+    t.index ["menu_item_id"], name: "index_dietaries_on_menu_item_id"
   end
 
   create_table "item_sizes", force: :cascade do |t|
@@ -79,7 +79,7 @@ ActiveRecord::Schema.define(version: 2020_09_24_124404) do
     t.index ["restaurant_id"], name: "index_users_on_restaurant_id"
   end
 
-  add_foreign_key "dietary_filters", "menu_items", on_delete: :cascade
+  add_foreign_key "dietaries", "menu_items", on_delete: :cascade
   add_foreign_key "item_sizes", "menu_items", on_delete: :cascade
   add_foreign_key "menu_categories", "menus", on_delete: :cascade
   add_foreign_key "menu_items", "menu_categories", on_delete: :cascade
