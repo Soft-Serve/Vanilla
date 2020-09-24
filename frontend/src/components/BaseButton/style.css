@@ -1,0 +1,23 @@
+.button {
+  @apply w-full items-center border-transparent text-sm leading-4 font-medium transition ease-in-out duration-150;
+}
+
+.button--disabled {
+  @apply bg-cool-gray-400 cursor-not-allowed text-white !important;
+}
+
+.button--default {
+  @apply border border-gray-300 p-2 text-cool-gray-700;
+}
+
+.button--default:hover {
+  @apply bg-cool-gray-50 text-cool-gray-500;
+}
+
+.button--default:focus, {
+  @apply outline-none border-cool-gray-500;
+}
+
+.button--default:active {
+  @apply bg-cool-gray-50;
+}
