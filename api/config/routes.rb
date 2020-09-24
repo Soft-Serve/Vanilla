@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   namespace :api do
     resources :restaurants, only: %i[show create update destroy] do
       resources :menus, only: %i[index show create update destroy] do

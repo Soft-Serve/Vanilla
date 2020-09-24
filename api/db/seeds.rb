@@ -12,6 +12,26 @@ restaurant = Api::Restaurant.create!(
   logo: 'https://res.cloudinary.com/dnyjzmdsk/image/upload/v1598203753/o_b_jmfyov.png'
 )
 
+puts 'Creating 2 admins 👩🏽‍💻'
+
+User.create!(
+  first_name: 'Rachel',
+  last_name: 'Green',
+  email: 'rachel@green.com',
+  restaurant_id: restaurant.id,
+  role: 'admin',
+  password: 'friends'
+)
+
+User.create!(
+  first_name: 'Monica',
+  last_name: 'Geller',
+  email: 'monica@geller.com',
+  restaurant_id: restaurant.id,
+  role: 'admin',
+  password: 'friends'
+)
+
 puts 'Creating 3 menus 📄'
 
 lunch = Api::Menu.create!(
