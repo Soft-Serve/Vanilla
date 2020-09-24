@@ -4,7 +4,7 @@ module.exports = {
     node: true,
   },
   extends: [
-    'plugin:vue/vue3-essential',
+    'plugin:vue/recommended',
     '@vue/airbnb',
     '@vue/typescript/recommended',
   ],
@@ -13,6 +13,7 @@ module.exports = {
   },
   rules: {
     'import/extensions': ['off', 'never'],
+    'no-underscore-dangle': 'off',
     'class-methods-use-this': 0,
     'max-len': [
       'error',
@@ -44,11 +45,14 @@ module.exports = {
   overrides: [
     {
       files: [
-        '**/__tests__/*.{j,t}s?(x)',
-        '**/tests/unit/**/*.spec.{j,t}s?(x)',
+        './src/**/__tests__/*.spec.{j,t}s',
+        './src/**/__mock__/*.{j,t}s',
       ],
       env: {
         jest: true,
+      },
+      rules: {
+        'no-unused-expressions': 0,
       },
     },
   ],
