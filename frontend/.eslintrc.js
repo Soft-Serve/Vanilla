@@ -12,8 +12,34 @@ module.exports = {
     ecmaVersion: 2020,
   },
   rules: {
-    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'import/extensions': ['off', 'never'],
+    'class-methods-use-this': 0,
+    'max-len': [
+      'error',
+      {
+        code: 150,
+        ignoreComments: true,
+        ignoreUrls: true,
+      },
+    ],
+    'global-require': 0,
+    '@typescript-eslint/no-var-requires': 0,
+    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    '@typescript-eslint/ban-ts-ignore': 0,
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+    '@typescript-eslint/no-explicit-any': 'off',
+    'no-multiple-empty-lines': 'off',
+  },
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.json', '.vue'],
+      },
+      webpack: {
+        config: 'vue.config.js',
+      },
+    },
   },
   overrides: [
     {
