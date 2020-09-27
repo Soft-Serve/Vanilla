@@ -1,5 +1,5 @@
 FROM node:14.4-alpine
-WORKDIR /front
+WORKDIR /frontend
 COPY package*.json ./
 RUN yarn install
 COPY . .
