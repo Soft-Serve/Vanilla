@@ -3,15 +3,15 @@ module Api
         before_action :fetch, only: %i[show update destroy]
 
         def create
-            restaurant = RestaurantInteractor::Create.new(
+            result = RestaurantInteractor::Create.new(
                 author: current_user,
                 params: strong_params
               ).call
             
-            if restaurant.successful? 
-                render json: serialize(restaurant.unwrap!), status: :created
+            if result.successful? 
+                render json: serialize(result.unwrap!), status: :created
             else
-                render json: restaurant.errors, status: :unprocessable_entity
+                render json: result.errors, status: :unprocessable_entity
             end
         end
 
@@ -20,27 +20,27 @@ module Api
         end
 
         def update
-            restaurant = RestaurantInteractor::Update.new(
+            result = RestaurantInteractor::Update.new(
                 team: @restaurant,
                 team_params: strong_params
             ).call.unwrap!
 
-            if restaurant.successful? 
-                render json: serialize(restaurant.unwrap!)
+            if result.successful? 
+                render json: serialize(result.unwrap!)
             else
-                render json: restaurant.errors, status: :unprocessable_entity
+                render json: result.errors, status: :unprocessable_entity
             end
         end
 
         def destroy
-            RestaurantInteractor::Delete.new(
+            result = RestaurantInteractor::Delete.new(
                 restaurant: @restaurant
             ).call
 
-            if restaurant.successful? 
+            if result.successful? 
                 head :no_content
             else
-                render json: restaurant.errors, status: :unprocessable_entity
+                render json: result.errors, status: :unprocessable_entity
             end   
         end
 
