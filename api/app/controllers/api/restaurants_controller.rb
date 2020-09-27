@@ -6,9 +6,13 @@ module Api
             restaurant = RestaurantInteractor::Create.new(
                 author: current_user,
                 params: strong_params
-              ).call.unwrap!
-        
-            render json: serialize(restaurant), status: :created
+              ).call
+            
+            if restaurant.successful? 
+                render json: serialize(restaurant.unwrap!), status: :created
+            else
+                render json: restaurant.errors, status: :unprocessable_entity
+            end
         end
 
         def show
@@ -20,16 +24,24 @@ module Api
                 team: @restaurant,
                 team_params: strong_params
             ).call.unwrap!
-        
-            render json: serialize(restaurant)
+
+            if restaurant.successful? 
+                render json: serialize(restaurant.unwrap!)
+            else
+                render json: restaurant.errors, status: :unprocessable_entity
+            end
         end
 
         def destroy
             RestaurantInteractor::Delete.new(
                 restaurant: @restaurant
-            ).call.unwrap!
-        
-            head :no_content
+            ).call
+
+            if restaurant.successful? 
+                head :no_content
+            else
+                render json: restaurant.errors, status: :unprocessable_entity
+            end   
         end
 
         private
