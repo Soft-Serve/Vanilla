@@ -47,7 +47,7 @@ module Api
             :name,
             :primary_colour,
             :secondary_colour,
-            :currency
+            :currency,
             :logo
             )
         end 
