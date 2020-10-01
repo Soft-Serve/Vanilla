@@ -89,6 +89,11 @@ GEM
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     erubi (1.9.0)
+    factory_bot (6.1.0)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.1.0)
+      factory_bot (~> 6.1.0)
+      railties (>= 5.0.0)
     ffi (1.13.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -133,6 +138,8 @@ GEM
     puma (4.3.6)
       nio4r (~> 2.0)
     rack (2.2.3)
+    rack-cors (1.1.1)
+      rack (>= 2.0.0)
     rack-protection (2.1.0)
       rack
     rack-test (1.1.0)
@@ -259,10 +266,12 @@ DEPENDENCIES
   carrierwave (~> 1.2)
   cloudinary (~> 1.9.1)
   devise (= 4.7.1)
+  factory_bot_rails
   listen (~> 3.2)
   pg (>= 0.18, < 2.0)
   pry-byebug (~> 3.9.0)
   puma (~> 4.1)
+  rack-cors
   rails (~> 6.0.3, >= 6.0.3.3)
   rails_event_store (= 0.43.0)
   rails_event_store-rspec

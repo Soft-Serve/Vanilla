@@ -1,64 +1,56 @@
 <template>
   <div
     v-if="dish"
-    class="flex rounded-lg overflow-hidden shadow-2xl bg-white"
+    class="card"
   >
     <div
       v-if="dish.image"
-      class="flex flex-col justify-center ml-2"
+      class="card__image-container"
     >
       <BaseImage
-        class="inline-block h-20 w-20 rounded-full"
+        width="150px"
+        height="150px"
         :src="dish.image"
       />
     </div>
-    <div class="flex-1 bg-white p-4 flex flex-col">
-      <div class="flex w-full justify-between items-center flex-wrap">
-        <h3 class="mt-2 text-md leading-7 font-semibold text-gray-900 m-1">
-          {{ dish.name }}
-        </h3>
-        <div v-if="dish.allergies">
-          <component
-            :is="`${allergy}SVG`"
-            v-for="(allergy, index) in dish.allergies"
-            :key="index"
-            class="inline-block"
-          />
-        </div>
+    <div class="card__content">
+      <h3 class="card__title">
+        {{ dish.name }}
+      </h3>
+      <div v-if="dish.allergies">
+        <Component
+          :is="`${allergy}SVG`"
+          v-for="(allergy, index) in dish.allergies"
+          :key="index"
+          class="inline-block"
+        />
       </div>
-      <p class="mt-2 leading-3 text-gray-500 text-xs italic">
+
+      <p class="card__description">
         {{ dish.description }}
       </p>
-      <div class="flex w-full justify-between items-center mt-2">
-        <span class="inline-flex w-full text-sm italic">
-          <span class="text-red-500 mx-1">$</span>
+      <div class="card__pricing">
+        <span class="card__price">
+          <span class="card__currency">$</span>
           {{ counter > 0 ? dish.price * counter : dish.price }}
         </span>
-        <div class="w-full inline-flex justify-end items-center">
-          <span class="inline-flex rounded-full shadow-sm mx-2">
-            <button
-              type="button"
-              class="inline-flex items-center px-2.5 py-1.5 border border-transparent
-              text-xs leading-4 font-bold rounded-full text-white bg-red-600 hover:bg-red-500
-              focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition ease-in-out duration-150"
-              @click="remove"
-            >
-              -
-            </button>
+        <div class="card__actions">
+          <span class="card__button-container">
+            <BaseButton @click="remove">
+              <template>
+                <span class="card__button">-</span>
+              </template>
+            </BaseButton>
           </span>
-          <span class="font-bold text-sm">
+          <span class="card__counter">
             {{ counter }}
           </span>
-          <span class="inline-flex rounded-full shadow-sm mx-2">
-            <button
-              type="button"
-              class="inline-flex items-center px-2.5 py-1.5 border border-transparent
-              text-xs leading-4 font-bold rounded-full text-white bg-red-600 hover:bg-red-500
-              focus:outline-none focus:border-red-700 focus:shadow-outline-red active:bg-red-700 transition ease-in-out duration-150"
-              @click="add"
-            >
-              +
-            </button>
+          <span class="card__button-container">
+            <BaseButton @click="add">
+              <template>
+                <span class="card__button">+</span>
+              </template>
+            </BaseButton>
           </span>
         </div>
       </div>
@@ -75,6 +67,8 @@ import nutsSVG from '@/assets/svgs/nuts.svg';
 import dairySVG from '@/assets/svgs/dairy.svg';
 import meatSVG from '@/assets/svgs/meat.svg';
 import shellfishSVG from '@/assets/svgs/shellfish.svg';
+import BaseButton from '@/components/BaseButton/BaseButton.vue';
+import './style.css';
 
 export interface Dish {
     name: string;
@@ -95,6 +89,7 @@ export interface Dish {
     meatSVG,
     shellfishSVG,
     soySVG,
+    BaseButton,
   },
 })
 

@@ -1,17 +1,13 @@
 # README
 
-Run docker container for development
-docker-compose run --service-ports app /bin/sh -c "rm -f tmp/pids/server.pid && rails s -b 0.0.0.0"
-
-Run all 3 containers 
-docker-compose up
+Start backend for development 
+docker-compose run --service-ports api /bin/sh -c "rm -f tmp/pids/server.pid && rails s -b 0.0.0.0"
 
 Stop all containers 
 docker-compose down
 
 Start only frontend
-docker container run soft_serve_frontend
-
+docker-compose up -d frontend
 
 DB
 docker-compose run api db:reset
@@ -21,6 +17,9 @@ docker-compose run api db:migrate
 docker-compose run api db:seed
 
 Rails Console
-docker exec -it soft_serve_api_1 bash
+docker exec -it soft_serve_api_run_455fb92af71e bash 
 cd app
 rail console
+
+All rails commands must be run as follows
+docker-compose run api ...

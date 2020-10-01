@@ -11,8 +11,7 @@
       >
         <template>
           <span
-            class="block border border-red-400 rounded-lg justify-center items-center w-full h-full p-5 font-bold text-red-500
-          max-w-10 hover:text-white hover:bg-red-400 focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150"
+            class="button--primary md:py-4 md:text-lg md:px-10"
           >
             Allergy Filters
           </span>
@@ -25,13 +24,11 @@
           v-for="(category, index) in categories"
           :key="index"
           v-model="filter"
-          @click="filter = category"
+          @click="triggerCategoryChange(category)"
         >
           <template>
             <span
-              class="block w-full h-full p-3 rounded-md font-bold text-cool-gray-700 border
-            hover:bg-red-500 focus:outline-none focus:border-red-700 hover:text-white
-            focus:shadow-outline-indigo active:bg-indigo-700 transition ease-in-out duration-150 text-xs"
+              class="button--naked"
             >
               {{ category }}
             </span>
@@ -40,16 +37,20 @@
       </Wrapper>
     </div>
     <div class="divider">
-      <Wrapper
-        :column="1"
-        class="wrapper"
-      >
-        <BaseCard
-          v-for="(dish, index) in renderDishes"
-          :key="index"
-          :dish="dish"
-        />
-      </Wrapper>
+      <transition :name="slideDirection">
+        <Wrapper
+          :column="1"
+          class="wrapper"
+        >
+          <template>
+            <BaseCard
+              v-for="(dish, index) in renderDishes"
+              :key="index"
+              :dish="dish"
+            />
+          </template>
+        </Wrapper>
+      </transition>
     </div>
   </div>
 </template>
@@ -83,6 +84,10 @@ export default class Home extends Vue {
     this.isVisible = !this.isVisible;
   }
 
+  get slideDirection() {
+    return this.slideLeft ? 'slide-left' : 'slide-right';
+  }
+
   filter = ''
 
   categories = [
@@ -96,6 +101,8 @@ export default class Home extends Vue {
     'desserts',
     'sides',
   ]
+
+  slideLeft = false;
 
   dishes = [
     {
@@ -224,6 +231,11 @@ export default class Home extends Vue {
     },
   ]
 
+  triggerCategoryChange(category: string) {
+    this.filter = category;
+    this.toggleSlideLeft();
+  }
+
   compareAllergies(dishAllergies: Array<string>, userAllergies: Array<string>): boolean {
     if (this.userAllergies.length) {
       return intersection(dishAllergies, userAllergies);
@@ -235,16 +247,17 @@ export default class Home extends Vue {
     return [...dishes].filter((dish: Dish) => !this.compareAllergies(dish.allergies, this.userAllergies));
   }
 
-  filterByCategory(): Array<Dish> {
-    return [...this.dishes].filter((dish) => dish.category === this.filter);
+  toggleSlideLeft() {
+    this.slideLeft = !this.slideLeft;
   }
+
 
   get filteredDishesByAllergies(): Array<Dish> {
     return this.filterByAllergies(this.dishes);
   }
 
   get filteredDishesCategory(): Array<Dish> {
-    return this.filterByCategory();
+    return [...this.dishes].filter((dish) => dish.category === this.filter);
   }
 
   get filteredDishesByAllergiesAndCategory(): Array<Dish> {
@@ -285,4 +298,28 @@ export default class Home extends Vue {
 .divider {
   @apply my-4;
 }
+
+.slide-right-enter-active,
+.slide-right-leave-active,
+.slide-left-enter-active,
+.slide-left-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-left-enter {
+  transform: translateX(100%);
+}
+
+.slide-left-leave-to {
+  transform: translateX(-100%);
+}
+
+.slide-right-enter {
+  transform: translateX(-100%);
+}
+
+.slide-right-leave-to {
+  transform: translateX(100%);
+}
+
 </style>
