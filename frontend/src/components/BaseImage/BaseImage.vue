@@ -1,8 +1,6 @@
 <template>
   <div
     class="image"
-    @mouseenter="toggleToolTip"
-    @mouseleave="toggleToolTip"
   >
     <div
       v-if="dataUrl"
@@ -16,7 +14,6 @@
     </div>
     <img
       v-if="src && !path"
-      :class="customStyles"
       :src="dataUrl"
       :alt="$attrs.alt || 'image'"
       v-bind="$attrs"
@@ -25,7 +22,6 @@
     <AIcon
       v-else
       v-bind="$attrs"
-      :class="customStyles"
       :path="path"
       :desc="desc"
       :title="title"

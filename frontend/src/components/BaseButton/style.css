@@ -21,3 +21,31 @@
 .button--default:active {
   @apply bg-cool-gray-50;
 }
+
+.button--naked {
+  @apply block w-full h-full p-3 rounded-md font-bold text-cool-gray-700 border transition ease-in-out duration-150 text-xs shadow-lg;
+}
+
+.butten--naked:hover {
+  @apply bg-red-500 text-white;
+}
+
+.button--naked:focus {
+  @apply outline-none border-red-700 shadow-outline-indigo;
+}
+
+.button--naked:active {
+  @apply bg-indigo-700;
+}
+
+.button--primary {
+  @apply w-full flex items-center justify-center px-2 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-white transition duration-150 ease-in-out bg-red-500;
+}
+
+.button--primary:hover {
+  @apply bg-indigo-500;
+}
+
+.button--primary:focus {
+  @apply outline-none border-indigo-700 shadow-outline-indigo;
+}
