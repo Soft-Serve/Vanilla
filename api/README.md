@@ -1,24 +1,26 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Run docker container for development
+docker-compose run --service-ports app /bin/sh -c "rm -f tmp/pids/server.pid && rails s -b 0.0.0.0"
 
-Things you may want to cover:
+Run all 3 containers 
+docker-compose up
 
-* Ruby version
+Stop all containers 
+docker-compose down
 
-* System dependencies
+Start only frontend
+docker container run soft_serve_frontend
 
-* Configuration
 
-* Database creation
+DB
+docker-compose run api db:reset
 
-* Database initialization
+docker-compose run api db:create
+docker-compose run api db:migrate
+docker-compose run api db:seed
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Rails Console
+docker exec -it soft_serve_api_1 bash
+cd app
+rail console
