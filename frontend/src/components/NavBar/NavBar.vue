@@ -153,35 +153,39 @@
         </div>
       </div>
     </div>
-    <div
-      v-if="isOpen"
-      class="sm:hidden"
+    <transition
+      name="slide"
     >
-      <div class="pt-2 pb-3">
-        <a
-          href="#"
-          class="block pl-3 pr-4 py-2 border-l-4 border-red-500 text-base font-medium text-red-700
+      <div
+        v-if="isOpen"
+        class="sm:hidden"
+      >
+        <div class="pt-2 pb-3">
+          <a
+            href="#"
+            class="block pl-3 pr-4 py-2 border-l-4 border-red-500 text-base font-medium text-red-700
       bg-red-50 focus:outline-none focus:text-red-800 focus:bg-red-100 focus:border-red-700 transition
       duration-150 ease-in-out"
-        >Menu</a>
-        <router-link
-          to="/about"
-          class="mt-1 block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600
+          >Menu</a>
+          <router-link
+            to="/about"
+            class="mt-1 block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600
       hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800 focus:bg-gray-50
       focus:border-gray-300 transition duration-150 ease-in-out"
-        >
-          Cart
-        </router-link>
-        <a
-          href="#"
-          class="mt-1 block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600
+          >
+            Cart
+          </router-link>
+          <a
+            href="#"
+            class="mt-1 block pl-3 pr-4 py-2 border-l-4 border-transparent text-base font-medium text-gray-600
         hover:text-gray-800 hover:bg-gray-50 hover:border-gray-300 focus:outline-none focus:text-gray-800   focus:bg-gray-50
         focus:border-gray-300 transition duration-150 ease-in-out"
-        >
-          Help
-        </a>
+          >
+            Help
+          </a>
+        </div>
       </div>
-    </div>
+    </transition>
   </nav>
 </template>
 
@@ -207,3 +211,39 @@ export default class NavBar extends Vue {
   }
 }
 </script>
+
+<style scoped>
+.slide-enter-active {
+  -moz-transition-duration: 0.3s;
+  -webkit-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -moz-transition-timing-function: ease-in;
+  -webkit-transition-timing-function: ease-in;
+  -o-transition-timing-function: ease-in;
+  transition-timing-function: ease-in;
+}
+
+.slide-leave-active {
+  -moz-transition-duration: 0.3s;
+  -webkit-transition-duration: 0.3s;
+  -o-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -moz-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  -webkit-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  -o-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+}
+
+.slide-enter-to,
+.slide-leave {
+  max-height: 100px;
+  overflow: hidden;
+}
+
+.slide-enter,
+.slide-leave-to {
+  overflow: hidden;
+  max-height: 0;
+}
+</style>

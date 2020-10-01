@@ -7,7 +7,7 @@
       v-if="dish.image"
       class="flex flex-col justify-center ml-2"
     >
-      <AppImage
+      <BaseImage
         class="inline-block h-20 w-20 rounded-full"
         :src="dish.image"
       />
@@ -68,7 +68,7 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
-import AppImage from '@/components/Image/AppImage.vue';
+import BaseImage from '@/components/BaseImage/BaseImage.vue';
 import soySVG from '@/assets/svgs/soy.svg';
 import glutenSVG from '@/assets/svgs/gluten.svg';
 import nutsSVG from '@/assets/svgs/nuts.svg';
@@ -88,7 +88,7 @@ export interface Dish {
 @Component({
   name: 'BaseCard',
   components: {
-    AppImage,
+    BaseImage,
     dairySVG,
     glutenSVG,
     nutsSVG,

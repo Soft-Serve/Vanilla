@@ -4,9 +4,9 @@
       :are-filters-visibile="isVisible"
       @closeSlideOver="closeSlideOver"
     />
-    <div class="divider">
+    <div class="divider flex justify-center w-full">
       <BaseButton
-        class="flex w-full justify-center"
+        class="inline-flex w-40"
         @click="handleClick"
       >
         <template>

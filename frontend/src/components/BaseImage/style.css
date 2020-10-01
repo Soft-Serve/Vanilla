@@ -1,0 +1,47 @@
+.image {
+  @apply inline-block relative;
+}
+
+.image__placeholder {
+  @apply absolute overflow-hidden;
+}
+
+.image__placeholder img {
+  @apply scale-105;
+
+  filter: blur(10px);
+}
+
+.image__img {
+  @apply opacity-0;
+
+  transition: opacity 300ms ease;
+}
+
+.image--loaded .image__img {
+  @apply opacity-100;
+}
+
+.image__tooltip {
+  @apply absolute;
+}
+
+.image__tooltip--top {
+  bottom: 105%;
+}
+
+.image__tooltip--bottom {
+  top: 105%;
+}
+
+.image__tooltip--left {
+  @apply top-2/4 transform -translate-y-1/2;
+
+  right: 105%;
+}
+
+.image__tooltip--right {
+  @apply top-2/4 transform -translate-y-1/2;
+
+  left: 105%;
+}

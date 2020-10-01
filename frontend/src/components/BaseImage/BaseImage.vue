@@ -1,25 +1,22 @@
 <template>
-  <div class="image">
+  <div
+    class="image"
+    @mouseenter="toggleToolTip"
+    @mouseleave="toggleToolTip"
+  >
     <div
       v-if="dataUrl"
-      :style="{ background }"
+      :style="background ? background : null "
       class="image__placeholder"
     >
       <img
-        v-if="placeholder"
         :src="placeholder || dataUrl"
-        alt="image"
         v-bind="$attrs"
       >
-      <slot
-        v-else
-        name="placeholder"
-      >
-        <LoadingSVG />
-      </slot>
     </div>
     <img
       v-if="src && !path"
+      :class="customStyles"
       :src="dataUrl"
       :alt="$attrs.alt || 'image'"
       v-bind="$attrs"
@@ -27,8 +24,8 @@
     >
     <AIcon
       v-else
-      class="image__img"
       v-bind="$attrs"
+      :class="customStyles"
       :path="path"
       :desc="desc"
       :title="title"
@@ -36,14 +33,16 @@
   </div>
 </template>
 
+
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
+import './style.css';
 
 @Component({
-  name: 'AImage',
+  name: 'BaseImage',
   inheritAttrs: false,
 })
-export default class AImage extends Vue {
+export default class BaseImage extends Vue {
   @Prop({ required: false })
   readonly src!: string;
 
@@ -62,6 +61,12 @@ export default class AImage extends Vue {
   @Prop({ required: false, default: 'no description provided' })
   readonly desc!: string;
 
+  isToolTipVisible = false;
+
+  toggleToolTip() {
+    this.isToolTipVisible = !this.isToolTipVisible;
+  }
+
   get dataUrl() {
     const { width, height } = this.$attrs;
 
@@ -79,7 +84,7 @@ export default class AImage extends Vue {
 
   mounted() {
     const { src, srcset, $el } = this as any;
-    let timeOut: number|undefined;
+    let timeOut: number | undefined;
 
     const observer = new IntersectionObserver(([entry]) => {
       const img = $el.querySelector('.image__img') as any;
