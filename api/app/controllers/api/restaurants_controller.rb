@@ -25,8 +25,8 @@ module Api
 
         def update
             result = RestaurantInteractor::Update.new(
-                team: @restaurant,
-                team_params: strong_params
+                restaurant: @restaurant,
+                params: strong_params
             ).call.unwrap!
 
             if result.successful? 

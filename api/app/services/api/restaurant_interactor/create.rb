@@ -24,7 +24,7 @@ module Api
         ::Result::Ok.new(restaurant)
 
       rescue StandardError => e
-        Result::Error.new(exception: [e.message]) 
+        Result::Error.new(errors: [e.message]) 
       end
     end
   end
