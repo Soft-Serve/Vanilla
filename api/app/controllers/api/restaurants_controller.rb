@@ -51,7 +51,7 @@ module Api
         end
 
         def fetch
-            @restaurant = Restaurant.find(params[:id])
+            @restaurant = Restaurant.find_by(params[:id])
         end
 
         def strong_params
