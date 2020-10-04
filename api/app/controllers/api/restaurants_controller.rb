@@ -16,7 +16,11 @@ module Api
         end
 
         def show
-            render json: serialize(@restaurant)
+            if @restaurant
+                render json: serialize(@restaurant)
+            else
+                render 'Not found', status: :not_found
+            end
         end
 
         def update
@@ -51,7 +55,7 @@ module Api
         end
 
         def fetch
-            @restaurant = Restaurant.find_by(params[:id])
+            @restaurant = Restaurant.find_by(id: params[:id])
         end
 
         def strong_params
