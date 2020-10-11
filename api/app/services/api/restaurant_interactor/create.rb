@@ -22,7 +22,6 @@ module Api
         restaurant.save!
 
         ::Result::Ok.new(restaurant)
-
       rescue StandardError => e
         Result::Error.new(errors: [e.message])
       end

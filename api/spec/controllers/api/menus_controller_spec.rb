@@ -1,26 +1,20 @@
 require 'rails_helper'
 
-RSpec.describe Api::RestaurantsController do
+RSpec.describe Api::MenusController do
   let!(:restaurant) { create(:restaurant) }
+  let!(:menu) { create(:menu, restaurant_id: restaurant.id) }
   let!(:current_user) { create(:user) }
-  let(:currency) { 'CAD' }
-  let(:params) do
-    {
-      name: 'Akira Back',
-      primary_colour: '#3de443',
-      secondary_colour: '#000000',
-      currency: currency
-    }
-  end
+  let(:name) { 'Lunch Menu' }
+  let(:params) { { name: name, restaurant_id: restaurant.id } }
 
   def json
     JSON.parse(response.body)
   end
 
   describe 'GET #show' do
-    let(:id) { restaurant.id }
+    let(:id) { menu.id }
 
-    before { get :show, params: { id: id }  }
+    before { get :show, params: { id: id, restaurant_id: restaurant.id } }
 
     context 'when id is valid' do
       it do
@@ -43,12 +37,12 @@ RSpec.describe Api::RestaurantsController do
     context 'when params are valid' do
       it do
         expect(response).to have_http_status(:created)
-        expect(json['name']).to eq('Akira Back')
+        expect(json['name']).to eq('Lunch Menu')
       end
     end
 
     context 'when params are invalid' do
-      let(:currency) { 'blabla' }
+      let(:name) { nil }
 
       it do
         expect(response).to have_http_status(:unprocessable_entity)
@@ -59,17 +53,17 @@ RSpec.describe Api::RestaurantsController do
 
   describe 'PATCH #update' do
     let(:update_params) { {} }
-    before { patch :update, params: update_params.merge(id: restaurant.id) }
+    before { patch :update, params: update_params.merge(id: menu.id, restaurant_id: restaurant.id)  }
 
     context 'when params are valid' do
-      let(:update_params) { { name: 'O&B' } }
+      let(:update_params) { { name: 'Brunch!' } }
       it do
-        expect(json['name']).to eq('O&B')
+        expect(json['name']).to eq('Brunch!')
       end
     end
 
     context 'when params are invalid' do
-      let(:update_params) { { currency: 'dsgwee' } }
+      let(:update_params) { { name: nil, restaurant_id: restaurant.id } }
 
       it do
         expect(response).to have_http_status(:unprocessable_entity)
@@ -79,7 +73,7 @@ RSpec.describe Api::RestaurantsController do
   end
 
   describe 'DELETE #destroy' do
-    let(:destroy_params) { { id: restaurant.id } }
+    let(:destroy_params) { { id: menu.id, restaurant_id: restaurant.id } }
     before { patch :destroy, params: destroy_params }
 
     it do

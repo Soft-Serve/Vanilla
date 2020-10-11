@@ -7,33 +7,51 @@ module Api
     end
 
     def create
-      menu = MenuInteractor::Create.new(
+      result = MenuInteractor::Create.new(
         author: current_user,
         params: strong_params
-      ).call.unwrap!
+      ).call
 
-      render json: serialize(menu), status: :created
+      if result.successful?
+        render json: serialize(result.unwrap!), status: :created
+      else
+        render json: result.errors, status: :unprocessable_entity
+      end
     end
 
     def show
-      render json: serialize(@menu)
+      if @menu
+        render json: serialize(@menu)
+      else
+        render 'Not found', status: :not_found
+      end
     end
 
     def update
-      menu = MenuInteractor::Update.new(
-        team: @menu,
-        team_params: strong_params
-      ).call.unwrap!
+      result = MenuInteractor::Update.new(
+        author: current_user,
+        menu: @menu,
+        params: strong_params
+      ).call
 
-      render json: serialize(menu)
+      if result.successful?
+        render json: serialize(result.unwrap!)
+      else
+        render json: result.errors, status: :unprocessable_entity
+      end
     end
 
     def destroy
-      MenuInteractor::Delete.new(
+      result = MenuInteractor::Destroy.new(
+        author: current_user,
         menu: @menu
-      ).call.unwrap!
+      ).call
 
-      head :no_content
+      if result.successful?
+        head :no_content
+      else
+        render json: result.errors, status: :unprocessable_entity
+      end
     end
 
     private
@@ -51,7 +69,7 @@ module Api
     end
 
     def fetch
-      @menu = Menu.find(params[:id])
+      @menu = Menu.find_by(id: params[:id])
     end
 
     def strong_params
