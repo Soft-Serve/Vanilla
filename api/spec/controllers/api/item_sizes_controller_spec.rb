@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Api::MenuItemsController do
+RSpec.describe Api::ItemSizesController do
   let!(:restaurant) { create(:restaurant) }
   let!(:menu) { create(:menu) }
   let!(:menu_category) { create(:menu_category) }
@@ -63,7 +63,7 @@ RSpec.describe Api::MenuItemsController do
     end
 
     context 'when params are invalid' do
-      let(:name) { nil }
+      let(:price) { nil }
 
       it do
         expect(response).to have_http_status(:unprocessable_entity)

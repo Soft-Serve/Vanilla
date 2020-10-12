@@ -1,25 +1,23 @@
 require 'rails_helper'
 
-RSpec.describe Api::MenuItemsController do
+RSpec.describe Api::DietariesController do
   let!(:restaurant) { create(:restaurant) }
   let!(:menu) { create(:menu) }
   let!(:menu_category) { create(:menu_category) }
   let!(:menu_item) { create(:menu_item) }
-  let!(:item_size) { create(:item_size) }
+  let!(:dietary) { create(:dietary) }
   let!(:current_user) { create(:user) }
-  let(:price) { 9 }
-  let(:unit) { '6 oz' }
+  let(:name) { 'soy' }
   let(:create_params) do
     {
-      price: price,
-      unit: unit,
+      name: name,
       menu_item_id: menu_item.id,
       menu_category_id: menu_category.id,
       menu_id: menu.id,
       restaurant_id: restaurant.id
     }
   end
-  let(:id) { item_size.id }
+  let(:id) { dietary.id }
   let(:routing_params) do
     {
       id: id,
@@ -58,7 +56,7 @@ RSpec.describe Api::MenuItemsController do
     context 'when params are valid' do
       it do
         expect(response).to have_http_status(:created)
-        expect(json['price']).to eq(9)
+        expect(json['name']).to eq('soy')
       end
     end
 
@@ -77,14 +75,14 @@ RSpec.describe Api::MenuItemsController do
     before { patch :update, params: routing_params.merge(update_params) }
 
     context 'when params are valid' do
-      let(:update_params) { { price: 8 } }
+      let(:update_params) { { name: 'gluten' } }
       it do
-        expect(json['price']).to eq(8)
+        expect(json['name']).to eq('gluten')
       end
     end
 
     context 'when params are invalid' do
-      let(:update_params) { { price: nil } }
+      let(:update_params) { { name: nil } }
 
       it do
         expect(response).to have_http_status(:unprocessable_entity)
