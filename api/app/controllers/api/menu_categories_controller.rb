@@ -69,7 +69,7 @@ module Api
     end
 
     def fetch
-      @menu_category = MenuCategory.find(params[:id])
+      @menu_category = MenuCategory.find_by(id: params[:id])
     end
 
     def strong_params

@@ -2,7 +2,6 @@ require 'rails_helper'
 
 RSpec.describe Api::MenuInteractor::Create do
   let(:restaurant) { create(:restaurant) }
-  let!(:menu) { create(:menu, restaurant_id: restaurant.id) }
   let!(:current_user) { create(:user) }
   let(:name) { 'Lunch Menu' }
   let(:params) { { name: name, restaurant_id: restaurant.id } }

@@ -7,7 +7,16 @@ module Api
     end
 
     def create
+      result = MenuInteractor::Create.new(
+        author: current_user,
+        params: strong_params
+      ).call
 
+      if result.successful?
+        render json: serialize(result.unwrap!), status: :created
+      else
+        render json: result.errors, status: :unprocessable_entity
+      end
     end
 
     def show

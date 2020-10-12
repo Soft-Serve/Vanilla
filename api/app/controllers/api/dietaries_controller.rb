@@ -69,7 +69,7 @@ module Api
     end
 
     def fetch
-      @dietary = Dietary.find(params[:id])
+      @dietary = Dietary.find_by(id: params[:id])
     end
 
     def strong_params

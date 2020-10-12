@@ -69,7 +69,7 @@ module Api
     end
 
     def fetch
-      @menu_item = MenuItem.find(params[:id])
+      @menu_item = MenuItem.find_by(id: params[:id])
     end
 
     def strong_params

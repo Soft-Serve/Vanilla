@@ -69,7 +69,7 @@ module Api
     end
 
     def fetch
-      @item_size = ItemSize.find(params[:id])
+      @item_size = ItemSize.find_by(id: params[:id])
     end
 
     def strong_params
