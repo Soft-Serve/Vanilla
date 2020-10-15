@@ -22,6 +22,8 @@ module Api
         dietary.save!
 
         ::Result::Ok.new(dietary)
+      rescue StandardError => e
+        Result::Error.new(errors: [e.message])
       end
     end
   end

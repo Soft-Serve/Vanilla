@@ -22,6 +22,8 @@ module Api
         menu_category.save!
 
         ::Result::Ok.new(menu_category)
+      rescue StandardError => e
+        Result::Error.new(errors: [e.message])
       end
     end
   end

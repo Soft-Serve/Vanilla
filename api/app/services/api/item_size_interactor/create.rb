@@ -22,6 +22,8 @@ module Api
         item_size.save!
 
         ::Result::Ok.new(item_size)
+      rescue StandardError => e
+        Result::Error.new(errors: [e.message])
       end
     end
   end

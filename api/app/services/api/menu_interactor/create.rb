@@ -22,6 +22,8 @@ module Api
         menu.save!
 
         ::Result::Ok.new(menu)
+      rescue StandardError => e
+        Result::Error.new(errors: [e.message])
       end
     end
   end
