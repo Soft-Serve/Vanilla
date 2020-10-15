@@ -20,6 +20,15 @@ module.exports = {
       warnings: true,
       errors: true,
     },
+    // proxy: {
+    //   '/api': {
+    //     target: 'http://127.0.0.1:3091',
+    //     secure: false,
+    //     pathRewrite: {
+    //       '^/api': '/api',
+    //     },
+    //   },
+    // },
   },
   configureWebpack: {
     // Fast source maps in dev

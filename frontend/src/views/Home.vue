@@ -64,6 +64,7 @@ import BaseCard from '@/components/BaseCard/BaseCard.vue';
 import User from '@/store/modules/User';
 import { Dish } from '@/interfaces';
 import intersection from '@/utility/intersection';
+import ApiService from '@/models/ApiService';
 
 @Component({
   components: {
@@ -283,6 +284,11 @@ export default class Home extends Vue {
 
   get userHasAllergies(): boolean {
     return User.hasAllergies;
+  }
+
+  async mounted(): Promise<void> {
+    const response = await ApiService.getRestaurant();
+    console.log(response);
   }
 }
 </script>
