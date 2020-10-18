@@ -12,7 +12,7 @@ export interface Dish {
   allergies: string[];
 }
 
-export interface RestaurantMenu {
+export interface EstablishmentMenu {
   id: number;
   name: string;
   restaurant_id: number;

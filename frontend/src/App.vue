@@ -9,8 +9,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { useStore } from '@/store';
-import { MutationType } from '@/store/mutations';
-import ApiService from '@/models/ApiService';
+import { ActionTypes } from './store/actions';
 
 export default defineComponent({
   name: 'App',
@@ -19,11 +18,13 @@ export default defineComponent({
       store: useStore(),
     };
   },
-  async mounted() {
-    const response = await ApiService.getRestaurant();
-    this.store.commit(MutationType.SetLoading, true);
-    this.store.commit(MutationType.SetRestaurant, response);
-    this.store.commit(MutationType.SetLoading, false);
+  computed: {
+    loading(): boolean {
+      return this.store.state.loading;
+    },
+  },
+  mounted() {
+    this.store.dispatch(ActionTypes.getRestaurant, undefined);
   },
 });
 </script>

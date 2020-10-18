@@ -1,6 +1,7 @@
 import Axios from 'axios';
-import { RestaurantMenu, MenuCategory, MenuItem } from '@/interfaces';
+import { MenuCategory, MenuItem } from '@/interfaces';
 import Restaurant from './Restaurant';
+import RestaurantMenu from './RestaurantMenu';
 
 export default class ApiService {
   private static restaurantService = Axios.create({
