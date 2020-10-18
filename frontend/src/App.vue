@@ -25,6 +25,8 @@ export default defineComponent({
   },
   mounted() {
     this.store.dispatch(ActionTypes.getRestaurant, undefined);
+    this.store.dispatch(ActionTypes.getMenus, undefined);
+    this.store.dispatch(ActionTypes.getMenu, undefined);
   },
 });
 </script>

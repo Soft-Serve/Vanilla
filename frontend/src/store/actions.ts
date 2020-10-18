@@ -4,7 +4,9 @@ import { Mutations, MutationType } from './mutations';
 import { State } from './state';
 
 export enum ActionTypes {
-  getRestaurant = 'GET_RESTAURANT'
+  getRestaurant = 'GET_RESTAURANT',
+  getMenus = 'GET_MENUS',
+  getMenu = 'GET_MENU',
 }
 
 type ActionAugments = Omit<ActionContext<State, State>, 'commit'> & {
@@ -15,14 +17,29 @@ type ActionAugments = Omit<ActionContext<State, State>, 'commit'> & {
 }
 
 export type Actions = {
-    [ActionTypes.getRestaurant](context: ActionAugments): void;
+  [ActionTypes.getRestaurant](context: ActionAugments): void;
+  [ActionTypes.getMenus](context: ActionAugments): void;
+  [ActionTypes.getMenu](context: ActionAugments): void;
 }
+
 
 export const actions: ActionTree<State, State> & Actions = {
   async [ActionTypes.getRestaurant]({ commit }) {
     commit(MutationType.SetLoading, true);
     const restaurant = await ApiService.getRestaurant();
-    commit(MutationType.SetLoading, false);
     commit(MutationType.SetRestaurant, restaurant);
+    commit(MutationType.SetLoading, false);
+  },
+  async [ActionTypes.getMenus]({ commit }) {
+    commit(MutationType.SetLoading, true);
+    const menus = await ApiService.getRestaurantMenus();
+    commit(MutationType.SetRestaurantMenus, menus);
+    commit(MutationType.SetLoading, false);
+  },
+  async [ActionTypes.getMenu]({ commit }) {
+    commit(MutationType.SetLoading, true);
+    const menus = await ApiService.getRestaurantMenus();
+    commit(MutationType.SetRestaurantMenu, menus[0]);
+    commit(MutationType.SetLoading, false);
   },
 };

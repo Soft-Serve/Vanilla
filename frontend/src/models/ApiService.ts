@@ -20,13 +20,13 @@ export default class ApiService {
   }
 
   static async getRestaurantMenus(): Promise<RestaurantMenu[]> {
-    const response = await this.restaurantService.get('/api/restaurants/1/menus');
-    return response.data;
+    return this.restaurantService.get('/api/restaurants/1/menus')
+      .then((response) => response.data.map((result: RestaurantMenu) => new RestaurantMenu(result)));
   }
 
   static async getRestaurantMenu(menu: RestaurantMenu): Promise<RestaurantMenu> {
-    const response = await this.restaurantService.get(`/api/restaurants/1/menus/${menu.id}`);
-    return response.data;
+    return this.restaurantService.get(`/api/restaurants/1/menus/${menu.id}`)
+      .then((response) => new RestaurantMenu(response.data));
   }
 
   static async getMenuCategories(menu: RestaurantMenu): Promise<MenuCategory[]> {

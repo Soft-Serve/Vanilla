@@ -7,12 +7,13 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { useStore } from '@/store';
+import Restaurant from '@/models/Restaurant';
+import RestaurantMenu from '@/models/RestaurantMenu';
 
 export default defineComponent({
   name: 'Home',
   data() {
     return {
-      restaurant: undefined as unknown,
       store: useStore(),
     };
   },
@@ -20,9 +21,12 @@ export default defineComponent({
     loading(): boolean {
       return this.store.state.loading;
     },
-  },
-  mounted() {
-    this.restaurant = this.store.getters.restaurant;
+    restaurant(): Restaurant | null {
+      return this.store.getters.restaurant ? this.store.getters.restaurant : null;
+    },
+    restaurantMenus(): RestaurantMenu[] {
+      return this.store.getters.menus;
+    },
   },
 });
 </script>
