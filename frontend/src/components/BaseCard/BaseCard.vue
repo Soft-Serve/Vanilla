@@ -1,38 +1,37 @@
 <template>
   <div
-    v-if="dish"
+    v-if="cardData"
     class="card"
   >
     <div
-      v-if="dish.image"
+      v-if="cardData.image"
       class="card__image-container"
     >
       <BaseImage
         width="150px"
         height="150px"
-        :src="dish.image"
+        :src="cardData.image"
       />
     </div>
     <div class="card__content">
       <h3 class="card__title">
-        {{ dish.name }}
+        {{ cardData.name }}
       </h3>
-      <div v-if="dish.allergies">
-        <Component
-          :is="`${allergy}SVG`"
-          v-for="(allergy, index) in dish.allergies"
+      <div v-if="cardData.allergies">
+         <BaseIcon
+          v-for="(allergy, index) in cardData.allergies"
           :key="index"
-          class="inline-block"
+          :name="allergy"
         />
       </div>
 
       <p class="card__description">
-        {{ dish.description }}
+        {{ cardData.description }}
       </p>
       <div class="card__pricing">
         <span class="card__price">
           <span class="card__currency">$</span>
-          {{ counter > 0 ? dish.price * counter : dish.price }}
+          {{ counter > 0 ? cardData.price * counter : cardData.price }}
         </span>
         <div class="card__actions">
           <span class="card__button-container">
@@ -59,15 +58,10 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'vue-property-decorator';
-import BaseImage from '@/components/BaseImage/BaseImage.vue';
-import soySVG from '@/assets/svgs/soy.svg';
-import glutenSVG from '@/assets/svgs/gluten.svg';
-import nutsSVG from '@/assets/svgs/nuts.svg';
-import dairySVG from '@/assets/svgs/dairy.svg';
-import meatSVG from '@/assets/svgs/meat.svg';
-import shellfishSVG from '@/assets/svgs/shellfish.svg';
-import BaseButton from '@/components/BaseButton/BaseButton.vue';
+import { defineComponent } from 'vue';
+import BaseIcon from '~/BaseIcon/BaseIcon.vue';
+import BaseButton from '~/BaseButton/BaseButton.vue';
+import BaseImage from '~/BaseImage/BaseImage.vue';
 import './style.css';
 
 export interface Dish {
@@ -79,32 +73,31 @@ export interface Dish {
     allergies: Array<string>;
 }
 
-@Component({
+export default defineComponent({
   name: 'BaseCard',
   components: {
-    BaseImage,
-    dairySVG,
-    glutenSVG,
-    nutsSVG,
-    meatSVG,
-    shellfishSVG,
-    soySVG,
     BaseButton,
+    BaseImage,
+    BaseIcon,
   },
-})
-
-export default class BaseCard extends Vue {
-  @Prop({ required: false })
-  readonly dish!: Dish;
-
-  counter = 0;
-
-  add() {
-    this.counter += 1;
-  }
-
-  remove() {
-    this.counter -= 1;
-  }
-}
+  props: {
+    cardData: {
+      type: Object as () => Dish,
+      required: true,
+    },
+  },
+  data() {
+    return {
+      counter: 0,
+    };
+  },
+  methods: {
+    add(): void {
+      this.counter += 1;
+    },
+    remove(): void {
+      this.counter -= 1;
+    },
+  },
+});
 </script>

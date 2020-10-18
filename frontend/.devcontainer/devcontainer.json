@@ -28,6 +28,7 @@
 		},
 		"editor.codeActionsOnSave": {
 			// https://github.com/microsoft/vscode-eslint/blob/master/README.md#release-notes
+			"source.fixAll": true,
 			"source.fixAll.eslint": true,
 			"source.fixAll.stylelint": true
 		},
@@ -43,7 +44,6 @@
 
 		// ESLINT
 		// ----------------------------------------
-		"eslint.enable": true,
 		"eslint.validate": [
 			"typescript"
 		],

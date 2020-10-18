@@ -45,18 +45,18 @@
                 </div>
               </header>
               <div class="relative flex-1 px-4 sm:px-6 max-w-10 my-0 mx-auto">
-                <Wrapper :column="1">
+                <BaseWrapper :column="1">
                   <span
                     v-for="(allergy, index) in allergies"
                     :key="index"
                     class="flex justify-between border border-cool-gray-300 px-2 py-1 items-center rounded-lg cursor-pointer shadow-lg"
                     @click="toggleFilter(index)"
                   >
-                    <component :is="`${allergy.label}SVG`" />
+                    <BaseIcon :name="allergy.label"/>
                     {{ allergy.label }}
                     <BaseToggle :is-on="allergy.isOn" />
                   </span>
-                </Wrapper>
+                </BaseWrapper>
               </div>
               <div class="flex-shrink-0 px-4 py-4 space-x-4 flex justify-end">
                 <span class="inline-flex rounded-md shadow-sm">
@@ -89,49 +89,68 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'vue-property-decorator';
+import { defineComponent } from 'vue';
 import BaseButton from '@/components/BaseButton/BaseButton.vue';
 import BaseToggle from '@/components/BaseToggle/BaseToggle.vue';
-import Wrapper from '@/components/Wrapper/Wrapper.vue';
-import SoySVG from '@/assets/svgs/soy.svg';
-import MeatSVG from '@/assets/svgs/meat.svg';
-import GlutenSVG from '@/assets/svgs/gluten.svg';
-import NutsSVG from '@/assets/svgs/nuts.svg';
-import ShellfishSVG from '@/assets/svgs/shellfish.svg';
-import DairySVG from '@/assets/svgs/dairy.svg';
-import User from '@/store/modules/User';
+import BaseWrapper from '@/components/BaseWrapper/BaseWrapper.vue';
+import BaseIcon from '~/BaseIcon/BaseIcon.vue';
 
-@Component({
+export default defineComponent({
   name: 'SlideOver',
+  props: {
+    areFiltersVisibile: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+  },
   components: {
     BaseButton,
     BaseToggle,
-    Wrapper,
-    SoySVG,
-    MeatSVG,
-    GlutenSVG,
-    NutsSVG,
-    ShellfishSVG,
-    DairySVG,
+    BaseWrapper,
+    BaseIcon,
   },
+  data() {
+    return {
+      isOn: false,
+      allergies: [
+        {
+          label: 'soy',
+          isOn: false,
+        },
+        {
+          label: 'meat',
+          isOn: false,
+        },
+        {
+          label: 'gluten',
+          isOn: false,
+        },
+        {
+          label: 'nuts',
+          isOn: false,
+        },
+        {
+          label: 'dairy',
+          isOn: false,
+        },
+        {
+          label: 'shellfish',
+          isOn: false,
+        },
+      ],
+    };
+  },
+  methods: {
+    closeSlideOver(): void {
+      this.$emit('close-side-over', false);
+    },
 
-})
-export default class SlideOver extends Vue {
-  @Prop({ required: false, default: false })
-  readonly areFiltersVisibile!: boolean;
-
-  isOn = false;
-
-  closeSlideOver() {
-    this.$emit('closeSlideOver', false);
-  }
-
-  toggleFilter(index: number) {
-    this.allergies[index].isOn = !this.allergies[index].isOn;
-  }
-
-  allergies = User.allergies;
-}
+    toggleFilter(index: number): void {
+      this.allergies[index].isOn = !this.allergies[index].isOn;
+    },
+  },
+});
 
 </script>
 

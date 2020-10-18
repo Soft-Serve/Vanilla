@@ -190,26 +190,26 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator';
+import { defineComponent } from 'vue';
 import LogoSVG from '@/assets/svgs/logo.svg';
-import BaseButton from '@/components/BaseButton/BaseButton.vue';
 
-@Component({
+export default defineComponent({
   name: 'NavBar',
   components: {
     LogoSVG,
-    BaseButton,
-
   },
+  data() {
+    return {
+      isOpen: false,
+    };
+  },
+  methods: {
+    toggleNavBar() {
+      this.isOpen = !this.isOpen;
+    },
+  },
+});
 
-})
-export default class NavBar extends Vue {
-  isOpen = false;
-
-  toggleNavBar() {
-    this.isOpen = !this.isOpen;
-  }
-}
 </script>
 
 <style scoped>

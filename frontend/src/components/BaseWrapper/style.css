@@ -1,0 +1,106 @@
+.grid-wrappper {
+  @apply grid gap-3;
+}
+
+.grid-wrappper--IE::after,
+.grid-wrappper--IE::before {
+  @apply table clear-both;
+}
+
+.grid-wrappper--IE > div {
+  @apply inline-block float-left align-middle mx-4;
+
+  width: calc(100% - 2rem);
+}
+
+@media (min-width: 540px) and (max-width: 667px) {
+  .grid-wrappper--IE > div:nth-child(odd) {
+    width: calc(50% - 1.5rem);
+
+    @apply ml-4 mr-2;
+  }
+
+  .grid-wrappper--IE > div:nth-child(even) {
+    width: calc(50% - 1.5rem);
+
+    @apply ml-2 mr-4;
+  }
+}
+
+@media (min-width: 668px) and (max-width: 923px) {
+  .grid-wrappper--IE > div {
+    width: calc(33.3333% - 1.5rem);
+
+    @apply ml-4 mr-2;
+  }
+
+  .grid-wrappper--IE > div:nth-child(3n-7) {
+    width: calc(33.3333% - 1rem);
+
+    @apply ml-2 mr-2;
+  }
+
+  .grid-wrappper--IE > div:nth-child(3n) {
+    width: calc(33.3333% - 1.5rem);
+
+    @apply ml-2 mr-4;
+  }
+}
+
+@media (min-width: 924px) and (max-width: 1179px) {
+  .grid-wrappper--IE > div {
+    width: calc(25% - 1rem);
+
+    @apply ml-2 mr-2;
+  }
+
+  .grid-wrappper--IE > div:nth-child(odd) {
+    width: calc(25% - 1rem);
+
+    @apply ml-2 mr-2;
+  }
+
+  .grid-wrappper--IE > div:nth-child(4n+1) {
+    width: calc(25% - 1.5rem);
+
+    @apply ml-4 mr-2;
+  }
+
+  .grid-wrappper--IE > div:nth-child(4n) {
+    width: calc(25% - 1.5rem);
+
+    @apply ml-2 mr-4;
+  }
+}
+
+@media (min-width: 1180px) {
+  .grid-wrappper--IE > div {
+    width: calc(20% - 1rem);
+
+    @apply ml-2 mr-2;
+  }
+
+  .grid-wrappper--IE > div:nth-child(5n) {
+    width: calc(20% - 1.5rem);
+
+    @apply ml-2 mr-4;
+  }
+
+  .grid-wrappper--IE > div:nth-child(5n+1) {
+    width: calc(20% - 1.5rem);
+
+    @apply ml-4 mr-2;
+  }
+
+  .grid-wrappper--IE > div:nth-child(5n+2) {
+    width: calc(20% - 1rem);
+
+    @apply ml-2 mr-2;
+  }
+
+  .grid-wrappper--IE > div:nth-child(5n+3) {
+    width: calc(20% - 1rem);
+
+    @apply ml-2 mr-2;
+  }
+}

@@ -6,11 +6,8 @@ module.exports = {
     const svgRule = config.module.rule('svg');
     svgRule.uses.clear();
     svgRule
-      .use('babel-loader')
-      .loader('babel-loader')
-      .end()
-      .use('vue-svg-loader')
-      .loader('vue-svg-loader');
+      .use('html-loader')
+      .loader('html-loader');
   },
 
   lintOnSave: process.env.NODE_ENV !== 'production',
@@ -20,15 +17,6 @@ module.exports = {
       warnings: true,
       errors: true,
     },
-    // proxy: {
-    //   '/api': {
-    //     target: 'http://127.0.0.1:3091',
-    //     secure: false,
-    //     pathRewrite: {
-    //       '^/api': '/api',
-    //     },
-    //   },
-    // },
   },
   configureWebpack: {
     // Fast source maps in dev
@@ -41,6 +29,7 @@ module.exports = {
     resolve: {
       alias: {
         '@': path.join(__dirname, '/src'),
+        '~': path.join(__dirname, '/src/components'),
       },
     },
   },

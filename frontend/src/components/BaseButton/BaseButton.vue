@@ -1,37 +1,29 @@
 <template>
   <button
-    :disabled="disabled"
-    :type="type"
     class="button"
-    v-on="$listeners"
   >
     <slot>
       <span
         class="button--default"
-        :class="{'button--disabled' : disabled }"
       >
-        {{ text || 'button' }}
+        {{ text  }}
       </span>
     </slot>
   </button>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator';
+import { defineComponent } from 'vue';
 import './style.css';
 
-@Component({
+export default defineComponent({
   name: 'BaseButton',
-})
-
-export default class BaseButton extends Vue {
-  @Prop({ required: false, default: 'button' })
-  readonly type!: string;
-
-  @Prop({ required: false })
-  readonly disabled!: boolean;
-
-  @Prop({ required: false, default: 'button' })
-  readonly text!: string;
-}
+  props: {
+    text: {
+      type: String,
+      required: false,
+      default: 'click me',
+    },
+  },
+});
 </script>

@@ -23,7 +23,7 @@
 }
 
 .image__tooltip {
-  @apply absolute;
+  @apply absolute inline-flex justify-center;
 }
 
 .image__tooltip--top {
@@ -35,13 +35,13 @@
 }
 
 .image__tooltip--left {
-  @apply top-2/4 transform -translate-y-1/2;
+  @apply top-2/4 transform -translate-y-1/2 justify-end;
 
   right: 105%;
 }
 
 .image__tooltip--right {
-  @apply top-2/4 transform -translate-y-1/2;
+  @apply top-2/4 transform -translate-y-1/2 justify-start;
 
   left: 105%;
 }

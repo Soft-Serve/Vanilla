@@ -4,7 +4,7 @@ module.exports = {
     node: true,
   },
   extends: [
-    'plugin:vue/recommended',
+    'plugin:vue/vue3-essential',
     '@vue/airbnb',
     '@vue/typescript/recommended',
   ],
@@ -31,22 +31,13 @@ module.exports = {
     'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
     '@typescript-eslint/no-explicit-any': 'off',
     'no-multiple-empty-lines': 'off',
-  },
-  settings: {
-    'import/resolver': {
-      node: {
-        extensions: ['.js', '.jsx', '.ts', '.tsx', '.json', '.vue'],
-      },
-      webpack: {
-        config: 'vue.config.js',
-      },
-    },
+    'import/prefer-default-export': 'off',
   },
   overrides: [
     {
       files: [
-        './src/**/__tests__/*.spec.{j,t}s',
-        './src/**/__mock__/*.{j,t}s',
+        '**/__tests__/*.{j,t}s?(x)',
+        '**/tests/unit/**/*.spec.{j,t}s?(x)',
       ],
       env: {
         jest: true,

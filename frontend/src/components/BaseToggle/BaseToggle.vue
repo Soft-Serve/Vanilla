@@ -18,7 +18,8 @@
         class="opacity-100 ease-in duration-200 absolute inset-0 h-full w-full flex items-center
         justify-center transition-opacity"
       >
-        <FalseSVG
+        <BaseIcon
+          :name="'false'"
           v-if="!isOn"
           class="toggle__icon toggle__icon--inactive"
         />
@@ -29,29 +30,33 @@
         class="opacity-0 ease-out duration-100 absolute inset-0 h-full w-full flex items-center justify-center
         transition-opacity"
       >
-        <TrueSVG class="toggle__icon toggle__icon--active" />
+        <BaseIcon
+          :name="'true'"
+          class="toggle__icon toggle__icon--active"
+        />
       </span>
     </span>
   </span>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'vue-property-decorator';
-import FalseSVG from '@/assets/svgs/false.svg';
-import TrueSVG from '@/assets/svgs/true.svg';
+import { defineComponent } from 'vue';
+import BaseIcon from '~/BaseIcon/BaseIcon.vue';
 import './style.css';
 
-@Component({
+export default defineComponent({
   name: 'BaseToggle',
-  components: {
-    FalseSVG,
-    TrueSVG,
+  props: {
+    isOn: {
+      type: Boolean,
+      default: false,
+      required: false,
+    },
   },
+  components: {
+    BaseIcon,
+  },
+});
 
-})
-export default class BaseToggle extends Vue {
-    @Prop({ required: false, default: false })
-    readonly isOn!: boolean;
-}
 
 </script>
