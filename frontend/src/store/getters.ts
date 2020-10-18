@@ -1,5 +1,5 @@
 import { GetterTree } from 'vuex';
-import { Restaurant } from '@/interfaces';
+import Restaurant from '@/models/Restaurant';
 import { State } from './state';
 
 export type Getters = {

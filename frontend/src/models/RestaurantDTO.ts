@@ -1,17 +1,17 @@
-// import { Establishment } from '@/interfaces';
+import { Establishment } from '@/interfaces';
 
-// export default class RestaurantDTO implements Establishment {
-//   id = 0;
+export default class RestaurantDTO implements Establishment {
+  id = 0;
 
-//   name = '';
+  name = '';
 
-//   logo = {
-//     url: '',
-//   }
+  logo = {
+    url: '',
+  }
 
-//   currency = '';
+  currency = '';
 
-//   primary_colour = '';
+  primary_colour = '';
 
-//   secondary_colour = '';
-// }
+  secondary_colour = '';
+}

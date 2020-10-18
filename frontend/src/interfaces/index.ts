@@ -18,9 +18,9 @@ export interface RestaurantMenu {
   restaurant_id: number;
 }
 
-export type Photo = { url: string | null }
+export type Photo = { url: string }
 
-export interface Restaurant {
+export interface Establishment {
   id: number;
   name: string;
   logo: Photo;

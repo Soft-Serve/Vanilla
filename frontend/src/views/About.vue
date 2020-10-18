@@ -1,6 +1,6 @@
 <template>
-  <div v-if="restaurant">
-    <h1>{{ restaurant.name }}</h1>
+  <div>
+    <h1>{{restaurant.name}}</h1>
   </div>
 </template>
 
@@ -8,20 +8,20 @@
 import { defineComponent } from 'vue';
 import { useStore } from '@/store';
 import { MutationType } from '@/store/mutations';
-import ApiService from '@/models/ApiService';
 
 export default defineComponent({
   name: 'About',
   data() {
     return {
-      store: useStore(),
       restaurant: undefined as unknown,
+      store: useStore(),
     };
   },
-  async mounted() {
-    const response = await ApiService.getRestaurant();
-    this.store.commit(MutationType.SetRestaurant, response);
+
+  mounted() {
+    this.store.commit(MutationType.SetLoading, true);
     this.restaurant = this.store.getters.restaurant;
+    this.store.commit(MutationType.SetLoading, false);
   },
 });
 </script>

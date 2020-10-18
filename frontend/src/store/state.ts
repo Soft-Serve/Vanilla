@@ -1,4 +1,4 @@
-import { Restaurant } from '@/interfaces/index';
+import Restaurant from '@/models/Restaurant';
 
 export type State = {
   loading: boolean;

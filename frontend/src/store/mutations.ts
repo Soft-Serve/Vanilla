@@ -1,11 +1,11 @@
 import { MutationTree } from 'vuex';
-import { Restaurant } from '@/interfaces';
+import Restaurant from '@/models/Restaurant';
 import { State } from './state';
 
 
 export enum MutationType {
   SetRestaurant = 'SET_RESTAURANT',
-  SetLoading = 'SET_LOADING'
+  SetLoading = 'SET_LOADING',
 }
 
 export type Mutations = {
