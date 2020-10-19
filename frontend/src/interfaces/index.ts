@@ -29,7 +29,7 @@ export interface Establishment {
   secondary_colour: string;
 }
 
-export interface MenuCategory {
+export interface Category {
   id: number;
   name: string;
   category_type: string;

@@ -2,6 +2,7 @@ import { MutationTree } from 'vuex';
 import Restaurant from '@/models/Restaurant';
 import RestaurantMenus from '@/models/RestaurantMenu';
 import RestaurantMenu from '@/models/DTO/RestaurantMenuDTO';
+import MenuCategory from '@/models/MenuCategory';
 import { State } from './state';
 
 
@@ -10,6 +11,8 @@ export enum MutationType {
   SetLoading = 'SET_LOADING',
   SetRestaurantMenus = 'SET_RESTAURANT_MENUS',
   SetRestaurantMenu = 'SET_RESTAURANT_MENU',
+  SetMenuCategories = 'SET_MENU_CATEGORIES',
+  SetMenuCategory = 'SET_MENU_CATEGORY',
 }
 
 export type Mutations = {
@@ -17,6 +20,8 @@ export type Mutations = {
   [MutationType.SetLoading](state: State, payload: boolean): void;
   [MutationType.SetRestaurantMenus](state: State, payload: RestaurantMenus[]): void;
   [MutationType.SetRestaurantMenu](state: State, payload: RestaurantMenu): void;
+  [MutationType.SetMenuCategories](state: State, payload: MenuCategory[]): void;
+  [MutationType.SetMenuCategory](state: State, payload: MenuCategory): void;
 }
 
 export const mutations: MutationTree<State> & Mutations = {
@@ -31,5 +36,11 @@ export const mutations: MutationTree<State> & Mutations = {
   },
   [MutationType.SetRestaurantMenu](state, menu) {
     state.restaurantMenu = menu;
+  },
+  [MutationType.SetMenuCategories](state, categories) {
+    state.menuCategories = categories;
+  },
+  [MutationType.SetMenuCategory](state, category) {
+    state.menuCategory = category;
   },
 };

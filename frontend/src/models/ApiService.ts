@@ -1,7 +1,8 @@
 import Axios from 'axios';
-import { MenuCategory, MenuItem } from '@/interfaces';
+import { MenuItem } from '@/interfaces';
 import Restaurant from './Restaurant';
 import RestaurantMenu from './RestaurantMenu';
+import MenuCategory from './MenuCategory';
 
 export default class ApiService {
   private static restaurantService = Axios.create({
@@ -30,13 +31,13 @@ export default class ApiService {
   }
 
   static async getMenuCategories(menu: RestaurantMenu): Promise<MenuCategory[]> {
-    const response = await this.restaurantService.get(`/api/restaurants/1/menus/${menu.id}/menu_categories`);
-    return response.data;
+    return this.restaurantService.get(`/api/restaurants/1/menus/${menu.id}/menu_categories`)
+      .then((response) => response.data.map((result: MenuCategory) => new MenuCategory(result)));
   }
 
   static async getMenuCategory(menu: RestaurantMenu, category: MenuCategory): Promise<MenuCategory> {
-    const response = await this.restaurantService.get(`/api/restaurants/1/menus/${menu.id}/menu_categories/${category.id}`);
-    return response.data;
+    return this.restaurantService.get(`/api/restaurants/1/menus/${menu.id}/menu_categories/${category.id}`)
+      .then((response) => new MenuCategory(response.data));
   }
 
   static async getMenuItems(menu: RestaurantMenu, category: MenuCategory): Promise<MenuItem[]> {
