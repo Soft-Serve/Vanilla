@@ -35,6 +35,9 @@
 		"path-intellisense.mappings": {
       		"@": "${workspaceRoot}/src"
 		},
+		
+		"terminal.integrated.shell.linux": "/bin/zsh",
+		"workbench.sideBar.location": "left",
 
 		// TAILWIND
 		 "tailwindCSS.includeLanguages": {
