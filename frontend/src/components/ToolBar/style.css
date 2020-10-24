@@ -1,0 +1,53 @@
+.toolbar {
+  @apply bg-white w-full;
+}
+
+.toolbar__container {
+  @apply relative flex min-w-5 p-3 shadow min-h-3;
+}
+
+.toolbar__button-container {
+  @apply hidden;
+}
+
+.toolbar__content {
+  @apply flex w-full;
+}
+
+.toolbar__content--horizontal {
+  @apply flex-wrap;
+}
+
+.toolbar__content--horizontal-reversed {
+  @apply flex-row-reverse;
+}
+
+.toolbar__content--vertical {
+  @apply flex-col items-center justify-start shadow;
+}
+
+.toolbar__button {
+  @apply inline-flex items-center justify-center p-2 rounded-md text-gray-400 transition duration-150 ease-in-out;
+}
+
+.toolbar__button:focus,
+.toolbar__button:hover {
+  filter: brightness(90%);
+}
+
+.toolbar__icon {
+  @apply block h-6 w-6;
+}
+
+@media (max-width: 540px) {
+  .toolbar__content--horizontal {
+    @apply hidden;
+  }
+
+  .toolbar__button-container {
+    @apply block absolute left-2/4 top-2/4 ;
+
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%) translateY(-50%);
+  }
+}

@@ -2,33 +2,15 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
   purge: false,
+  important: false,
+  experimental: {
+    applyComplexClasses: true,
+  },
   future: {
     removeDeprecatedGapUtilities: true,
   },
   theme: {
     extend: {
-      colors: {
-        primary: 'var(--primary)',
-        'primary-soft': 'var(--primary-soft)',
-        'primary-dark': 'var(--primary-dark)',
-        secondary: 'var(--secondary)',
-        'secondary-soft': 'var(--secondary-soft)',
-        'secondary-dark': 'var(--secondary-dark)',
-        accent: 'var(--accent)',
-        'accent-soft': 'var(--accent-soft)',
-        'accent-dark': 'var(--accent-dark)',
-        warning: 'var(--warning)',
-        'warning-soft': 'var(--warning-soft)',
-        'warning-dark': 'var(--warning-dark)',
-        error: 'var(--error)',
-        'error-soft': 'var(--error-soft)',
-        'error-dark': 'var(--error-dark)',
-        success: 'var(--success)',
-        'success-soft': 'var(--success-soft)',
-        'success-dark': 'var(--success-dark)',
-        'background-color': 'var(--background-color)',
-        'text-color': 'var(--text-color)',
-      },
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
       },
@@ -63,6 +45,22 @@ module.exports = {
       1: '1rem',
       2: '2rem',
       3: '3rem',
+      4: '4rem',
+      5: '5rem',
+    },
+    minHeight: {
+      1: '1rem',
+      2: '2rem',
+      3: '3rem',
+      4: '4rem',
+      5: '5rem',
+    },
+    screens: {
+      xs: { max: '539px' },
+      sm: { min: '540px' },
+      md: { min: '668px' },
+      lg: { min: '924px' },
+      xl: { min: '1180px' },
     },
   },
   variants: {

@@ -3,8 +3,8 @@ import Restaurant from '@/models/Restaurant';
 import RestaurantMenus from '@/models/RestaurantMenu';
 import RestaurantMenu from '@/models/DTO/RestaurantMenuDTO';
 import MenuCategory from '@/models/MenuCategory';
+import MenuItem from '@/models/MenuItem';
 import { State } from './state';
-
 
 export enum MutationType {
   SetRestaurant = 'SET_RESTAURANT',
@@ -13,6 +13,8 @@ export enum MutationType {
   SetRestaurantMenu = 'SET_RESTAURANT_MENU',
   SetMenuCategories = 'SET_MENU_CATEGORIES',
   SetMenuCategory = 'SET_MENU_CATEGORY',
+  SetMenuItems = 'SET_MENU_ITEMS',
+  SetMenuItem = 'SET_MENU_ITEM',
 }
 
 export type Mutations = {
@@ -22,6 +24,9 @@ export type Mutations = {
   [MutationType.SetRestaurantMenu](state: State, payload: RestaurantMenu): void;
   [MutationType.SetMenuCategories](state: State, payload: MenuCategory[]): void;
   [MutationType.SetMenuCategory](state: State, payload: MenuCategory): void;
+  [MutationType.SetMenuItems](state: State, payload: MenuItem[]): void;
+  [MutationType.SetMenuItem](state: State, payload: MenuItem): void;
+
 }
 
 export const mutations: MutationTree<State> & Mutations = {
@@ -42,5 +47,11 @@ export const mutations: MutationTree<State> & Mutations = {
   },
   [MutationType.SetMenuCategory](state, category) {
     state.menuCategory = category;
+  },
+  [MutationType.SetMenuItems](state, items) {
+    state.menuItems = items;
+  },
+  [MutationType.SetMenuItem](state, item) {
+    state.menuItem = item;
   },
 };

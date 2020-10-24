@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import { MenuItem } from '@/interfaces';
+import MenuItem from './MenuItem';
 import Restaurant from './Restaurant';
 import RestaurantMenu from './RestaurantMenu';
 import MenuCategory from './MenuCategory';
@@ -41,12 +41,12 @@ export default class ApiService {
   }
 
   static async getMenuItems(menu: RestaurantMenu, category: MenuCategory): Promise<MenuItem[]> {
-    const response = await this.restaurantService.get(`/api/restaurants/1/menus/${menu.id}/menu_categories/${category.id}/menu_items`);
-    return response.data;
+    return this.restaurantService.get(`/api/restaurants/1/menus/${menu.id}/menu_categories/${category.id}/menu_items`)
+      .then((response) => response.data.map((result: MenuItem) => new MenuItem(result)));
   }
 
   static async getMenuItem(menu: RestaurantMenu, category: MenuCategory, item: MenuItem): Promise<MenuItem> {
-    const response = await this.restaurantService.get(`/api/restaurants/1/menus/${menu.id}/menu_categories/${category.id}/menu_items/${item.id}`);
-    return response.data;
+    return this.restaurantService.get(`/api/restaurants/1/menus/${menu.id}/menu_categories/${category.id}/menu_items/${item.id}`)
+      .then((response) => new MenuItem(response.data));
   }
 }

@@ -36,7 +36,7 @@ export interface Category {
   menu_id: number;
 }
 
-export interface MenuItem {
+export interface Item {
   id: number;
   name: string;
   description: string;

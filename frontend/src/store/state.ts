@@ -1,6 +1,7 @@
 import Restaurant from '@/models/Restaurant';
 import RestaurantMenu from '@/models/RestaurantMenu';
 import MenuCategory from '@/models/MenuCategory';
+import MenuItem from '@/models/MenuItem';
 
 export type State = {
   loading: boolean;
@@ -9,6 +10,8 @@ export type State = {
   restaurantMenu: RestaurantMenu;
   menuCategories: MenuCategory[];
   menuCategory: MenuCategory;
+  menuItems: MenuItem[];
+  menuItem: MenuItem;
 }
 
 export const state: State = {
@@ -18,4 +21,6 @@ export const state: State = {
   restaurantMenu: new RestaurantMenu(),
   menuCategories: [],
   menuCategory: new MenuCategory(),
+  menuItems: [],
+  menuItem: new MenuItem(),
 };

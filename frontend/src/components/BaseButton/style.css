@@ -1,51 +1,64 @@
 .button {
-  @apply w-full items-center border-transparent text-sm leading-4 font-medium transition ease-in-out duration-150;
+  @apply flex h-full w-full justify-center items-center transition ease-in-out duration-150 font-medium rounded-md;
+}
+
+/* Primary */
+.button--primary {
+  @apply bg-red-500 text-white hover:bg-red-400 focus:bg-red-400 focus:outline-none;
+}
+
+.button--primary:active {
+  @apply bg-red-600 text-white outline-none ;
 }
 
 .button--disabled {
-  @apply bg-cool-gray-400 cursor-not-allowed text-white !important;
+  @apply bg-cool-gray-400 text-cool-gray-600 cursor-not-allowed;
 }
 
-.button--default {
-  @apply border border-gray-300 p-2 text-cool-gray-700;
+/* Secondary */
+
+.button--secondary {
+  @apply bg-indigo-600 text-white hover:bg-indigo-500 focus:bg-indigo-500 focus:outline-none;
 }
 
-.button--default:hover {
-  @apply bg-cool-gray-50 text-cool-gray-500;
+.button--secondary:active {
+  @apply bg-indigo-700 text-white outline-none ;
 }
 
-.button--default:focus, {
-  @apply outline-none border-cool-gray-500;
+.button--extra-small {
+  @apply px-2.5 py-1.5 text-xs leading-4;
 }
 
-.button--default:active {
-  @apply bg-cool-gray-50;
+.button--small {
+  @apply px-3.5 py-2 text-sm leading-4;
 }
 
+.button--medium {
+  @apply px-4 py-2 text-sm leading-5;
+}
+
+.button--large {
+  @apply px-5 py-2 text-base leading-6 ;
+}
+
+.button--extra-large {
+  @apply px-6 py-3 text-base leading-6;
+}
+
+/* primary --naked */
 .button--naked {
-  @apply block w-full h-full p-3 rounded-md font-bold text-cool-gray-700 border transition ease-in-out duration-150 text-xs shadow-lg;
+  @apply bg-transparent text-indigo-600 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none;
 }
 
-.butten--naked:hover {
-  @apply bg-red-500 text-white;
+.button--secondary-naked:active {
+  @apply text-indigo-800;
 }
 
-.button--naked:focus {
-  @apply outline-none border-red-700 shadow-outline-indigo;
+/* button white */
+.button--white {
+  @apply bg-white text-cool-gray-700 border border-cool-gray-400 hover:text-cool-gray-800 focus:text-cool-gray-800 focus:outline-none;
 }
 
-.button--naked:active {
-  @apply bg-indigo-700;
-}
-
-.button--primary {
-  @apply w-full flex items-center justify-center px-2 py-2 border border-transparent text-base leading-6 font-medium rounded-md text-white transition duration-150 ease-in-out bg-red-500;
-}
-
-.button--primary:hover {
-  @apply bg-indigo-500;
-}
-
-.button--primary:focus {
-  @apply outline-none border-indigo-700 shadow-outline-indigo;
+.button--white:active {
+  @apply text-cool-gray-800 shadow-outline-gray;
 }

@@ -116,7 +116,8 @@
 		"mubaidr.vuejs-extension-pack",
 		"eg2.vscode-npm-script",
 		"ms-vsliveshare.vsliveshare",
-		"shinnn.stylelint"
+		"shinnn.stylelint",
+		"humao.rest-client"
 	],
 	// Add the IDs of extensions you want installed when the container is created.
 

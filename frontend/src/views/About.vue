@@ -1,5 +1,8 @@
 <template>
-  <BaseImage :src="'https://picsum.photos/200/300'"/>
+<div>
+  about
+</div>
+  <!-- <BaseImage :src="'https://picsum.photos/200/300'"/> -->
 </template>
 
 <script lang="ts">
@@ -8,7 +11,7 @@ import { defineComponent } from 'vue';
 // import BaseButton from '@/components/BaseButton/BaseButton.vue';
 // import SlideOver from '@/components/SlideOver/SlideOver.vue';
 // import BaseCard from '@/components/BaseCard/BaseCard.vue';
-import BaseImage from '~/BaseImage/BaseImage.vue';
+// import BaseImage from '~/BaseImage/BaseImage.vue';
 // import { Dish } from '@/interfaces';
 // import intersection from '@/utility/intersection';
 // import ApiService from '@/models/ApiService';
@@ -16,158 +19,24 @@ import BaseImage from '~/BaseImage/BaseImage.vue';
 export default defineComponent({
   name: 'About',
   components: {
-    BaseImage,
+    // BaseImage,
     // BaseWrapper,
     // BaseButton,
     // SlideOver,
     // BaseCard,
   },
-  data() {
-    return {
-      slideLeft: false,
-      isVisible: false,
-      categories: ['wines', 'appetizer', 'entrees', 'beers', 'pizza', 'pasta', 'sodas', 'desserts', 'sides'],
-      filter: '',
-      dishes: [
-        {
-          name: 'margarita',
-          category: 'pizza',
-          image: 'https://s2.eestatic.com/2018/11/03/cocinillas/Cocinillas_350480320_116619118_1706x960.jpg',
-          description: 'a freaking basic pizza',
-          price: 12.50,
-          allergies: ['gluten', 'soy'],
-        },
-        {
-          name: 'fettucini',
-          category: 'pasta',
-          image: 'https://s2.eestatic.com/2018/11/03/cocinillas/Cocinillas_350480320_116619118_1706x960.jpg',
-          description: 'a freaking basic pizza',
-          price: 12.50,
-          allergies: ['dairy'],
 
-        },
-        {
-          name: 'Diavola',
-          category: 'pizza',
-          image: 'https://s2.eestatic.com/2018/11/03/cocinillas/Cocinillas_350480320_116619118_1706x960.jpg',
-          description: 'a freaking basic pizza',
-          price: 12.50,
-          allergies: ['gluten', 'dairy', 'soy'],
-        },
-        {
-          name: 'House Red',
-          category: 'wine',
-          image: 'https://s2.eestatic.com/2018/11/03/cocinillas/Cocinillas_350480320_116619118_1706x960.jpg',
-          description: 'a freaking basic pizza',
-          price: 12.50,
-          allergies: ['nuts', 'meat'],
-
-        },
-        {
-          name: 'House White',
-          category: 'wine',
-          image: 'https://s2.eestatic.com/2018/11/03/cocinillas/Cocinillas_350480320_116619118_1706x960.jpg',
-          description: 'a freaking basic pizza',
-          price: 12.50,
-          allergies: ['nuts'],
-
-        },
-        {
-          name: 'Budweiser',
-          category: 'beers',
-          image: 'https://s2.eestatic.com/2018/11/03/cocinillas/Cocinillas_350480320_116619118_1706x960.jpg',
-          description: 'a freaking basic pizza',
-          price: 12.50,
-          allergies: ['nuts'],
-
-        },
-        {
-          name: 'Bud Light',
-          category: 'beers',
-          image: 'https://s2.eestatic.com/2018/11/03/cocinillas/Cocinillas_350480320_116619118_1706x960.jpg',
-          description: 'a freaking basic pizza',
-          price: 12.50,
-          allergies: ['nuts'],
-
-        },
-        {
-          name: 'ceaser salad',
-          category: 'appetizers',
-          image: 'https://s2.eestatic.com/2018/11/03/cocinillas/Cocinillas_350480320_116619118_1706x960.jpg',
-          description: 'a freaking basic pizza',
-          price: 12.50,
-          allergies: ['dairy', 'nuts'],
-
-        },
-        {
-          name: 'green salad',
-          category: 'appetizers',
-          image: 'https://s2.eestatic.com/2018/11/03/cocinillas/Cocinillas_350480320_116619118_1706x960.jpg',
-          description: 'a freaking basic pizza',
-          price: 12.50,
-          allergies: ['nuts'],
-
-        },
-        {
-          name: 'lasagna',
-          category: 'entrees',
-          image: 'https://s2.eestatic.com/2018/11/03/cocinillas/Cocinillas_350480320_116619118_1706x960.jpg',
-          price: 12.3,
-          description: 'a freaking basic pizza',
-          allergies: ['gluten', 'dairy', 'soy'],
-
-        },
-        {
-          name: 'bistecca',
-          category: 'entrees',
-          image: 'https://s2.eestatic.com/2018/11/03/cocinillas/Cocinillas_350480320_116619118_1706x960.jpg',
-          description: 'a freaking basic pizza',
-          price: 12.50,
-          allergies: ['gluten', 'dairy', 'soy'],
-
-        },
-        {
-          name: 'coca cola',
-          category: 'sodas',
-          image: 'https://s2.eestatic.com/2018/11/03/cocinillas/Cocinillas_350480320_116619118_1706x960.jpg',
-          description: 'a freaking basic pizza',
-          price: 12.50,
-          allergies: ['soy'],
-
-        },
-        {
-          name: 'Pellegrino',
-          category: 'sodas',
-          image: 'https://s2.eestatic.com/2018/11/03/cocinillas/Cocinillas_350480320_116619118_1706x960.jpg',
-          description: 'a freaking basic pizza',
-          price: 12.50,
-          allergies: ['soy'],
-
-        },
-        {
-          name: 'fanta',
-          category: 'sodas',
-          image: 'https://s2.eestatic.com/2018/11/03/cocinillas/Cocinillas_350480320_116619118_1706x960.jpg',
-          description: 'a freaking basic pizza',
-          price: 12.50,
-          allergies: ['soy'],
-
-        },
-      ],
-
-    };
-  },
   methods: {
-    closeSlideOver(payload: boolean) {
-      this.isVisible = payload;
-    },
-    handleClick() {
-      this.isVisible = !this.isVisible;
-    },
-    triggerCategoryChange(category: string) {
-      this.filter = category;
-      this.toggleSlideLeft();
-    },
+    // closeSlideOver(payload: boolean) {
+    //   this.isVisible = payload;
+    // },
+    // handleClick() {
+    //   this.isVisible = !this.isVisible;
+    // },
+    // triggerCategoryChange(category: string) {
+    //   this.filter = category;
+    //   this.toggleSlideLeft();
+    // },
     // compareAllergies(dishAllergies: Array<string>, userAllergies: Array<string>): boolean {
     //   if (this.userAllergies.length) {
     //     return intersection(dishAllergies, userAllergies);
@@ -177,9 +46,9 @@ export default defineComponent({
     // filterByAllergies(dishes: Array<Dish>) {
     //   return [...dishes].filter((dish: Dish) => !this.compareAllergies(dish.allergies, this.userAllergies));
     // },
-    toggleSlideLeft() {
-      this.slideLeft = !this.slideLeft;
-    },
+    // toggleSlideLeft() {
+    //   this.slideLeft = !this.slideLeft;
+    // },
   },
   computed: {
     // slideDirection() {

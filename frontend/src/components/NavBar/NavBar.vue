@@ -4,7 +4,7 @@
       <div class="flex justify-between h-16">
         <div class="flex">
           <div class="flex-shrink-0 flex items-center">
-            <LogoSVG />
+
           </div>
           <div class="hidden sm:ml-6 sm:flex">
             <a
@@ -191,13 +191,10 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import LogoSVG from '@/assets/svgs/logo.svg';
 
 export default defineComponent({
   name: 'NavBar',
-  components: {
-    LogoSVG,
-  },
+
   data() {
     return {
       isOpen: false,
