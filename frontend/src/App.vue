@@ -28,7 +28,7 @@ export default defineComponent({
     const store = useStore();
     const restaurant = computed(() => store.state.restaurant);
     const loading = computed(() => store.state.loading);
-    const menu = computed(() => store.getters.menus[0]);
+    const menu = computed(() => store.getters.menus[1]);
     const categories = computed(() => store.getters.categories);
     const category = computed(() => store.getters.category);
     const items = computed(() => store.getters.items);

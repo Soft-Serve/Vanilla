@@ -16,8 +16,10 @@
 </template>
 
 <script lang="ts">
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
 import {
-  defineComponent, computed, watch,
+  defineComponent, computed, watch, reactive,
 } from 'vue';
 import { useStore } from '@/store';
 import { BUTTONSTYLES } from '@/helpers';
@@ -44,8 +46,7 @@ export default defineComponent({
     const categories = computed(() => store.getters.categories);
     const items = computed(() => store.getters.items);
     const menu = computed(() => store.getters.menus[0]);
-    const category = computed(() => store.getters.category);
-
+    const category = computed(() => store.getters.categories[0]);
 
     const fetchCategories = async (activeMenu: RestaurantMenu): Promise<void> => {
       const response = await ApiService.getMenuCategories(activeMenu);
@@ -68,16 +69,19 @@ export default defineComponent({
     };
 
     const triggerCategoryChange = (payload: MenuCategory) => {
-      store.dispatch(ActionTypes.getCategory, payload);
+      fetchItems(menu.value, payload);
     };
 
     watch(menu, (selectedMenu) => fetchCategories(selectedMenu));
 
     watch(categories, (selectedCategory) => {
       fetchCategory(menu.value, selectedCategory[0]);
-      fetchItems(menu.value, selectedCategory[1]);
+      triggerCategoryChange(selectedCategory[0]);
     });
-    watch(items, (selectedItem) => fetchItem(menu.value, category.value, selectedItem[0]));
+    // watch(items, (selectedItem) => fetchItem(menu.value, category.value, selectedItem[0]));
+
+
+
 
     return {
       loading,
@@ -90,3 +94,8 @@ export default defineComponent({
 
 });
 </script>
+<style scoped>
+.flip-list-move {
+  transition: transform 2.8s ease;
+}
+</style>
