@@ -1,40 +1,51 @@
 <template>
-  <div>
-    <h1>
-      <BaseButton class="w-32" :text="'hello world'" :buttonStyle="'secondary'"/>
-    </h1>
+  <div class="wrapper" v-if="categories.length">
+    <BaseWrapper :column="2" class="mt-4">
+      <BaseButton :buttonStyle="styles.WHITE" v-for="category in categories" :key="category.id">
+        {{ category.name }}
+      </BaseButton>
+    </BaseWrapper>
+    <div class="card">
+      <BaseCard :data="items[0]"/>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, computed } from 'vue';
 import { useStore } from '@/store';
+import { BUTTONSTYLES } from '@/helpers';
+import BaseWrapper from '~/BaseWrapper/BaseWrapper.vue';
 import BaseButton from '~/BaseButton/BaseButton.vue';
-
-// import Restaurant from '@/models/Restaurant';
-// import RestaurantMenu from '@/models/RestaurantMenu';
+import BaseCard from '~/BaseCard/BaseCard.vue';
 
 export default defineComponent({
   name: 'Home',
   components: {
+    BaseWrapper,
     BaseButton,
+    BaseCard,
   },
-  data() {
+  setup() {
+    const styles = BUTTONSTYLES;
+    const store = useStore();
+    const loading = computed(() => store.state.loading);
+    const categories = computed(() => store.getters.categories);
+    const items = computed(() => store.getters.items);
+
     return {
-      store: useStore(),
+      loading,
+      categories,
+      styles,
+      items,
     };
   },
 
-  // computed: {
-  //   loading(): boolean {
-  //     return this.store.state.loading;
-  //   },
-  //   restaurant(): Restaurant | null {
-  //     return this.store.getters.restaurant ? this.store.getters.restaurant : null;
-  //   },
-  //   restaurantMenus(): RestaurantMenu[] {
-  //     return this.store.getters.menus;
-  //   },
-  // },
 });
 </script>
+
+<style scoped>
+.card {
+  width: 350px;
+}
+</style>

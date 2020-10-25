@@ -3,12 +3,12 @@
   <div class="wrapper">
     <NavBar/>
   </div>
-</div>
 <router-view v-slot="{ Component }">
   <transition  name="component-fade" mode="out-in">
     <component :is="Component" />
   </transition>
 </router-view>
+</div>
 </template>
 
 <script lang="ts">
@@ -30,6 +30,7 @@ export default defineComponent({
   },
   setup() {
     const store = useStore();
+    const restaurant = computed(() => store.state.restaurant);
     const loading = computed(() => store.state.loading);
     const menu = computed(() => store.getters.menus[0]);
     const categories = computed(() => store.getters.categories);
@@ -81,15 +82,18 @@ export default defineComponent({
       category,
       items,
       item,
+      restaurant,
     };
   },
 });
 </script>
-<style scoped>
+<style>
 .container {
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .wrapper {

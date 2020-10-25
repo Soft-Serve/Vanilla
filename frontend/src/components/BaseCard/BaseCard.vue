@@ -1,44 +1,42 @@
 <template>
   <div
-    v-if="cardData"
+    v-if="data"
     class="card"
   >
     <div
-      v-if="cardData.image"
+      v-if="data.image"
       class="card__image-container"
     >
       <BaseImage
         width="150px"
         height="150px"
-        :src="cardData.image"
+        :src="data.image"
       />
     </div>
     <div class="card__content">
       <h3 class="card__title">
-        {{ cardData.name }}
+        {{ data.name }}
       </h3>
-      <div v-if="cardData.allergies">
+      <div v-if="data.allergies">
          <BaseIcon
-          v-for="(allergy, index) in cardData.allergies"
+          v-for="(allergy, index) in data.allergies"
           :key="index"
           :name="allergy"
         />
       </div>
 
       <p class="card__description">
-        {{ cardData.description }}
+        {{ data.description }}
       </p>
       <div class="card__pricing">
         <span class="card__price">
           <span class="card__currency">$</span>
-          {{ counter > 0 ? cardData.price * counter : cardData.price }}
+          {{ counter > 0 ? data.price * counter : data.price }}
         </span>
         <div class="card__actions">
           <span class="card__button-container">
             <BaseButton @click="remove">
-              <template>
                 <span class="card__button">-</span>
-              </template>
             </BaseButton>
           </span>
           <span class="card__counter">
@@ -46,9 +44,7 @@
           </span>
           <span class="card__button-container">
             <BaseButton @click="add">
-              <template>
                 <span class="card__button">+</span>
-              </template>
             </BaseButton>
           </span>
         </div>
@@ -81,8 +77,8 @@ export default defineComponent({
     BaseIcon,
   },
   props: {
-    cardData: {
-      type: Object as () => Dish,
+    data: {
+      type: Object,
       required: true,
     },
   },
