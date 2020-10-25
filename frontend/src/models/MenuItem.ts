@@ -5,4 +5,6 @@ export default class MenuItem extends MenuItemDTO {
     super();
     Object.assign(this, dto);
   }
+
+  price = 12.50
 }

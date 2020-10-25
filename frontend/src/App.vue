@@ -13,15 +13,11 @@
 
 <script lang="ts">
 import {
-  defineComponent, computed, onMounted, watch,
+  defineComponent, computed, onMounted,
 } from 'vue';
 import { useStore } from '@/store';
 import { ActionTypes } from '@/store/actions';
-import ApiService from '@/models/ApiService';
 import NavBar from '~/NavBar/NavBar.vue';
-import RestaurantMenu from './models/DTO/RestaurantMenuDTO';
-import MenuCategory from './models/MenuCategory';
-import MenuItem from './models/MenuItem';
 
 export default defineComponent({
   name: 'App',
@@ -42,38 +38,11 @@ export default defineComponent({
       store.dispatch(ActionTypes.getMenu, menu.value);
     };
 
-    const fetchCategories = async (activeMenu: RestaurantMenu): Promise<void> => {
-      const response = await ApiService.getMenuCategories(activeMenu);
-      store.dispatch(ActionTypes.getCategories, response);
-    };
-
-    const fetchCategory = async (activeMenu: RestaurantMenu, activeCategory: MenuCategory): Promise<void> => {
-      const response = await ApiService.getMenuCategory(activeMenu, activeCategory);
-      store.dispatch(ActionTypes.getCategory, response);
-    };
-
-    const fetchItems = async (activeMenu: RestaurantMenu, activeCategory: MenuCategory): Promise<void> => {
-      const response = await ApiService.getMenuItems(activeMenu, activeCategory);
-      store.dispatch(ActionTypes.getItems, response);
-    };
-
-    const fetchItem = async (activeMenu: RestaurantMenu, activeCategory: MenuCategory, activeItem: MenuItem): Promise<void> => {
-      const response = await ApiService.getMenuItem(activeMenu, activeCategory, activeItem);
-      store.dispatch(ActionTypes.getItem, response);
-    };
-
     onMounted(() => {
       store.dispatch(ActionTypes.getRestaurant, undefined);
       store.dispatch(ActionTypes.getMenus, undefined);
       fetchMenu();
     });
-
-    watch(menu, (selectedMenu) => fetchCategories(selectedMenu));
-    watch(categories, (selectedCategory) => {
-      fetchCategory(menu.value, selectedCategory[0]);
-      fetchItems(menu.value, selectedCategory[0]);
-    });
-    watch(items, (selectedItem) => fetchItem(menu.value, category.value, selectedItem[0]));
 
     return {
       loading,

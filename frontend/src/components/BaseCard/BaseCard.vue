@@ -35,16 +35,16 @@
         </span>
         <div class="card__actions">
           <span class="card__button-container">
-            <BaseButton @click="remove">
-                <span class="card__button">-</span>
+            <BaseButton :buttonSize="SIZES.EXTRASMALL" @click="remove">
+                <span>-</span>
             </BaseButton>
           </span>
           <span class="card__counter">
             {{ counter }}
           </span>
           <span class="card__button-container">
-            <BaseButton @click="add">
-                <span class="card__button">+</span>
+            <BaseButton :buttonSize="SIZES.EXTRASMALL" @click="add">
+                <span>+</span>
             </BaseButton>
           </span>
         </div>
@@ -55,6 +55,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { SIZES } from '@/helpers';
 import BaseIcon from '~/BaseIcon/BaseIcon.vue';
 import BaseButton from '~/BaseButton/BaseButton.vue';
 import BaseImage from '~/BaseImage/BaseImage.vue';
@@ -85,6 +86,7 @@ export default defineComponent({
   data() {
     return {
       counter: 0,
+      SIZES,
     };
   },
   methods: {
