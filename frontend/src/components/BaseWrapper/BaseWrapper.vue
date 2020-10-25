@@ -27,16 +27,12 @@ export default defineComponent({
   },
   computed: {
     gridStyles(): string {
-      const smallGrid = Math.round(this.column) - 1;
-      const largeGrid = Math.round(this.column) + 1;
-      const extraLargeGrid = Math.round(this.column) + 2;
       const smallGap = Math.round(this.gap - 1);
       const largeGap = Math.round(this.gap + 1);
       return `
-      sm:grid-cols-${smallGrid.toString()}
       md:grid-cols-${Math.round(this.column).toString()}
-      lg:grid-cols-${largeGrid.toString()}
-      xl:grid-cols-${extraLargeGrid.toString()}
+      lg:grid-cols-${Math.round(this.column).toString()}
+      xl:grid-cols-${Math.round(this.column).toString()}
       gap-${this.gap.toString()}
       sm:gap-${smallGap.toString()}
       md:gap-${this.gap.toString()}

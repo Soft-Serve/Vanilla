@@ -1,15 +1,16 @@
 /* eslint-disable import/no-cycle */
 import { ActionContext, ActionTree } from 'vuex';
 import ApiService from '@/models/ApiService';
-import RestaurantMenu from '@/models/RestaurantMenu';
 import MenuCategory from '@/models/MenuCategory';
 import MenuItem from '@/models/MenuItem';
+import RestaurantMenu from '@/models/RestaurantMenu';
 import { Mutations, MutationType } from './mutations';
 import { State } from './state';
 
 export enum ActionTypes {
   getRestaurant = 'GET_RESTAURANT',
   getMenus = 'GET_MENUS',
+  getMenu = 'GET_MENU',
   getCategories = 'GET_CATEGORIES',
   getCategory = 'GET_CATEGORY',
   getItems = 'GET_ITEMS',
@@ -26,7 +27,8 @@ type ActionAugments = Omit<ActionContext<State, State>, 'commit'> & {
 export type Actions = {
   [ActionTypes.getRestaurant](context: ActionAugments): void;
   [ActionTypes.getMenus](context: ActionAugments): void;
-  [ActionTypes.getCategories](context: ActionAugments, payload: RestaurantMenu): void;
+  [ActionTypes.getMenu](context: ActionAugments, payload: RestaurantMenu): void;
+  [ActionTypes.getCategories](context: ActionAugments, payload: MenuCategory[]): void;
   [ActionTypes.getCategory](context: ActionAugments, payload: MenuCategory): void;
   [ActionTypes.getItems](context: ActionAugments, payload: MenuItem[]): void;
   [ActionTypes.getItem](context: ActionAugments, payload: MenuItem): void;
@@ -45,10 +47,14 @@ export const actions: ActionTree<State, State> & Actions = {
     commit(MutationType.SetRestaurantMenus, menus);
     commit(MutationType.SetLoading, false);
   },
-  async [ActionTypes.getCategories]({ commit }, payload) {
+  [ActionTypes.getMenu]({ commit }, payload) {
     commit(MutationType.SetLoading, true);
-    const categories = await ApiService.getMenuCategories(payload);
-    commit(MutationType.SetMenuCategories, categories);
+    commit(MutationType.SetRestaurantMenu, payload);
+    commit(MutationType.SetLoading, false);
+  },
+  [ActionTypes.getCategories]({ commit }, payload) {
+    commit(MutationType.SetLoading, true);
+    commit(MutationType.SetMenuCategories, payload);
     commit(MutationType.SetLoading, false);
   },
   [ActionTypes.getCategory]({ commit }, payload) {
