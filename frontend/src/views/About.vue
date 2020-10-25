@@ -1,12 +1,14 @@
 <template>
 <div>
-  about
+   <BaseButton :text="'hello sdasdasd'" />
 </div>
   <!-- <BaseImage :src="'https://picsum.photos/200/300'"/> -->
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import BaseButton from '~/BaseButton/BaseButton.vue';
+
 // import BaseWrapper from '@/components/BaseWrapper/BaseWrapper.vue';
 // import BaseButton from '@/components/BaseButton/BaseButton.vue';
 // import SlideOver from '@/components/SlideOver/SlideOver.vue';
@@ -21,7 +23,7 @@ export default defineComponent({
   components: {
     // BaseImage,
     // BaseWrapper,
-    // BaseButton,
+    BaseButton,
     // SlideOver,
     // BaseCard,
   },

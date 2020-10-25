@@ -1,21 +1,12 @@
 <template>
 <div class="container">
-  <ToolBar>
-    <template v-slot:toolBarContent>
-      <div class="w-32 mx-3">
-        <BaseButton>
-          <router-link to="/">Home</router-link>
-        </BaseButton>
-      </div>
-      <div class="w-32 mx-3">
-        <BaseButton>
-          <router-link to="/about">About</router-link>
-        </BaseButton>
-      </div>
-    </template>
-  </ToolBar>
+  <div class="wrapper">
+    <NavBar/>
+  </div>
 </div>
-<router-view/>
+<transition name="component-fade" mode="out-in">
+    <router-view/>
+</transition>
 </template>
 
 <script lang="ts">
@@ -31,6 +22,7 @@ import { SIZES, BUTTONSTYLES } from '@/helpers';
 import MenuItem from './models/MenuItem';
 import ToolBar from '~/ToolBar/ToolBar.vue';
 import BaseButton from '~/BaseButton/BaseButton.vue';
+import NavBar from '~/NavBar/NavBar.vue';
 
 export default defineComponent({
   name: 'App',
@@ -39,6 +31,7 @@ export default defineComponent({
     ToolBar,
     // eslint-disable-next-line vue/no-unused-components
     BaseButton,
+    NavBar,
   },
   data() {
     return {
@@ -101,9 +94,25 @@ export default defineComponent({
 </script>
 <style scoped>
 .container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.wrapper {
   max-width: 1100px;
   width: 100%;
-  margin: 0 auto;
-  margin: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.component-fade-enter-active,
+.component-fade-leave-active {
+  transition: opacity 0.9s ease;
+}
+
+.component-fade-enter-from,
+.component-fade-leave-to {
+  opacity: 0;
 }
 </style>

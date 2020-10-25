@@ -36,7 +36,7 @@
 }
 
 .toolbar__icon {
-  @apply block h-6 w-6;
+  @apply block h-8 w-8;
 }
 
 @media (max-width: 540px) {

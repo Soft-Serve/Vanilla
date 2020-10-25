@@ -10,18 +10,22 @@
           aria-expanded="false"
           @click="toggleToolBarButton"
         >
-          <BaseIcon
-            v-if="!isToolBarOpen"
-            :name="'hamburger'"
-            aria-label="Toolbar menu open"
-            class="toolbar__icon"
-          />
-          <BaseIcon
-            v-else
-            :name="'close'"
-            aria-label="Toolbar menu close"
-            class="toolbar__icon"
-          />
+          <transition mode="out-in" name="no-mode-fade">
+            <BaseIcon
+              key="on"
+              v-if="!isToolBarOpen"
+              :name="'hamburger'"
+              aria-label="Toolbar menu open"
+              class="toolbar__icon"
+            />
+            <BaseIcon
+              key="off"
+              v-else
+              :name="'close'"
+              aria-label="Toolbar menu close"
+              class="toolbar__icon"
+            />
+          </transition>
         </button>
       </div>
       <div
@@ -30,12 +34,9 @@
         <slot name="toolBarContent" />
       </div>
     </div>
-    <transition
-      appear
-      name="slide"
-    >
+    <transition name="slide-fade">
       <div
-        v-show="isToolBarOpen"
+        v-if="isToolBarOpen"
         class="toolbar__content toolbar__content--vertical"
       >
         <slot name="toolBarContent" />
@@ -96,37 +97,27 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.slide-enter-active {
-  -moz-transition-duration: 0.3s;
-  -webkit-transition-duration: 0.3s;
-  -o-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -moz-transition-timing-function: ease-in;
-  -webkit-transition-timing-function: ease-in;
-  -o-transition-timing-function: ease-in;
-  transition-timing-function: ease-in;
+.slide-fade-enter-active {
+  transition: all 0.3s ease-out;
 }
 
-.slide-leave-active {
-  -moz-transition-duration: 0.3s;
-  -webkit-transition-duration: 0.3s;
-  -o-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -moz-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
-  -webkit-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
-  -o-transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
-  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+.slide-fade-leave-active {
+  transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
 }
 
-.slide-enter-to,
-.slide-leave {
-  max-height: 100px;
-  overflow: hidden;
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateY(-20px);
+  opacity: 0;
 }
 
-.slide-enter,
-.slide-leave-to {
-  overflow: hidden;
-  max-height: 0;
+.no-mode-fade-enter-active,
+.no-mode-fade-leave-active {
+  transition: opacity 0.2s
+}
+
+.no-mode-fade-enter-from,
+.no-mode-fade-leave-to {
+  opacity: 0
 }
 </style>
