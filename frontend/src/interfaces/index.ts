@@ -1,6 +1,7 @@
-export interface Allergy {
-  isOn: boolean;
-  label: string;
+export interface Restriction {
+  id: number;
+  name: string;
+  menu_item_id: number;
 }
 
 export interface Dish {

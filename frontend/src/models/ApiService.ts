@@ -3,6 +3,7 @@ import MenuItem from './MenuItem';
 import Restaurant from './Restaurant';
 import RestaurantMenu from './RestaurantMenu';
 import MenuCategory from './MenuCategory';
+import ItemAllergy from './ItemAllergy';
 
 export default class ApiService {
   private static restaurantService = Axios.create({
@@ -48,5 +49,11 @@ export default class ApiService {
   static async getMenuItem(menu: RestaurantMenu, category: MenuCategory, item: MenuItem): Promise<MenuItem> {
     return this.restaurantService.get(`/api/restaurants/1/menus/${menu.id}/menu_categories/${category.id}/menu_items/${item.id}`)
       .then((response) => new MenuItem(response.data));
+  }
+
+  static async getItemAllergies(menu: RestaurantMenu, category: MenuCategory, item: MenuItem): Promise<ItemAllergy> {
+    return this.restaurantService.get(`/api/restaurants/1/menus/${menu.id}/menu_categories/${category.id}/menu_items/${item.id}/dietaries/1`)
+      // .then((response) => response.data.map((result: ItemAllergy) => new ItemAllergy(result)));
+      .then((response) => new ItemAllergy(response.data));
   }
 }

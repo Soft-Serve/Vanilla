@@ -12,12 +12,12 @@
 </template>
 
 <script lang="ts">
-import {
-  defineComponent, computed, onMounted,
-} from 'vue';
+import { defineComponent, onMounted } from 'vue';
 import { useStore } from '@/store';
 import { ActionTypes } from '@/store/actions';
+import useApi from '@/composables/useApi';
 import NavBar from '~/NavBar/NavBar.vue';
+
 
 export default defineComponent({
   name: 'App',
@@ -26,33 +26,12 @@ export default defineComponent({
   },
   setup() {
     const store = useStore();
-    const restaurant = computed(() => store.state.restaurant);
-    const loading = computed(() => store.state.loading);
-    const menu = computed(() => store.getters.menus[1]);
-    const categories = computed(() => store.getters.categories);
-    const category = computed(() => store.getters.category);
-    const items = computed(() => store.getters.items);
-    const item = computed(() => store.getters.item);
-
-    const fetchMenu = (): void => {
-      store.dispatch(ActionTypes.getMenu, menu.value);
-    };
-
+    const { fetchMenu } = useApi();
     onMounted(() => {
       store.dispatch(ActionTypes.getRestaurant, undefined);
       store.dispatch(ActionTypes.getMenus, undefined);
       fetchMenu();
     });
-
-    return {
-      loading,
-      menu,
-      categories,
-      category,
-      items,
-      item,
-      restaurant,
-    };
   },
 });
 </script>
