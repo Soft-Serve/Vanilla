@@ -22,6 +22,6 @@
 ### Closing the project
 
 As a reminder, once you are finished running this project and you have closed your remote container, you SHOULD stop and remove your Docker Container (from bash or PowerShell):
-```~ docker stop <container_id>```
-```~ docker rm <container_id>```
+- ```~ docker stop <container_id>```
+- ```~ docker rm <container_id>```
 
