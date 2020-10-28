@@ -8,8 +8,9 @@
 
 ### How to run only Frontend
 1. Ensure you have Docker running on your machine.
-2. Open the project in Visual Studio Code and run it inside Remote Container (see Requirements). This will install all VScode extensions to support this project, syntax highlighting and auto linting.
-3. Inside the container (use Visual Studio Code console) run yarn to install al the dependecies required in the project.
+2. Ensure you are in the frontend folder. You can not start the remote container outside this folder.
+3. Open the project in Visual Studio Code and run it inside Remote Container (see Requirements). This will install all VScode extensions to support this project, syntax highlighting and auto linting.
+4. Inside the container (use Visual Studio Code console) run yarn to install al the dependecies required in the project.
 
 ### How to run Frontend and Backend simultaneously
 1. run ```docker-compose run api rails db:reset```
