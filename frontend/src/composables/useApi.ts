@@ -32,8 +32,14 @@ export default () => {
     store.dispatch(ActionTypes.getItems, response);
   };
 
+  const fetchItemsCollection = async (activeMenu: RestaurantMenu, activeCategory: MenuCategory): Promise<void> => {
+    const response = await ApiService.getMenuItems(activeMenu, activeCategory);
+    store.dispatch(ActionTypes.getItemsCollection, response);
+  };
+
   const triggerCategoryChange = (payload: MenuCategory) => {
     fetchItems(menu.value, payload);
+    fetchItemsCollection(menu.value, payload);
     store.dispatch(ActionTypes.getCategory, payload);
   };
 

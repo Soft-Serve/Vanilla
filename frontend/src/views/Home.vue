@@ -73,6 +73,7 @@ export default defineComponent({
       triggerCategoryChange,
       category,
       changeCategory,
+      store,
     };
   },
 

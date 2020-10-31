@@ -2,6 +2,7 @@ import Restaurant from '@/models/Restaurant';
 import RestaurantMenu from '@/models/RestaurantMenu';
 import MenuCategory from '@/models/MenuCategory';
 import MenuItem from '@/models/MenuItem';
+import Collection from '@/models/Collection';
 
 export type State = {
   loading: boolean;
@@ -11,6 +12,7 @@ export type State = {
   menuCategories: MenuCategory[];
   menuCategory: MenuCategory;
   menuItems: MenuItem[];
+  itemsCollection: Collection<MenuItem>;
 }
 
 export const state: State = {
@@ -21,4 +23,5 @@ export const state: State = {
   menuCategories: [],
   menuCategory: new MenuCategory(),
   menuItems: [],
+  itemsCollection: new Collection(),
 };

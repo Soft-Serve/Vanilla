@@ -14,6 +14,7 @@ export enum ActionTypes {
   getCategories = 'GET_CATEGORIES',
   getCategory = 'GET_CATEGORY',
   getItems = 'GET_ITEMS',
+  getItemsCollection = 'GET_ITEMS_COLLECTION',
 }
 
 type ActionAugments = Omit<ActionContext<State, State>, 'commit'> & {
@@ -30,6 +31,8 @@ export type Actions = {
   [ActionTypes.getCategories](context: ActionAugments, payload: MenuCategory[]): void;
   [ActionTypes.getCategory](context: ActionAugments, payload: MenuCategory): void;
   [ActionTypes.getItems](context: ActionAugments, payload: MenuItem[]): void;
+  [ActionTypes.getItemsCollection](context: ActionAugments, payload: MenuItem[]): void;
+
 }
 
 export const actions: ActionTree<State, State> & Actions = {
@@ -63,6 +66,11 @@ export const actions: ActionTree<State, State> & Actions = {
   [ActionTypes.getItems]({ commit }, payload) {
     commit(MutationType.SetLoading, true);
     commit(MutationType.SetMenuItems, payload);
+    commit(MutationType.SetLoading, false);
+  },
+  [ActionTypes.getItemsCollection]({ commit }, payload) {
+    commit(MutationType.SetLoading, true);
+    commit(MutationType.SetMenuCollectionItems, payload);
     commit(MutationType.SetLoading, false);
   },
 };
