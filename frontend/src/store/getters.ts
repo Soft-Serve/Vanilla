@@ -12,7 +12,6 @@ export type Getters = {
   categories(state: State): MenuCategory[];
   category(state: State): MenuCategory;
   items(state: State): MenuItem[];
-  item(state: State): MenuItem;
 }
 
 export const getters: GetterTree<State, State> & Getters = {
@@ -33,8 +32,5 @@ export const getters: GetterTree<State, State> & Getters = {
   },
   items(state) {
     return state.menuItems;
-  },
-  item(state) {
-    return state.menuItem;
   },
 };

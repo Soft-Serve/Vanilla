@@ -21,7 +21,7 @@
          <BaseIcon
           v-for="(allergy, index) in data.allergies"
           :key="index"
-          :name="allergy"
+          :name="allergy.name"
         />
       </div>
 
@@ -56,19 +56,11 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { SIZES } from '@/helpers';
+import MenuItem from '@/models/MenuItem';
 import BaseIcon from '~/BaseIcon/BaseIcon.vue';
 import BaseButton from '~/BaseButton/BaseButton.vue';
 import BaseImage from '~/BaseImage/BaseImage.vue';
 import './style.css';
-
-export interface Dish {
-    name: string;
-    category: string;
-    image: string;
-    price: number;
-    description: string;
-    allergies: Array<string>;
-}
 
 export default defineComponent({
   name: 'BaseCard',
@@ -79,7 +71,7 @@ export default defineComponent({
   },
   props: {
     data: {
-      type: Object,
+      type: MenuItem,
       required: true,
     },
   },

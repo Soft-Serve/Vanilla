@@ -4,7 +4,6 @@ import { ActionTypes } from '@/store/actions';
 import ApiService from '@/models/ApiService';
 import MenuCategory from '@/models/MenuCategory';
 import RestaurantMenu from '@/models/RestaurantMenu';
-import MenuItem from '@/models/MenuItem';
 
 export default () => {
   const store = useStore();
@@ -14,7 +13,6 @@ export default () => {
   const categories = computed(() => store.getters.categories);
   const category = computed(() => store.getters.categories[0]);
   const items = computed(() => store.getters.items);
-  const item = computed(() => store.getters.item);
 
   const fetchMenu = (): void => {
     store.dispatch(ActionTypes.getMenu, menu.value);
@@ -34,13 +32,9 @@ export default () => {
     store.dispatch(ActionTypes.getItems, response);
   };
 
-  const fetchItem = async (activeMenu: RestaurantMenu, activeCategory: MenuCategory, activeItem: MenuItem): Promise<void> => {
-    const response = await ApiService.getMenuItem(activeMenu, activeCategory, activeItem);
-    store.dispatch(ActionTypes.getItem, response);
-  };
-
   const triggerCategoryChange = (payload: MenuCategory) => {
     fetchItems(menu.value, payload);
+    store.dispatch(ActionTypes.getCategory, payload);
   };
 
   return {
@@ -50,12 +44,11 @@ export default () => {
     categories,
     category,
     items,
-    item,
     fetchMenu,
     fetchCategories,
     fetchCategory,
     fetchItems,
-    fetchItem,
     triggerCategoryChange,
+    store,
   };
 };

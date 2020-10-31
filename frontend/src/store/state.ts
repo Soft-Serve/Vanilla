@@ -11,7 +11,6 @@ export type State = {
   menuCategories: MenuCategory[];
   menuCategory: MenuCategory;
   menuItems: MenuItem[];
-  menuItem: MenuItem;
 }
 
 export const state: State = {
@@ -22,5 +21,4 @@ export const state: State = {
   menuCategories: [],
   menuCategory: new MenuCategory(),
   menuItems: [],
-  menuItem: new MenuItem(),
 };

@@ -1,4 +1,4 @@
-export interface Restriction {
+export interface Allergy {
   id: number;
   name: string;
   menu_item_id: number;

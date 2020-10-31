@@ -14,7 +14,6 @@ export enum MutationType {
   SetMenuCategories = 'SET_MENU_CATEGORIES',
   SetMenuCategory = 'SET_MENU_CATEGORY',
   SetMenuItems = 'SET_MENU_ITEMS',
-  SetMenuItem = 'SET_MENU_ITEM',
 }
 
 export type Mutations = {
@@ -25,8 +24,6 @@ export type Mutations = {
   [MutationType.SetMenuCategories](state: State, payload: MenuCategory[]): void;
   [MutationType.SetMenuCategory](state: State, payload: MenuCategory): void;
   [MutationType.SetMenuItems](state: State, payload: MenuItem[]): void;
-  [MutationType.SetMenuItem](state: State, payload: MenuItem): void;
-
 }
 
 export const mutations: MutationTree<State> & Mutations = {
@@ -50,8 +47,5 @@ export const mutations: MutationTree<State> & Mutations = {
   },
   [MutationType.SetMenuItems](state, items) {
     state.menuItems = items;
-  },
-  [MutationType.SetMenuItem](state, item) {
-    state.menuItem = item;
   },
 };

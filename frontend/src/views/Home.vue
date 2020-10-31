@@ -5,7 +5,7 @@
         v-for="category in categories"
         :key="category.id"
         :buttonStyle="BUTTONS_STYLES.WHITE"
-        @click="triggerCategoryChange(category)">
+        @click="changeCategory(category)">
         {{ category.name }}
       </BaseButton>
     </BaseWrapper>
@@ -20,7 +20,8 @@
 import { defineComponent, watch } from 'vue';
 import { BUTTONSTYLES } from '@/helpers';
 import useApi from '@/composables/useApi';
-// import ApiService from '@/models/ApiService';
+import MenuItem from '@/models/MenuItem';
+import MenuCategory from '@/models/MenuCategory';
 import BaseWrapper from '~/BaseWrapper/BaseWrapper.vue';
 import BaseButton from '~/BaseButton/BaseButton.vue';
 import BaseCard from '~/BaseCard/BaseCard.vue';
@@ -35,8 +36,19 @@ export default defineComponent({
   setup() {
     const BUTTONS_STYLES = BUTTONSTYLES;
     const {
-      fetchCategories, fetchCategory, triggerCategoryChange, menu, categories, items, loading, fetchItem, category, item,
+      fetchCategories,
+      fetchCategory,
+      triggerCategoryChange,
+      menu,
+      categories,
+      items,
+      loading,
+      category,
+      store,
     } = useApi();
+
+
+
     watch(menu, (selectedMenu) => fetchCategories(selectedMenu));
 
     watch(categories, (selectedCategory) => {
@@ -44,11 +56,14 @@ export default defineComponent({
       triggerCategoryChange(selectedCategory[0]);
     });
 
-    watch(items, (selectedItem) => fetchItem(menu.value, category.value, selectedItem[0]));
+    watch(items, (allItems: MenuItem[]) => {
+      allItems.forEach((item: MenuItem) => item.fetchAllergies(menu.value, store.getters.category, item));
+    });
 
-    // watch(item, (selectedItem) => {
-    //   const foo = ApiService.getItemAllergies(menu.value, category.value, selectedItem);
-    // });
+    const changeCategory = (newCategory: MenuCategory): void => {
+      fetchCategory(menu.value, newCategory);
+      triggerCategoryChange(newCategory);
+    };
 
     return {
       loading,
@@ -56,7 +71,8 @@ export default defineComponent({
       BUTTONS_STYLES,
       items,
       triggerCategoryChange,
-      item,
+      category,
+      changeCategory,
     };
   },
 
