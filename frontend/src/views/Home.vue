@@ -11,7 +11,7 @@
     </BaseWrapper>
     <BaseWrapper>
       <p v-if="loading">LOADING</p>
-      <BaseCard v-else v-for="item in items" :key="item.id" :data="item"/>
+      <BaseCard v-else v-for="item in items.collection" :key="item.id" :data="item"/>
     </BaseWrapper>
   </div>
 </template>
@@ -56,7 +56,7 @@ export default defineComponent({
       triggerCategoryChange(selectedCategory[0]);
     });
 
-    watch(items, (allItems: MenuItem[]) => {
+    watch(items.value.collection, (allItems: MenuItem[]) => {
       allItems.forEach((item: MenuItem) => item.fetchAllergies(menu.value, store.getters.category, item));
     });
 

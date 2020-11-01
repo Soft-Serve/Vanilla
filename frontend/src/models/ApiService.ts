@@ -43,12 +43,7 @@ export default class ApiService {
       .then((response) => new MenuCategory(response.data));
   }
 
-  static async getMenuItems(menu: RestaurantMenu, category: MenuCategory): Promise<MenuItem[]> {
-    return this.restaurantService.get(`/api/restaurants/1/menus/${menu.id}/menu_categories/${category.id}/menu_items`)
-      .then((response) => response.data.map((result: MenuItem) => new MenuItem(result)));
-  }
-
-  static async getItemsCollection(menu: RestaurantMenu, category: MenuCategory): Promise<Collection<MenuItem>> {
+  static async getItems(menu: RestaurantMenu, category: MenuCategory): Promise<Collection<MenuItem>> {
     const results = await this.restaurantService.get(`/api/restaurants/1/menus/${menu.id}/menu_categories/${category.id}/menu_items`)
       .then((response) => response.data.map((result: MenuItem) => new MenuItem(result)));
     return new Collection(results);
