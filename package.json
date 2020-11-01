@@ -1,0 +1,15 @@
+{
+  "name": "vanilla",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Soft-Serve/Vanilla.git",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "prestart": "docker-compose run api rails db:reset",
+    "frontend": "cd ./frontend && yarn && yarn serve ",
+    "backend": "yarn prestart && docker-compose run --service-ports api /bin/sh -c 'rm -f tmp/pids/server.pid && rails s -b 0.0.0.0'",
+    "cleanup": "docker-compose down -v",
+    "project": "yarn prestart && docker-compose up"
+  }
+}
