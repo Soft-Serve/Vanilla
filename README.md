@@ -16,6 +16,12 @@
 1. run ```docker-compose run api rails db:reset```
 2. run ```docker-compose up```
 
+### How to work out of the Frontend dev container with a running Backend
+1. run ```docker-compose run api rails db:reset```
+2. ```docker-compose run --service-ports api /bin/sh -c "rm -f tmp/pids/server.pid && rails s -b 0.0.0.0"```
+3. cd to the Frontend folder. Ensure you have the vscode remote container extension installed and reopen the project in the container
+3 run ```yarn serve``` once the container has been sucssesfully build. 
+
 ### How to run the Backend 
 ```docker-compose run --service-ports api /bin/sh -c "rm -f tmp/pids/server.pid && rails s -b 0.0.0.0"```
 
