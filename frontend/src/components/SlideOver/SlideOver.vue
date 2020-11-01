@@ -7,98 +7,84 @@
     leave-class="translate-x-0"
     leave-to-class="translate-x-full"
   >
-    <div
-      v-if="areFiltersVisibile"
-      class="slide-over"
-    >
-      <section class="slide-over__container">
-        <div class="w-screen max-w-md">
-          <div class="h-full divide-y divide-gray-200 flex flex-col bg-white shadow-xl">
-            <div class="h-0 flex-1 py-6 space-y-6 overflow-y-scroll">
-              <header class="px-4 sm:px-6">
-                <div class="flex items-start justify-evenly space-x-3">
-                  <h2 class="text-lg leading-7 font-medium text-gray-900 text-center">
-                    Allergies
-                  </h2>
-                  <div class="h-7 flex items-center">
-                    <BaseButton
-                      aria-label="Close panel"
-                      class="text-gray-400 hover:text-gray-500
-                      transition ease-in-out duration-150"
-                      @click="closeSlideOver"
-                    >
-                      <svg
-                        class="h-6 w-6"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
+    <div v-if="isScreenVisible" class="fixed inset-0 overflow-hidden">
+      <div class="absolute inset-0 overflow-hidden">
+        <section class="absolute inset-y-0 right-0 pl-10 max-w-full flex">
+          <div class="w-screen max-w-md h-full">
+            <div class="h-full divide-y divide-gray-200 flex flex-col bg-white shadow-xl">
+              <div class="h-0 flex-1 py-6 space-y-6 overflow-y-scroll">
+                <header class="px-4 sm:px-6">
+                  <div class="flex items-start justify-center space-x-3">
+                    <h2 class="text-lg leading-7 font-medium text-gray-900 text-center">
+                      Allergies
+                    </h2>
+                    <div class="h-7 flex items-center">
+                      <BaseButton
+                        aria-label="Close panel"
+                        class="text-gray-400 hover:text-gray-500
+                        transition ease-in-out duration-150"
+                        @click="toggleAllergyScreen"
                       >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          d="M6 18L18 6M6 6l12 12"
+                        <BaseIcon
+                          :name="'close'"
+                          aria-label="SideOver close"
+                          class="text-white block h-6 w-6"
                         />
-                      </svg>
-                    </BaseButton>
+                      </BaseButton>
+                    </div>
                   </div>
+                </header>
+                <div class="relative flex-1 px-4 sm:px-6 max-w-10 my-0 mx-auto">
+                  <BaseWrapper :column="2">
+                    <span
+                      v-for="(allergy, index) in allergies"
+                      :key="allergy"
+                      class="flex justify-between border border-cool-gray-300 px-2 py-1 items-center rounded-lg cursor-pointer shadow-lg"
+                      @click="toggleFilter(index)"
+                    >
+                      <BaseIcon :name="allergy.label"/>
+                      {{ allergy.label }}
+                      <BaseToggle :is-on="allergy.isOn" />
+                    </span>
+                  </BaseWrapper>
                 </div>
-              </header>
-              <div class="relative flex-1 px-4 sm:px-6 max-w-10 my-0 mx-auto">
-                <BaseWrapper :column="1">
-                  <span
-                    v-for="(allergy, index) in allergies"
-                    :key="index"
-                    class="flex justify-between border border-cool-gray-300 px-2 py-1 items-center rounded-lg cursor-pointer shadow-lg"
-                    @click="toggleFilter(index)"
-                  >
-                    <BaseIcon :name="allergy.label"/>
-                    {{ allergy.label }}
-                    <BaseToggle :is-on="allergy.isOn" />
+                <div class="flex-shrink-0 px-4 py-4 space-x-4 flex justify-center">
+                  <span class="inline-flex rounded-md shadow-sm">
+                    <BaseButton
+                       @click="toggleAllergyScreen"
+                      type="submit"
+                      class="inline-flex justify-center py-2 px-4 border border-transparent
+                        text-sm leading-5 font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none
+                      focus:border-indigo-700 focus:shadow-outline-red active:bg-red-700 transition duration-150 ease-in-out"
+                    >
+                      Save
+                    </BaseButton>
                   </span>
-                </BaseWrapper>
-              </div>
-              <div class="flex-shrink-0 px-4 py-4 space-x-4 flex justify-end">
-                <span class="inline-flex rounded-md shadow-sm">
-                  <BaseButton
-                    type="BaseButton"
-                    class="py-2 px-4 border border-gray-300 rounded-md
-                  text-sm leading-5 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300
-                  focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out"
-                  >
-                    Cancel
-                  </BaseButton>
-                </span>
-                <span class="inline-flex rounded-md shadow-sm">
-                  <BaseButton
-                    type="submit"
-                    class="inline-flex justify-center py-2 px-4 border border-transparent
-                      text-sm leading-5 font-medium rounded-md text-white bg-red-600 hover:bg-red-500 focus:outline-none
-                    focus:border-indigo-700 focus:shadow-outline-red active:bg-red-700 transition duration-150 ease-in-out"
-                  >
-                    Save
-                  </BaseButton>
-                </span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
       </section>
+      </div>
     </div>
   </transition>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+
+import { defineComponent, ref, computed } from 'vue';
 import BaseButton from '@/components/BaseButton/BaseButton.vue';
 import BaseToggle from '@/components/BaseToggle/BaseToggle.vue';
 import BaseWrapper from '@/components/BaseWrapper/BaseWrapper.vue';
+import { ActionTypes } from '@/store/actions';
+import useApi from '@/composables/useApi';
 import BaseIcon from '~/BaseIcon/BaseIcon.vue';
 
 export default defineComponent({
   name: 'SlideOver',
   props: {
-    areFiltersVisibile: {
+    isScreenVisible: {
       type: Boolean,
       required: false,
       default: false,
@@ -110,53 +96,64 @@ export default defineComponent({
     BaseWrapper,
     BaseIcon,
   },
-  data() {
-    return {
-      isOn: false,
-      allergies: [
-        {
-          label: 'soy',
-          isOn: false,
-        },
-        {
-          label: 'meat',
-          isOn: false,
-        },
-        {
-          label: 'gluten',
-          isOn: false,
-        },
-        {
-          label: 'nuts',
-          isOn: false,
-        },
-        {
-          label: 'dairy',
-          isOn: false,
-        },
-        {
-          label: 'shellfish',
-          isOn: false,
-        },
-      ],
-    };
-  },
-  methods: {
-    closeSlideOver(): void {
-      this.$emit('close-side-over', false);
-    },
 
-    toggleFilter(index: number): void {
-      this.allergies[index].isOn = !this.allergies[index].isOn;
-    },
+  setup(props, { emit }) {
+    const { store } = useApi();
+    const allergies = ref([
+      {
+        label: 'soy',
+        id: 1,
+        isOn: false,
+      },
+      {
+        label: 'meat',
+        id: 2,
+        isOn: false,
+      },
+      {
+        label: 'gluten',
+        id: 3,
+        isOn: false,
+      },
+      {
+        label: 'nuts',
+        id: 4,
+        isOn: false,
+      },
+      {
+        label: 'dairy',
+        id: 5,
+        isOn: false,
+      },
+      {
+        label: 'shellfish',
+        id: 6,
+        isOn: false,
+      },
+    ]);
+
+    const activeAllergies = computed(() => allergies.value.filter((allergy) => allergy.isOn));
+
+    const toggleAllergyScreen = () => {
+      emit('toggle-allergy-screen');
+    };
+
+    const toggleFilter = (index: number) => {
+      allergies.value[index].isOn = !allergies.value[index].isOn;
+      activeAllergies.value.forEach((allergy) => {
+        if (store.getters.guestRestrictions.has(allergy.label)) {
+          store.dispatch(ActionTypes.deleteGuestRestriction, allergy.label);
+        } else { store.dispatch(ActionTypes.getGuestRestriction, allergy.label); }
+      });
+    };
+
+    return {
+      toggleAllergyScreen,
+      toggleFilter,
+      allergies,
+      activeAllergies,
+    };
   },
 });
 
 </script>
-
-<style scoped>
-.slide-over {
-  @apply inset-0 overflow-hidden absolute;
-}
-
-</style>

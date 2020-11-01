@@ -15,7 +15,9 @@ export enum MutationType {
   SetRestaurantMenu = 'SET_RESTAURANT_MENU',
   SetMenuCategories = 'SET_MENU_CATEGORIES',
   SetMenuCategory = 'SET_MENU_CATEGORY',
-  SetMenuItems = 'SET_MENU_ITEMS'
+  SetMenuItems = 'SET_MENU_ITEMS',
+  SetGuestRestrictions = 'SET_GUEST_RESTRICTIONS',
+  DeleteGuestRestriction = 'DELETE_GUEST_RESTRICTION'
 }
 
 export type Mutations = {
@@ -26,6 +28,9 @@ export type Mutations = {
   [MutationType.SetMenuCategories](state: State, payload: MenuCategory[]): void;
   [MutationType.SetMenuCategory](state: State, payload: MenuCategory): void;
   [MutationType.SetMenuItems](state: State, payload: MenuItem[]): void;
+  [MutationType.SetGuestRestrictions](state: State, payload: string): void;
+  [MutationType.DeleteGuestRestriction](state: State, payload: string): void;
+
 }
 
 export const mutations: MutationTree<State> & Mutations = {
@@ -49,5 +54,11 @@ export const mutations: MutationTree<State> & Mutations = {
   },
   [MutationType.SetMenuItems](state, items) {
     state.items = new ItemsCollection(items);
+  },
+  [MutationType.SetGuestRestrictions](state, restriction) {
+    state.guestRestrictions.add(restriction);
+  },
+  [MutationType.DeleteGuestRestriction](state, restriction) {
+    state.guestRestrictions.delete(restriction);
   },
 };

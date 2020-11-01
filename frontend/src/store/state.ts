@@ -12,6 +12,7 @@ export type State = {
   categories: Collection<MenuCategory>;
   category: MenuCategory;
   items: ItemsCollection;
+  guestRestrictions: Set<string>;
 }
 
 export const state: State = {
@@ -22,4 +23,5 @@ export const state: State = {
   categories: new Collection(),
   category: new MenuCategory(),
   items: new ItemsCollection(),
+  guestRestrictions: new Set<string>(),
 };
