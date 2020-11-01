@@ -35,16 +35,16 @@ export const mutations: MutationTree<State> & Mutations = {
     state.loading = isLoaded;
   },
   [MutationType.SetRestaurantMenus](state, menus) {
-    state.restaurantMenus = new Collection(menus);
+    state.menus = new Collection(menus);
   },
   [MutationType.SetRestaurantMenu](state, menu) {
-    state.restaurantMenu = menu;
+    state.menu = menu;
   },
   [MutationType.SetMenuCategories](state, categories) {
-    state.menuCategories = new Collection(categories);
+    state.categories = new Collection(categories);
   },
   [MutationType.SetMenuCategory](state, category) {
-    state.menuCategory = category;
+    state.category = category;
   },
   [MutationType.SetMenuItems](state, items) {
     state.items = new Collection(items);

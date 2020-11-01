@@ -20,16 +20,16 @@ export const getters: GetterTree<State, State> & Getters = {
     return state.restaurant;
   },
   menus(state) {
-    return state.restaurantMenus;
+    return state.menus;
   },
   menu(state) {
-    return state.restaurantMenu;
+    return state.menu;
   },
   categories(state) {
-    return state.menuCategories;
+    return state.categories;
   },
   category(state) {
-    return state.menuCategory;
+    return state.category;
   },
   items(state) {
     return state.items;

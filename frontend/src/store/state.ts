@@ -7,19 +7,19 @@ import Collection from '@/models/Collection';
 export type State = {
   loading: boolean;
   restaurant: Restaurant;
-  restaurantMenus: Collection<RestaurantMenu>;
-  restaurantMenu: RestaurantMenu;
-  menuCategories: Collection<MenuCategory>;
-  menuCategory: MenuCategory;
+  menus: Collection<RestaurantMenu>;
+  menu: RestaurantMenu;
+  categories: Collection<MenuCategory>;
+  category: MenuCategory;
   items: Collection<MenuItem>;
 }
 
 export const state: State = {
   loading: false,
   restaurant: new Restaurant(),
-  restaurantMenus: new Collection(),
-  restaurantMenu: new RestaurantMenu(),
-  menuCategories: new Collection(),
-  menuCategory: new MenuCategory(),
+  menus: new Collection(),
+  menu: new RestaurantMenu(),
+  categories: new Collection(),
+  category: new MenuCategory(),
   items: new Collection(),
 };
