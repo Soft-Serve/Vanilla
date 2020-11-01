@@ -11,16 +11,11 @@ export default () => {
   const loading = computed(() => store.state.loading);
   const menu = computed(() => store.getters.menus[0]);
   const categories = computed(() => store.getters.categories);
-  const category = computed(() => store.getters.categories[0]);
+  const category = computed(() => store.getters.categories.collection[0]);
   const items = computed(() => store.getters.items);
 
   const fetchMenu = (): void => {
     store.dispatch(ActionTypes.getMenu, menu.value);
-  };
-
-  const fetchCategories = async (activeMenu: RestaurantMenu): Promise<void> => {
-    const response = await ApiService.getMenuCategories(activeMenu);
-    store.dispatch(ActionTypes.getCategories, response);
   };
 
   const fetchCategory = async (activeMenu: RestaurantMenu, activeCategory: MenuCategory): Promise<void> => {
@@ -36,6 +31,12 @@ export default () => {
   const triggerCategoryChange = (payload: MenuCategory) => {
     fetchItems(menu.value, payload);
     store.dispatch(ActionTypes.getCategory, payload);
+  };
+
+  const fetchCategories = async (activeMenu: RestaurantMenu): Promise<void> => {
+    const response = await ApiService.getMenuCategories(activeMenu);
+    store.dispatch(ActionTypes.getCategories, response.collection);
+    triggerCategoryChange(response.collection[0]);
   };
 
   return {

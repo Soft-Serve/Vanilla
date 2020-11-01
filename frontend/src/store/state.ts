@@ -9,7 +9,7 @@ export type State = {
   restaurant: Restaurant;
   restaurantMenus: RestaurantMenu[];
   restaurantMenu: RestaurantMenu;
-  menuCategories: MenuCategory[];
+  menuCategories: Collection<MenuCategory>;
   menuCategory: MenuCategory;
   items: Collection<MenuItem>;
 }
@@ -19,7 +19,7 @@ export const state: State = {
   restaurant: new Restaurant(),
   restaurantMenus: [],
   restaurantMenu: new RestaurantMenu(),
-  menuCategories: [],
+  menuCategories: new Collection(),
   menuCategory: new MenuCategory(),
   items: new Collection(),
 };

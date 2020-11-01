@@ -1,8 +1,8 @@
 <template>
-  <div class="wrapper" v-if="categories.length">
+  <div class="wrapper" v-if="categories.collection.length">
     <BaseWrapper :column="2" class="mt-4">
       <BaseButton
-        v-for="category in categories"
+        v-for="category in categories.collection"
         :key="category.id"
         :buttonStyle="BUTTONS_STYLES.WHITE"
         @click="changeCategory(category)">
@@ -51,7 +51,7 @@ export default defineComponent({
 
     watch(menu, (selectedMenu) => fetchCategories(selectedMenu));
 
-    watch(categories, (selectedCategory) => {
+    watch(categories.value.collection, (selectedCategory) => {
       fetchCategory(menu.value, selectedCategory[0]);
       triggerCategoryChange(selectedCategory[0]);
     });

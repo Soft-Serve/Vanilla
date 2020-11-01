@@ -41,7 +41,7 @@ export const mutations: MutationTree<State> & Mutations = {
     state.restaurantMenu = menu;
   },
   [MutationType.SetMenuCategories](state, categories) {
-    state.menuCategories = categories;
+    state.menuCategories = new Collection(categories);
   },
   [MutationType.SetMenuCategory](state, category) {
     state.menuCategory = category;

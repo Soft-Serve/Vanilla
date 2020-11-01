@@ -10,7 +10,7 @@ export type Getters = {
   restaurant(state: State): Restaurant;
   menus(state: State): RestaurantMenu[];
   menu(state: State): RestaurantMenu;
-  categories(state: State): MenuCategory[];
+  categories(state: State): Collection<MenuCategory>;
   category(state: State): MenuCategory;
   items(state: State): Collection<MenuItem>;
 }
