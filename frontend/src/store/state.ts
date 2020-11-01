@@ -1,8 +1,8 @@
 import Restaurant from '@/models/Restaurant';
 import RestaurantMenu from '@/models/RestaurantMenu';
 import MenuCategory from '@/models/MenuCategory';
-import MenuItem from '@/models/MenuItem';
 import Collection from '@/models/Collection';
+import ItemsCollection from '@/models/ItemsCollection';
 
 export type State = {
   loading: boolean;
@@ -11,7 +11,7 @@ export type State = {
   menu: RestaurantMenu;
   categories: Collection<MenuCategory>;
   category: MenuCategory;
-  items: Collection<MenuItem>;
+  items: ItemsCollection;
 }
 
 export const state: State = {
@@ -21,5 +21,5 @@ export const state: State = {
   menu: new RestaurantMenu(),
   categories: new Collection(),
   category: new MenuCategory(),
-  items: new Collection(),
+  items: new ItemsCollection(),
 };

@@ -20,8 +20,6 @@
 import { defineComponent, watch } from 'vue';
 import { BUTTONSTYLES } from '@/helpers';
 import useApi from '@/composables/useApi';
-import MenuItem from '@/models/MenuItem';
-import MenuCategory from '@/models/MenuCategory';
 import BaseWrapper from '~/BaseWrapper/BaseWrapper.vue';
 import BaseButton from '~/BaseButton/BaseButton.vue';
 import BaseCard from '~/BaseCard/BaseCard.vue';
@@ -37,8 +35,7 @@ export default defineComponent({
     const BUTTONS_STYLES = BUTTONSTYLES;
     const {
       fetchCategories,
-      fetchCategory,
-      triggerCategoryChange,
+      changeCategory,
       menu,
       categories,
       items,
@@ -47,30 +44,15 @@ export default defineComponent({
       store,
     } = useApi();
 
+    watch(menu, (watchedMenu) => fetchCategories(watchedMenu));
 
-
-    watch(menu, (selectedMenu) => fetchCategories(selectedMenu));
-
-    watch(categories.value.collection, (selectedCategory) => {
-      fetchCategory(menu.value, selectedCategory[0]);
-      triggerCategoryChange(selectedCategory[0]);
-    });
-
-    watch(items.value.collection, (allItems: MenuItem[]) => {
-      allItems.forEach((item: MenuItem) => item.fetchAllergies(menu.value, store.getters.category, item));
-    });
-
-    const changeCategory = (newCategory: MenuCategory): void => {
-      fetchCategory(menu.value, newCategory);
-      triggerCategoryChange(newCategory);
-    };
+    watch(items, (watchedItems) => watchedItems.triggerFetchAllergies(menu.value, store.getters.category));
 
     return {
       loading,
       categories,
       BUTTONS_STYLES,
       items,
-      triggerCategoryChange,
       category,
       changeCategory,
       store,

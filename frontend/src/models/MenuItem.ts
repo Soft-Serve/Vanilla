@@ -21,7 +21,7 @@ export default class MenuItem extends MenuItemDTO {
     this._allergies = payload;
   }
 
-  convertNamesToLowerCase(allergies: ItemDietary[]) {
+  private convertAllergyNameToLowerCase(allergies: ItemDietary[]) {
     return allergies.map((allergy) => {
       const copyOfAllergy = { ...allergy };
       copyOfAllergy.name = copyOfAllergy.name.toLowerCase();
@@ -29,9 +29,9 @@ export default class MenuItem extends MenuItemDTO {
     });
   }
 
-  fetchAllergies(menu: RestaurantMenu, category: MenuCategory, item: MenuItem) {
+  public fetchAllergies(menu: RestaurantMenu, category: MenuCategory, item: MenuItem) {
     ApiService.getItemDietaries(menu, category, item).then((payload: ItemDietary[]) => {
-      this.allergies = this.convertNamesToLowerCase(payload);
+      this.allergies = this.convertAllergyNameToLowerCase(payload);
     });
   }
 

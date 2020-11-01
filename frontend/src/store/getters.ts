@@ -2,8 +2,8 @@ import { GetterTree } from 'vuex';
 import Restaurant from '@/models/Restaurant';
 import RestaurantMenu from '@/models/RestaurantMenu';
 import MenuCategory from '@/models/MenuCategory';
-import MenuItem from '@/models/MenuItem';
 import Collection from '@/models/Collection';
+import ItemsCollection from '@/models/ItemsCollection';
 import { State } from './state';
 
 export type Getters = {
@@ -12,7 +12,7 @@ export type Getters = {
   menu(state: State): RestaurantMenu;
   categories(state: State): Collection<MenuCategory>;
   category(state: State): MenuCategory;
-  items(state: State): Collection<MenuItem>;
+  items(state: State): ItemsCollection;
 }
 
 export const getters: GetterTree<State, State> & Getters = {

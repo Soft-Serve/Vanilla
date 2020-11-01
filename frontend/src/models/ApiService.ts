@@ -1,11 +1,12 @@
+/* eslint-disable import/no-cycle */
 import Axios from 'axios';
-// eslint-disable-next-line import/no-cycle
 import MenuItem from './MenuItem';
 import Restaurant from './Restaurant';
 import RestaurantMenu from './RestaurantMenu';
 import MenuCategory from './MenuCategory';
 import ItemDietary from './ItemDietary';
 import Collection from './Collection';
+import ItemsCollection from './ItemsCollection';
 
 export default class ApiService {
   private static restaurantService = Axios.create({
@@ -48,7 +49,7 @@ export default class ApiService {
   static async getItems(menu: RestaurantMenu, category: MenuCategory): Promise<Collection<MenuItem>> {
     const results: MenuItem[] = await this.restaurantService.get(`/api/restaurants/1/menus/${menu.id}/menu_categories/${category.id}/menu_items`)
       .then((response) => response.data.map((result: MenuItem) => new MenuItem(result)));
-    return new Collection(results);
+    return new ItemsCollection(results);
   }
 
   static async getItemDietaries(menu: RestaurantMenu, category: MenuCategory, item: MenuItem): Promise<ItemDietary[]> {

@@ -39,6 +39,11 @@ export default () => {
     triggerCategoryChange(response.collection[0]);
   };
 
+  const changeCategory = (newCategory: MenuCategory): void => {
+    fetchCategory(menu.value, newCategory);
+    triggerCategoryChange(newCategory);
+  };
+
   return {
     loading,
     restaurant,
@@ -51,5 +56,6 @@ export default () => {
     fetchCategory,
     triggerCategoryChange,
     store,
+    changeCategory,
   };
 };

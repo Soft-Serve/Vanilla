@@ -5,6 +5,7 @@ import RestaurantMenu from '@/models/DTO/RestaurantMenuDTO';
 import MenuCategory from '@/models/MenuCategory';
 import MenuItem from '@/models/MenuItem';
 import Collection from '@/models/Collection';
+import ItemsCollection from '@/models/ItemsCollection';
 import { State } from './state';
 
 export enum MutationType {
@@ -47,6 +48,6 @@ export const mutations: MutationTree<State> & Mutations = {
     state.category = category;
   },
   [MutationType.SetMenuItems](state, items) {
-    state.items = new Collection(items);
+    state.items = new ItemsCollection(items);
   },
 };
