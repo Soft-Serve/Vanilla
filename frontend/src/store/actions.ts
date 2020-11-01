@@ -43,7 +43,7 @@ export const actions: ActionTree<State, State> & Actions = {
   async [ActionTypes.getMenus]({ commit }) {
     commit(MutationType.SetLoading, true);
     const menus = await ApiService.getRestaurantMenus();
-    commit(MutationType.SetRestaurantMenus, menus);
+    commit(MutationType.SetRestaurantMenus, menus.collection);
     commit(MutationType.SetLoading, false);
   },
   [ActionTypes.getMenu]({ commit }, payload) {

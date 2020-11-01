@@ -9,7 +9,7 @@ export default () => {
   const store = useStore();
   const restaurant = computed(() => store.state.restaurant);
   const loading = computed(() => store.state.loading);
-  const menu = computed(() => store.getters.menus[0]);
+  const menu = computed(() => store.getters.menus.collection[0]);
   const categories = computed(() => store.getters.categories);
   const category = computed(() => store.getters.categories.collection[0]);
   const items = computed(() => store.getters.items);

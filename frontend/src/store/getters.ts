@@ -8,7 +8,7 @@ import { State } from './state';
 
 export type Getters = {
   restaurant(state: State): Restaurant;
-  menus(state: State): RestaurantMenu[];
+  menus(state: State): Collection<RestaurantMenu>;
   menu(state: State): RestaurantMenu;
   categories(state: State): Collection<MenuCategory>;
   category(state: State): MenuCategory;

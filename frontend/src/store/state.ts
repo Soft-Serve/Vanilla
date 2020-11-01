@@ -7,7 +7,7 @@ import Collection from '@/models/Collection';
 export type State = {
   loading: boolean;
   restaurant: Restaurant;
-  restaurantMenus: RestaurantMenu[];
+  restaurantMenus: Collection<RestaurantMenu>;
   restaurantMenu: RestaurantMenu;
   menuCategories: Collection<MenuCategory>;
   menuCategory: MenuCategory;
@@ -17,7 +17,7 @@ export type State = {
 export const state: State = {
   loading: false,
   restaurant: new Restaurant(),
-  restaurantMenus: [],
+  restaurantMenus: new Collection(),
   restaurantMenu: new RestaurantMenu(),
   menuCategories: new Collection(),
   menuCategory: new MenuCategory(),

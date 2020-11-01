@@ -35,7 +35,7 @@ export const mutations: MutationTree<State> & Mutations = {
     state.loading = isLoaded;
   },
   [MutationType.SetRestaurantMenus](state, menus) {
-    state.restaurantMenus = menus;
+    state.restaurantMenus = new Collection(menus);
   },
   [MutationType.SetRestaurantMenu](state, menu) {
     state.restaurantMenu = menu;
