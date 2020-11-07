@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 import Collection from './Collection';
-import RestaurantMenu from './DTO/RestaurantMenuDTO';
+import RestaurantMenu from './RestaurantMenu';
 import MenuCategory from './MenuCategory';
 import MenuItem from './MenuItem';
 
