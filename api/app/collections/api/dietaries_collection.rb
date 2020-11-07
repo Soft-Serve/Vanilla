@@ -1,21 +1,21 @@
 module Api
   class DietariesCollection
 
-    def initialize(menu_item)
-      @menu_item = menu_item
+    def initialize(restaurant)
+      @restaurant = restaurant
     end
 
     def filter
-      coll = scope_by_menu_item
+      coll = scope_by_restaurant
       coll
     end
 
-    private 
-    
-    attr_reader :menu_item
+    private
 
-    def scope_by_menu_item
-      menu_item.dietaries
+    attr_reader :restaurant
+
+    def scope_by_restaurant
+      restaurant.dietaries
     end
   end
 end
