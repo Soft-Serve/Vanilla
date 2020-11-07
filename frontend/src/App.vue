@@ -1,12 +1,24 @@
 <template>
 <div class="container">
   <div class="wrapper">
-    <NavBar/>
+    <ToolBar>
+    <template v-slot:toolBarContent>
+      <div class="w-32 mx-3 xs:my-1 xs:w-full xs:px-4 xs:mt-2">
+        <!-- <BaseButton> -->
+
+          <router-link to="/">Home</router-link>
+        <!-- </BaseButton> -->
+      </div>
+      <div class="w-32 mx-3 xs:my-1 xs:w-full xs:px-4 xs:mt-2">
+        <!-- <BaseButton> -->
+          <router-link to="/about">About</router-link>
+        <!-- </BaseButton> -->
+      </div>
+    </template>
+  </ToolBar>
   </div>
-<router-view v-slot="{ Component }">
-    <component :is="Component" />
-</router-view>
 </div>
+  <router-view/>
 </template>
 
 <script lang="ts">
@@ -14,13 +26,14 @@ import { defineComponent, onMounted } from 'vue';
 import { useStore } from '@/store';
 import { ActionTypes } from '@/store/actions';
 import useApi from '@/composables/useApi';
-import NavBar from '~/NavBar/NavBar.vue';
-
+import ToolBar from '~/ToolBar/ToolBar.vue';
+// import BaseButton from '~/BaseButton/BaseButton.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
-    NavBar,
+    ToolBar,
+    // BaseButton,
   },
   setup() {
     const store = useStore();
