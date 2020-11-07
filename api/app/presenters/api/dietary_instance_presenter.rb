@@ -1,5 +1,5 @@
 module Api
-  class DietaryPresenter
+  class DietaryInstancePresenter
     attr_reader :item
 
     def initialize(item)
@@ -9,8 +9,9 @@ module Api
     def serialize
       {
         id: item.id,
-        name: item.name,
-        restaurant_id: item.restaurant_id
+        dietary_id: item.dietary_id,
+        name: item.dietary.name,
+        menu_item_id: item.menu_item_id
       }
     end
   end

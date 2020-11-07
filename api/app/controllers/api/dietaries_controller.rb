@@ -60,12 +60,12 @@ module Api
       DietaryPresenter.new(dietary).serialize
     end
 
-    def menu_item
-      @menu_item ||= MenuItem.find_by(id: params[:menu_item_id])
+    def restaurant
+      @restaurant ||= Restaurant.find_by(id: params[:restaurant_id])
     end
 
     def collection
-      DietariesCollection.new(menu_item)
+      DietariesCollection.new(restaurant)
     end
 
     def fetch
@@ -75,7 +75,7 @@ module Api
     def strong_params
       params.permit(
         :name,
-        :menu_item_id
+        :restaurant_id
       )
     end
   end

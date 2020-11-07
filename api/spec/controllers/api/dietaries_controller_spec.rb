@@ -2,18 +2,12 @@ require 'rails_helper'
 
 RSpec.describe Api::DietariesController do
   let!(:restaurant) { create(:restaurant) }
-  let!(:menu) { create(:menu) }
-  let!(:menu_category) { create(:menu_category) }
-  let!(:menu_item) { create(:menu_item) }
   let!(:dietary) { create(:dietary) }
   let!(:current_user) { create(:user) }
   let(:name) { 'soy' }
   let(:create_params) do
     {
       name: name,
-      menu_item_id: menu_item.id,
-      menu_category_id: menu_category.id,
-      menu_id: menu.id,
       restaurant_id: restaurant.id
     }
   end
@@ -21,9 +15,6 @@ RSpec.describe Api::DietariesController do
   let(:routing_params) do
     {
       id: id,
-      menu_item_id: menu_item.id,
-      menu_category_id: menu_category.id,
-      menu_id: menu.id,
       restaurant_id: restaurant.id
     }
   end

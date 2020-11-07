@@ -522,75 +522,97 @@ Api::ItemSize.create!(
   menu_item_id: nestea.id
 )
 
-puts 'Creating dietary filters 🥖'
+puts 'Creating dietaries 🥖'
 
-Api::Dietary.create!(
+gluten = Api::Dietary.create!(
   name: 'Gluten',
+  restaurant_id: restaurant.id
+)
+
+dairy = Api::Dietary.create!(
+  name: 'Dairy',
+  restaurant_id: restaurant.id
+)
+
+meat = Api::Dietary.create!(
+  name: 'Meat',
+  restaurant_id: restaurant.id
+)
+
+soy = Api::Dietary.create!(
+  name: 'Soy',
+  restaurant_id: restaurant.id
+)
+
+puts 'Creating dietary intances 🥖'
+
+Api::DietaryInstance.create!(
+  dietary_id: gluten.id,
   menu_item_id: margarita_pizza.id
 )
 
-Api::Dietary.create!(
-  name: 'Gluten',
+Api::DietaryInstance.create!(
+  dietary_id: gluten.id,
   menu_item_id: salami_pizza_lunch.id
 )
 
-Api::Dietary.create!(
-  name: 'Gluten',
+Api::DietaryInstance.create!(
+  dietary_id: gluten.id,
   menu_item_id: margarita_pizza_lunch.id
 )
 
-Api::Dietary.create!(
-  name: 'Gluten',
+Api::DietaryInstance.create!(
+  dietary_id: gluten.id,
   menu_item_id: salami_pizza.id
 )
 
-Api::Dietary.create!(
-  name: 'Gluten',
+Api::DietaryInstance.create!(
+  dietary_id: meat.id,
   menu_item_id: club_sandwich.id
 )
 
-Api::Dietary.create!(
-  name: 'Gluten',
+Api::DietaryInstance.create!(
+  dietary_id: meat.id,
   menu_item_id: burger.id
 )
 
-Api::Dietary.create!(
-  name: 'Gluten',
+Api::DietaryInstance.create!(
+  dietary_id: soy.id,
   menu_item_id: mac_and_cheese.id
 )
 
-Api::Dietary.create!(
-  name: 'Gluten',
+Api::DietaryInstance.create!(
+  dietary_id: soy.id,
   menu_item_id: mac_and_cheese_lunch.id
 )
 
-Api::Dietary.create!(
-  name: 'Dairy',
+Api::DietaryInstance.create!(
+  dietary_id: dairy.id,
   menu_item_id: mac_and_cheese.id
 )
 
-Api::Dietary.create!(
-  name: 'Dairy',
+Api::DietaryInstance.create!(
+  dietary_id: dairy.id,
   menu_item_id: mac_and_cheese_lunch.id
 )
 
-Api::Dietary.create!(
-  name: 'Dairy',
+Api::DietaryInstance.create!(
+  dietary_id: dairy.id,
   menu_item_id: margarita_pizza.id
 )
 
-Api::Dietary.create!(
-  name: 'Dairy',
+Api::DietaryInstance.create!(
+  dietary_id: dairy.id,
   menu_item_id: salami_pizza_lunch.id
 )
 
-Api::Dietary.create!(
-  name: 'Dairy',
+Api::DietaryInstance.create!(
+  dietary_id: dairy.id,
   menu_item_id: margarita_pizza_lunch.id
 )
 
-Api::Dietary.create!(
-  name: 'Dairy',
+Api::DietaryInstance.create!(
+  dietary_id: dairy.id,
   menu_item_id: salami_pizza.id
 )
 

@@ -1,13 +1,13 @@
 require 'rails_helper'
 
-RSpec.describe Api::DietaryInteractor::Create do
-  let(:restaurant) { create(:restaurant) }
+RSpec.describe Api::DietaryInstanceInteractor::Create do
+  let(:menu_item) { create(:menu_item) }
+  let(:dietary) { create(:dietary) }
   let!(:current_user) { create(:user) }
-  let(:name) { 'soy' }
   let(:params) do
     {
-      name: name,
-      restaurant_id: restaurant.id
+      dietary_id: dietary&.id,
+      menu_item_id: menu_item.id
     }
   end
 
@@ -20,17 +20,17 @@ RSpec.describe Api::DietaryInteractor::Create do
 
   context 'when params are valid' do
     it do
-      expect { subject }.to change { Api::Dietary.count }.by(1)
+      expect { subject }.to change { Api::DietaryInstance.count }.by(1)
       expect(subject.successful?).to be(true)
     end
   end
 
   context 'when params are invalid' do
-    let(:name) { nil }
+    let(:dietary) { nil }
     it do
       expect(subject.successful?).to be(false)
       expect(subject.errors).to eq(
-        errors: ["Validation failed: Name can't be blank"]
+        errors: ["Validation failed: Dietary must exist, Dietary can't be blank"]
       )
     end
   end
