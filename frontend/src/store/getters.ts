@@ -4,6 +4,7 @@ import RestaurantMenu from '@/models/RestaurantMenu';
 import MenuCategory from '@/models/MenuCategory';
 import Collection from '@/models/Collection';
 import ItemsCollection from '@/models/ItemsCollection';
+import DietaryCollection from '@/models/DietaryCollection';
 import { State } from './state';
 
 export type Getters = {
@@ -13,6 +14,7 @@ export type Getters = {
   categories(state: State): Collection<MenuCategory>;
   category(state: State): MenuCategory;
   items(state: State): ItemsCollection;
+  dietaries(state: State): DietaryCollection;
 }
 
 export const getters: GetterTree<State, State> & Getters = {
@@ -33,5 +35,8 @@ export const getters: GetterTree<State, State> & Getters = {
   },
   items(state) {
     return state.items;
+  },
+  dietaries(state) {
+    return state.dietaries;
   },
 };

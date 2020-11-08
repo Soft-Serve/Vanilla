@@ -6,6 +6,8 @@ import MenuCategory from '@/models/MenuCategory';
 import MenuItem from '@/models/MenuItem';
 import Collection from '@/models/Collection';
 import ItemsCollection from '@/models/ItemsCollection';
+import DietaryCollection from '@/models/DietaryCollection';
+import ItemDietary from '@/models/ItemDietary';
 import { State } from './state';
 
 export enum MutationType {
@@ -16,6 +18,7 @@ export enum MutationType {
   SetMenuCategories = 'SET_MENU_CATEGORIES',
   SetMenuCategory = 'SET_MENU_CATEGORY',
   SetMenuItems = 'SET_MENU_ITEMS',
+  SetDietaries = 'SET_DIETARIES',
 }
 
 export type Mutations = {
@@ -26,6 +29,7 @@ export type Mutations = {
   [MutationType.SetMenuCategories](state: State, payload: MenuCategory[]): void;
   [MutationType.SetMenuCategory](state: State, payload: MenuCategory): void;
   [MutationType.SetMenuItems](state: State, payload: MenuItem[]): void;
+  [MutationType.SetDietaries](state: State, payload: ItemDietary[]): void;
 
 }
 
@@ -50,5 +54,8 @@ export const mutations: MutationTree<State> & Mutations = {
   },
   [MutationType.SetMenuItems](state, items) {
     state.items = new ItemsCollection(items);
+  },
+  [MutationType.SetDietaries](state, dietaries) {
+    state.dietaries = new DietaryCollection(dietaries);
   },
 };

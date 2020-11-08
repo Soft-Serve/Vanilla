@@ -34,17 +34,17 @@
                     </div>
                   </div>
                 </header>
-                <div class="relative flex-1 px-4 sm:px-6 max-w-10 my-0 mx-auto">
+                <div v-if="dietaries.collection.length" class="relative flex-1 px-4 sm:px-6 max-w-10 my-0 mx-auto">
                   <BaseWrapper :column="2">
                     <span
-                      v-for="(allergy, index) in allergies"
-                      :key="allergy"
+                      v-for="dietary in dietaries.collection"
+                      :key="dietary.id"
                       class="flex justify-between border border-cool-gray-300 px-2 py-1 items-center rounded-lg cursor-pointer shadow-lg"
-                      @click="toggleFilter(index)"
+                      @click="dietary.isActive = !dietary.isActive"
                     >
-                      <BaseIcon :name="allergy.label"/>
-                      {{ allergy.label }}
-                      <BaseToggle :is-on="allergy.isOn" />
+                      <BaseIcon :name="dietary.name.toLowerCase()"/>
+                      {{ dietary.name }}
+                      <BaseToggle :is-on="dietary.isActive" />
                     </span>
                   </BaseWrapper>
                 </div>
@@ -72,6 +72,7 @@
 
 <script lang="ts">
 /* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable vue/no-unused-components */
 
 import { defineComponent, ref, computed } from 'vue';
 import BaseButton from '@/components/BaseButton/BaseButton.vue';
@@ -79,6 +80,7 @@ import BaseToggle from '@/components/BaseToggle/BaseToggle.vue';
 import BaseWrapper from '@/components/BaseWrapper/BaseWrapper.vue';
 import { ActionTypes } from '@/store/actions';
 import useApi from '@/composables/useApi';
+import ItemDietary from '@/models/ItemDietary';
 import BaseIcon from '~/BaseIcon/BaseIcon.vue';
 
 export default defineComponent({
@@ -98,41 +100,7 @@ export default defineComponent({
   },
 
   setup(props, { emit }) {
-    const { store } = useApi();
-    const allergies = ref([
-      {
-        label: 'soy',
-        id: 1,
-        isOn: false,
-      },
-      {
-        label: 'meat',
-        id: 2,
-        isOn: false,
-      },
-      {
-        label: 'gluten',
-        id: 3,
-        isOn: false,
-      },
-      {
-        label: 'nuts',
-        id: 4,
-        isOn: false,
-      },
-      {
-        label: 'dairy',
-        id: 5,
-        isOn: false,
-      },
-      {
-        label: 'shellfish',
-        id: 6,
-        isOn: false,
-      },
-    ]);
-
-    const activeAllergies = computed(() => allergies.value.filter((allergy) => allergy.isOn));
+    const { store, dietaries } = useApi();
 
     const toggleAllergyScreen = () => {
       emit('toggle-allergy-screen');
@@ -140,8 +108,7 @@ export default defineComponent({
 
     return {
       toggleAllergyScreen,
-      allergies,
-      activeAllergies,
+      dietaries,
     };
   },
 });

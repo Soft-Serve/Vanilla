@@ -56,4 +56,9 @@ export default class ApiService {
     return this.restaurantService.get(`/api/menu_items/${item.id}/dietary_instances`)
       .then((response) => response.data.map((result: ItemDietary) => new ItemDietary(result)));
   }
+
+  static async getRestaurantDietaries(restaurant: Restaurant): Promise<ItemDietary[]> {
+    return this.restaurantService.get(`/api/restaurants/${restaurant.id}/dietaries`)
+      .then((response) => response.data.map((result: ItemDietary) => new ItemDietary(result)));
+  }
 }

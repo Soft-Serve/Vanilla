@@ -1,11 +1,12 @@
 /* eslint-disable import/no-cycle */
 import { ActionContext, ActionTree } from 'vuex';
-import ApiService from '@/models/ApiService';
+import RestaurantMenu from '@/models/RestaurantMenu';
 import MenuCategory from '@/models/MenuCategory';
 import MenuItem from '@/models/MenuItem';
-import RestaurantMenu from '@/models/RestaurantMenu';
-import { Mutations, MutationType } from './mutations';
+import ApiService from '@/models/ApiService';
+import Restaurant from '@/models/Restaurant';
 import { State } from './state';
+import { Mutations, MutationType } from './mutations';
 
 export enum ActionTypes {
   getRestaurant = 'GET_RESTAURANT',
@@ -14,6 +15,7 @@ export enum ActionTypes {
   getCategories = 'GET_CATEGORIES',
   getCategory = 'GET_CATEGORY',
   getItems = 'GET_ITEMS',
+  getDietaries = 'GET_DIETARIES',
 }
 
 type ActionAugments = Omit<ActionContext<State, State>, 'commit'> & {
@@ -30,6 +32,7 @@ export type Actions = {
   [ActionTypes.getCategories](context: ActionAugments, payload: MenuCategory[]): void;
   [ActionTypes.getCategory](context: ActionAugments, payload: MenuCategory): void;
   [ActionTypes.getItems](context: ActionAugments, payload: MenuItem[]): void;
+  [ActionTypes.getDietaries](context: ActionAugments, payload: Restaurant): void;
 }
 
 export const actions: ActionTree<State, State> & Actions = {
@@ -43,6 +46,12 @@ export const actions: ActionTree<State, State> & Actions = {
     commit(MutationType.SetLoading, true);
     const menus = await ApiService.getRestaurantMenus();
     commit(MutationType.SetRestaurantMenus, menus.collection);
+    commit(MutationType.SetLoading, false);
+  },
+  async [ActionTypes.getDietaries]({ commit }, payload) {
+    commit(MutationType.SetLoading, true);
+    const dietaries = await ApiService.getRestaurantDietaries(payload);
+    commit(MutationType.SetDietaries, dietaries);
     commit(MutationType.SetLoading, false);
   },
   [ActionTypes.getMenu]({ commit }, payload) {

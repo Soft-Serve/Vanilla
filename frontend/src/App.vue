@@ -23,8 +23,6 @@
 
 <script lang="ts">
 import { defineComponent, onMounted } from 'vue';
-import { useStore } from '@/store';
-import { ActionTypes } from '@/store/actions';
 import useApi from '@/composables/useApi';
 import ToolBar from '~/ToolBar/ToolBar.vue';
 // import BaseButton from '~/BaseButton/BaseButton.vue';
@@ -36,12 +34,9 @@ export default defineComponent({
     // BaseButton,
   },
   setup() {
-    const store = useStore();
-    const { fetchMenu } = useApi();
+    const { fetchRestaurant } = useApi();
     onMounted(() => {
-      store.dispatch(ActionTypes.getRestaurant, undefined);
-      store.dispatch(ActionTypes.getMenus, undefined);
-      fetchMenu();
+      fetchRestaurant();
     });
   },
 });

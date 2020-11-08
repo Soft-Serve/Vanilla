@@ -5,4 +5,6 @@ export default class ItemDietary extends ItemDietaryDTO {
     super();
     Object.assign(this, dto);
   }
+
+  isActive = false;
 }

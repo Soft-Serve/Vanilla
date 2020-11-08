@@ -28,8 +28,8 @@ export default class MenuItem extends MenuItemDTO {
   }
 
   public fetchAllergies() {
-    ApiService.getItemDietaries(this).then((payload: ItemDietary[]) => {
-      this.allergies = this.convertAllergyNameToLowerCase(payload);
+    ApiService.getItemDietaries(this).then((response: ItemDietary[]) => {
+      this.allergies = this.convertAllergyNameToLowerCase(response);
     });
   }
 
