@@ -1,18 +1,22 @@
-import { computed } from 'vue';
+import { computed, watch } from 'vue';
 import { useStore } from '@/store';
 import { ActionTypes } from '@/store/actions';
 import ApiService from '@/models/ApiService';
 import MenuCategory from '@/models/MenuCategory';
 import RestaurantMenu from '@/models/RestaurantMenu';
+import MenuItem from '@/models/MenuItem';
 
 export default () => {
   const store = useStore();
+
   const restaurant = computed(() => store.state.restaurant);
   const loading = computed(() => store.state.loading);
   const menu = computed(() => store.getters.menus.collection[0]);
   const categories = computed(() => store.getters.categories);
   const category = computed(() => store.getters.categories.collection[0]);
   const items = computed(() => store.getters.items);
+
+  watch(items, (watchedItems) => watchedItems.collection.forEach((item: MenuItem) => item.fetchAllergies()));
 
   const fetchMenu = (): void => {
     store.dispatch(ActionTypes.getMenu, menu.value);
@@ -23,13 +27,13 @@ export default () => {
     store.dispatch(ActionTypes.getCategory, response);
   };
 
-  const fetchItems = async (activeMenu: RestaurantMenu, activeCategory: MenuCategory): Promise<void> => {
-    const response = await ApiService.getItems(activeMenu, activeCategory);
+  const fetchItems = async (activeCategory: MenuCategory): Promise<void> => {
+    const response = await ApiService.getItems(activeCategory);
     store.dispatch(ActionTypes.getItems, response.collection);
   };
 
   const triggerCategoryChange = (payload: MenuCategory) => {
-    fetchItems(menu.value, payload);
+    fetchItems(payload);
     store.dispatch(ActionTypes.getCategory, payload);
   };
 

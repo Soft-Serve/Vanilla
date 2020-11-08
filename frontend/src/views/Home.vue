@@ -51,8 +51,6 @@ export default defineComponent({
 
     watch(menu, (watchedMenu) => fetchCategories(watchedMenu));
 
-    watch(items, (watchedItems) => watchedItems.triggerFetchAllergies(menu.value, store.getters.category));
-
     const isAllergyScreenVisible = ref(false);
 
     const toggleAllergyScreen = () => {

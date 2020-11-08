@@ -36,24 +36,24 @@ export default class ApiService {
   }
 
   static async getMenuCategories(menu: RestaurantMenu): Promise<Collection<MenuCategory>> {
-    const results: MenuCategory[] = await this.restaurantService.get(`/api/restaurants/1/menus/${menu.id}/menu_categories`)
+    const results: MenuCategory[] = await this.restaurantService.get(`/api/menus/${menu.id}/menu_categories`)
       .then((response) => response.data.map((result: MenuCategory) => new MenuCategory(result)));
     return new Collection(results);
   }
 
   static async getMenuCategory(menu: RestaurantMenu, category: MenuCategory): Promise<MenuCategory> {
-    return this.restaurantService.get(`/api/restaurants/1/menus/${menu.id}/menu_categories/${category.id}`)
+    return this.restaurantService.get(`/api/menus/${menu.id}/menu_categories/${category.id}`)
       .then((response) => new MenuCategory(response.data));
   }
 
-  static async getItems(menu: RestaurantMenu, category: MenuCategory): Promise<Collection<MenuItem>> {
-    const results: MenuItem[] = await this.restaurantService.get(`/api/restaurants/1/menus/${menu.id}/menu_categories/${category.id}/menu_items`)
+  static async getItems(category: MenuCategory): Promise<Collection<MenuItem>> {
+    const results: MenuItem[] = await this.restaurantService.get(`/api/menu_categories/${category.id}/menu_items`)
       .then((response) => response.data.map((result: MenuItem) => new MenuItem(result)));
     return new ItemsCollection(results);
   }
 
-  static async getItemDietaries(menu: RestaurantMenu, category: MenuCategory, item: MenuItem): Promise<ItemDietary[]> {
-    return this.restaurantService.get(`/api/restaurants/1/menus/${menu.id}/menu_categories/${category.id}/menu_items/${item.id}/dietaries`)
+  static async getItemDietaries(item: MenuItem): Promise<ItemDietary[]> {
+    return this.restaurantService.get(`/api/menu_items/${item.id}/dietary_instances`)
       .then((response) => response.data.map((result: ItemDietary) => new ItemDietary(result)));
   }
 }

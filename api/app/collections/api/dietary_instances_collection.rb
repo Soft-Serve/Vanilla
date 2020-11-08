@@ -15,7 +15,7 @@ module Api
     attr_reader :menu_item
 
     def scope_by_menu_item
-      menu_item.dietaries
+      menu_item.dietary_instances
     end
   end
 end

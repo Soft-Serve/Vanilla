@@ -138,18 +138,8 @@ export default defineComponent({
       emit('toggle-allergy-screen');
     };
 
-    const toggleFilter = (index: number) => {
-      allergies.value[index].isOn = !allergies.value[index].isOn;
-      activeAllergies.value.forEach((allergy) => {
-        if (store.getters.guestRestrictions.has(allergy.label)) {
-          store.dispatch(ActionTypes.deleteGuestRestriction, allergy.label);
-        } else { store.dispatch(ActionTypes.getGuestRestriction, allergy.label); }
-      });
-    };
-
     return {
       toggleAllergyScreen,
-      toggleFilter,
       allergies,
       activeAllergies,
     };

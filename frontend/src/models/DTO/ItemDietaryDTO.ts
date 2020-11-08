@@ -6,4 +6,6 @@ export default class ItemDietaryDTO implements Allergy {
   name = '';
 
   menu_item_id = 0;
+
+  dietary_id = 0;
 }

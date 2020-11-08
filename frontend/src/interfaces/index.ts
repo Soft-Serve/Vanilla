@@ -2,6 +2,7 @@ export interface Allergy {
   id: number;
   name: string;
   menu_item_id: number;
+  dietary_id: number;
 }
 
 export interface Dish {

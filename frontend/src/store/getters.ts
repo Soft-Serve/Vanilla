@@ -13,7 +13,6 @@ export type Getters = {
   categories(state: State): Collection<MenuCategory>;
   category(state: State): MenuCategory;
   items(state: State): ItemsCollection;
-  guestRestrictions(state: State): Set<string>;
 }
 
 export const getters: GetterTree<State, State> & Getters = {
@@ -34,8 +33,5 @@ export const getters: GetterTree<State, State> & Getters = {
   },
   items(state) {
     return state.items;
-  },
-  guestRestrictions(state) {
-    return state.guestRestrictions;
   },
 };
