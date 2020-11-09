@@ -35,10 +35,9 @@ export default class ApiService {
       .then((response) => new RestaurantMenu(response.data));
   }
 
-  static async getMenuCategories(menu: RestaurantMenu): Promise<Collection<MenuCategory>> {
-    const results: MenuCategory[] = await this.restaurantService.get(`/api/menus/${menu.id}/menu_categories`)
+  static async getMenuCategories(menu: RestaurantMenu): Promise<MenuCategory[]> {
+    return this.restaurantService.get(`/api/menus/${menu.id}/menu_categories`)
       .then((response) => response.data.map((result: MenuCategory) => new MenuCategory(result)));
-    return new Collection(results);
   }
 
   static async getMenuCategory(menu: RestaurantMenu, category: MenuCategory): Promise<MenuCategory> {

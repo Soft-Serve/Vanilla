@@ -7,6 +7,7 @@ import MenuItem from '@/models/MenuItem';
 import Collection from '@/models/Collection';
 import ItemsCollection from '@/models/ItemsCollection';
 import DietaryCollection from '@/models/DietaryCollection';
+import CategoryCollection from '@/models/CategoryCollection';
 import ItemDietary from '@/models/ItemDietary';
 import { State } from './state';
 
@@ -47,7 +48,7 @@ export const mutations: MutationTree<State> & Mutations = {
     state.menu = menu;
   },
   [MutationType.SetMenuCategories](state, categories) {
-    state.categories = new Collection(categories);
+    state.categories = new CategoryCollection(categories);
   },
   [MutationType.SetMenuCategory](state, category) {
     state.category = category;

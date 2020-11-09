@@ -1,4 +1,4 @@
-import { computed, watch } from 'vue';
+import { computed, watch, watchEffect } from 'vue';
 import { useStore } from '@/store';
 import { ActionTypes } from '@/store/actions';
 import ApiService from '@/models/ApiService';
@@ -36,27 +36,23 @@ export default () => {
     store.dispatch(ActionTypes.getCategory, payload);
   };
 
-  const fetchCategories = async (activeMenu: RestaurantMenu): Promise<void> => {
-    const response = await ApiService.getMenuCategories(activeMenu);
-    store.dispatch(ActionTypes.getCategories, response.collection);
-    triggerCategoryChange(response.collection[0]);
-    fetchDietaries();
-  };
-
   const changeCategory = (newCategory: MenuCategory): void => {
     fetchCategory(menu.value, newCategory);
     triggerCategoryChange(newCategory);
   };
 
-  const fetchMenu = (): void => {
-    store.dispatch(ActionTypes.getMenu, menu.value);
-  };
 
-
-  const fetchRestaurant = (): void => {
+  const fetchRestaurant = () => {
     store.dispatch(ActionTypes.getRestaurant, undefined);
     store.dispatch(ActionTypes.getMenus, undefined);
-    fetchMenu();
+
+    const stop = watchEffect(() => {
+      if (menu.value) {
+        store.dispatch(ActionTypes.getMenu, menu.value);
+        store.dispatch(ActionTypes.getCategories, menu.value);
+        stop();
+      }
+    });
   };
 
   watch(items, (watchedItems) => watchedItems.collection.forEach((item: MenuItem) => item.fetchAllergies()));
@@ -69,8 +65,7 @@ export default () => {
     categories,
     category,
     items,
-    fetchMenu,
-    fetchCategories,
+    // fetchCategories,
     fetchCategory,
     triggerCategoryChange,
     store,

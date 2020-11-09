@@ -29,7 +29,7 @@ export type Actions = {
   [ActionTypes.getRestaurant](context: ActionAugments): void;
   [ActionTypes.getMenus](context: ActionAugments): void;
   [ActionTypes.getMenu](context: ActionAugments, payload: RestaurantMenu): void;
-  [ActionTypes.getCategories](context: ActionAugments, payload: MenuCategory[]): void;
+  [ActionTypes.getCategories](context: ActionAugments, payload: RestaurantMenu): void;
   [ActionTypes.getCategory](context: ActionAugments, payload: MenuCategory): void;
   [ActionTypes.getItems](context: ActionAugments, payload: MenuItem[]): void;
   [ActionTypes.getDietaries](context: ActionAugments, payload: Restaurant): void;
@@ -54,14 +54,16 @@ export const actions: ActionTree<State, State> & Actions = {
     commit(MutationType.SetDietaries, dietaries);
     commit(MutationType.SetLoading, false);
   },
-  [ActionTypes.getMenu]({ commit }, payload) {
+  async [ActionTypes.getMenu]({ commit }, payload) {
     commit(MutationType.SetLoading, true);
-    commit(MutationType.SetRestaurantMenu, payload);
+    const menu = await ApiService.getRestaurantMenu(payload);
+    commit(MutationType.SetRestaurantMenu, menu);
     commit(MutationType.SetLoading, false);
   },
-  [ActionTypes.getCategories]({ commit }, payload) {
+  async [ActionTypes.getCategories]({ commit }, payload) {
     commit(MutationType.SetLoading, true);
-    commit(MutationType.SetMenuCategories, payload);
+    const category = await ApiService.getMenuCategories(payload);
+    commit(MutationType.SetMenuCategories, category);
     commit(MutationType.SetLoading, false);
   },
   [ActionTypes.getCategory]({ commit }, payload) {

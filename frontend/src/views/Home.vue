@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, watch, ref } from 'vue';
+import { defineComponent, ref } from 'vue';
 import { BUTTONSTYLES } from '@/helpers';
 import useApi from '@/composables/useApi';
 import BaseWrapper from '~/BaseWrapper/BaseWrapper.vue';
@@ -39,9 +39,9 @@ export default defineComponent({
   setup() {
     const BUTTONS_STYLES = BUTTONSTYLES;
     const {
-      fetchCategories,
-      changeCategory,
-      menu,
+      // fetchCategories,
+      // changeCategory,
+      // menu,
       categories,
       items,
       loading,
@@ -49,7 +49,6 @@ export default defineComponent({
       store,
     } = useApi();
 
-    watch(menu, (watchedMenu) => fetchCategories(watchedMenu));
 
     const isAllergyScreenVisible = ref(false);
 
@@ -62,7 +61,7 @@ export default defineComponent({
       BUTTONS_STYLES,
       items,
       category,
-      changeCategory,
+      // changeCategory,
       store,
       toggleAllergyScreen,
       isAllergyScreenVisible,
