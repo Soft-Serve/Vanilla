@@ -6,7 +6,7 @@
         v-for="category in categories.collection"
         :key="category.id"
         :buttonStyle="BUTTONS_STYLES.WHITE"
-        @click="changeCategory(category)">
+        @click="handleCategoryChange(category)">
         {{ category.name }}
       </BaseButton>
       <BaseButton @click="toggleAllergyScreen" :buttonStyle="BUTTONS_STYLES.SECONDARY">
@@ -39,9 +39,7 @@ export default defineComponent({
   setup() {
     const BUTTONS_STYLES = BUTTONSTYLES;
     const {
-      // fetchCategories,
-      // changeCategory,
-      // menu,
+      handleCategoryChange,
       categories,
       items,
       loading,
@@ -55,13 +53,14 @@ export default defineComponent({
     const toggleAllergyScreen = () => {
       isAllergyScreenVisible.value = !isAllergyScreenVisible.value;
     };
+
     return {
       loading,
       categories,
       BUTTONS_STYLES,
       items,
       category,
-      // changeCategory,
+      handleCategoryChange,
       store,
       toggleAllergyScreen,
       isAllergyScreenVisible,

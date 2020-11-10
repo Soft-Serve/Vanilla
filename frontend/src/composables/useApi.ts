@@ -2,6 +2,7 @@ import { computed, watch, watchEffect } from 'vue';
 import { useStore } from '@/store';
 import { ActionTypes } from '@/store/actions';
 import MenuItem from '@/models/MenuItem';
+import MenuCategory from '@/models/MenuCategory';
 
 export default () => {
   const store = useStore();
@@ -13,7 +14,12 @@ export default () => {
   const items = computed(() => store.getters.items);
   const dietaries = computed(() => store.getters.dietaries);
 
-  const fetchRestaurant = () => {
+  const handleCategoryChange = (newCategory: MenuCategory): void => {
+    store.dispatch(ActionTypes.getCategory, newCategory);
+    store.dispatch(ActionTypes.getItems, newCategory);
+  };
+
+  const populateStore = (): void => {
     store.dispatch(ActionTypes.getRestaurant, undefined);
     store.dispatch(ActionTypes.getMenus, undefined);
 
@@ -22,27 +28,27 @@ export default () => {
         store.dispatch(ActionTypes.getDietaries, restaurant.value);
         store.dispatch(ActionTypes.getMenu, menu.value);
         store.dispatch(ActionTypes.getCategories, menu.value);
+
         if (categories.value.collection.length) {
-          store.dispatch(ActionTypes.getCategory, categories.value.collection[0]);
-          store.dispatch(ActionTypes.getItems, category.value);
+          handleCategoryChange(categories.value.collection[0]);
           stop();
         }
       }
     });
   };
 
-  watch(items, (watchedItems) => watchedItems.collection.forEach((item: MenuItem) => item.fetchAllergies()));
-
+  watch(items, () => items.value.collection.forEach((item: MenuItem) => item.fetchAllergies()));
 
   return {
+    store,
+    populateStore,
     loading,
     restaurant,
+    dietaries,
     menu,
     categories,
     category,
     items,
-    store,
-    fetchRestaurant,
-    dietaries,
+    handleCategoryChange,
   };
 };

@@ -1,23 +1,18 @@
 <template>
-<div class="container">
-  <div class="wrapper">
-    <ToolBar>
-    <template v-slot:toolBarContent>
-      <div class="w-32 mx-3 xs:my-1 xs:w-full xs:px-4 xs:mt-2">
-        <!-- <BaseButton> -->
-
-          <router-link to="/">Home</router-link>
-        <!-- </BaseButton> -->
-      </div>
-      <div class="w-32 mx-3 xs:my-1 xs:w-full xs:px-4 xs:mt-2">
-        <!-- <BaseButton> -->
-          <router-link to="/about">About</router-link>
-        <!-- </BaseButton> -->
-      </div>
-    </template>
-  </ToolBar>
+  <div class="container">
+    <div class="wrapper">
+      <ToolBar>
+        <template v-slot:toolBarContent>
+          <div class="w-32 mx-3 xs:my-1 xs:w-full xs:px-4 xs:mt-2">
+            <router-link to="/">Home</router-link>
+          </div>
+          <div class="w-32 mx-3 xs:my-1 xs:w-full xs:px-4 xs:mt-2">
+            <router-link to="/about">About</router-link>
+          </div>
+        </template>
+      </ToolBar>
+    </div>
   </div>
-</div>
   <router-view/>
 </template>
 
@@ -25,21 +20,21 @@
 import { defineComponent, onMounted } from 'vue';
 import useApi from '@/composables/useApi';
 import ToolBar from '~/ToolBar/ToolBar.vue';
-// import BaseButton from '~/BaseButton/BaseButton.vue';
 
 export default defineComponent({
   name: 'App',
   components: {
     ToolBar,
-    // BaseButton,
   },
+
   setup() {
-    const { fetchRestaurant } = useApi();
+    const { populateStore } = useApi();
     onMounted(() => {
-      fetchRestaurant();
+      populateStore();
     });
   },
 });
+
 </script>
 <style>
 .container {
