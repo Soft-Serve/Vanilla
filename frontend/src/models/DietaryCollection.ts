@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 import Collection from './Collection';
 import ItemDietary from './ItemDietary';
 

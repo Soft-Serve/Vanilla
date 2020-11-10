@@ -1,9 +1,6 @@
 import { computed, watch, watchEffect } from 'vue';
 import { useStore } from '@/store';
 import { ActionTypes } from '@/store/actions';
-import ApiService from '@/models/ApiService';
-import MenuCategory from '@/models/MenuCategory';
-import RestaurantMenu from '@/models/RestaurantMenu';
 import MenuItem from '@/models/MenuItem';
 
 export default () => {
@@ -16,41 +13,20 @@ export default () => {
   const items = computed(() => store.getters.items);
   const dietaries = computed(() => store.getters.dietaries);
 
-
-  const fetchDietaries = (): void => {
-    store.dispatch(ActionTypes.getDietaries, restaurant.value);
-  };
-
-  const fetchCategory = async (activeMenu: RestaurantMenu, activeCategory: MenuCategory): Promise<void> => {
-    const response = await ApiService.getMenuCategory(activeMenu, activeCategory);
-    store.dispatch(ActionTypes.getCategory, response);
-  };
-
-  const fetchItems = async (activeCategory: MenuCategory): Promise<void> => {
-    const response = await ApiService.getItems(activeCategory);
-    store.dispatch(ActionTypes.getItems, response.collection);
-  };
-
-  const triggerCategoryChange = (payload: MenuCategory) => {
-    fetchItems(payload);
-    store.dispatch(ActionTypes.getCategory, payload);
-  };
-
-  const changeCategory = (newCategory: MenuCategory): void => {
-    fetchCategory(menu.value, newCategory);
-    triggerCategoryChange(newCategory);
-  };
-
-
   const fetchRestaurant = () => {
     store.dispatch(ActionTypes.getRestaurant, undefined);
     store.dispatch(ActionTypes.getMenus, undefined);
 
     const stop = watchEffect(() => {
       if (menu.value) {
+        store.dispatch(ActionTypes.getDietaries, restaurant.value);
         store.dispatch(ActionTypes.getMenu, menu.value);
         store.dispatch(ActionTypes.getCategories, menu.value);
-        stop();
+        if (categories.value.collection.length) {
+          store.dispatch(ActionTypes.getCategory, categories.value.collection[0]);
+          store.dispatch(ActionTypes.getItems, category.value);
+          stop();
+        }
       }
     });
   };
@@ -65,12 +41,7 @@ export default () => {
     categories,
     category,
     items,
-    // fetchCategories,
-    fetchCategory,
-    triggerCategoryChange,
     store,
-    changeCategory,
-    fetchDietaries,
     fetchRestaurant,
     dietaries,
   };

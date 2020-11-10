@@ -1,17 +1,18 @@
 import Restaurant from '@/models/Restaurant';
 import RestaurantMenu from '@/models/RestaurantMenu';
 import MenuCategory from '@/models/MenuCategory';
-import Collection from '@/models/Collection';
+import MenuCollection from '@/models/MenuCollection';
 import ItemsCollection from '@/models/ItemsCollection';
 import DietaryCollection from '@/models/DietaryCollection';
+import CategoryCollection from '@/models/CategoryCollection';
 
 export type State = {
   loading: boolean;
   restaurant: Restaurant;
   dietaries: DietaryCollection;
-  menus: Collection<RestaurantMenu>;
+  menus: MenuCollection;
   menu: RestaurantMenu;
-  categories: Collection<MenuCategory>;
+  categories: CategoryCollection;
   category: MenuCategory;
   items: ItemsCollection;
 }
@@ -20,9 +21,9 @@ export const state: State = {
   loading: false,
   restaurant: new Restaurant(),
   dietaries: new DietaryCollection(),
-  menus: new Collection(),
+  menus: new MenuCollection(),
   menu: new RestaurantMenu(),
-  categories: new Collection(),
+  categories: new CategoryCollection(),
   category: new MenuCategory(),
   items: new ItemsCollection(),
 };

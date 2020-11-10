@@ -5,8 +5,6 @@ import Restaurant from './Restaurant';
 import RestaurantMenu from './RestaurantMenu';
 import MenuCategory from './MenuCategory';
 import ItemDietary from './ItemDietary';
-import Collection from './Collection';
-import ItemsCollection from './ItemsCollection';
 
 export default class ApiService {
   private static restaurantService = Axios.create({
@@ -24,14 +22,13 @@ export default class ApiService {
       .then((response) => new Restaurant(response.data));
   }
 
-  static async getRestaurantMenus(): Promise<Collection<RestaurantMenu>> {
-    const results: RestaurantMenu[] = await this.restaurantService.get('/api/restaurants/1/menus')
+  static async getRestaurantMenus(): Promise<RestaurantMenu[]> {
+    return this.restaurantService.get('/api/restaurants/1/menus')
       .then((response) => response.data.map((result: RestaurantMenu) => new RestaurantMenu(result)));
-    return new Collection(results);
   }
 
   static async getRestaurantMenu(menu: RestaurantMenu): Promise<RestaurantMenu> {
-    return this.restaurantService.get(`/api/restaurants/1/menus/${menu.id}`)
+    return this.restaurantService.get(`/api/menus/${menu.id}`)
       .then((response) => new RestaurantMenu(response.data));
   }
 
@@ -40,15 +37,14 @@ export default class ApiService {
       .then((response) => response.data.map((result: MenuCategory) => new MenuCategory(result)));
   }
 
-  static async getMenuCategory(menu: RestaurantMenu, category: MenuCategory): Promise<MenuCategory> {
-    return this.restaurantService.get(`/api/menus/${menu.id}/menu_categories/${category.id}`)
+  static async getMenuCategory(category: MenuCategory): Promise<MenuCategory> {
+    return this.restaurantService.get(`/api/menu_categories/${category.id}`)
       .then((response) => new MenuCategory(response.data));
   }
 
-  static async getItems(category: MenuCategory): Promise<Collection<MenuItem>> {
-    const results: MenuItem[] = await this.restaurantService.get(`/api/menu_categories/${category.id}/menu_items`)
+  static async getItems(category: MenuCategory): Promise<MenuItem[]> {
+    return this.restaurantService.get(`/api/menu_categories/${category.id}/menu_items`)
       .then((response) => response.data.map((result: MenuItem) => new MenuItem(result)));
-    return new ItemsCollection(results);
   }
 
   static async getItemDietaries(item: MenuItem): Promise<ItemDietary[]> {

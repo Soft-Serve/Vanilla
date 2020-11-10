@@ -4,11 +4,11 @@ import RestaurantMenus from '@/models/RestaurantMenu';
 import RestaurantMenu from '@/models/DTO/RestaurantMenuDTO';
 import MenuCategory from '@/models/MenuCategory';
 import MenuItem from '@/models/MenuItem';
-import Collection from '@/models/Collection';
 import ItemsCollection from '@/models/ItemsCollection';
 import DietaryCollection from '@/models/DietaryCollection';
 import CategoryCollection from '@/models/CategoryCollection';
 import ItemDietary from '@/models/ItemDietary';
+import MenuCollection from '@/models/MenuCollection';
 import { State } from './state';
 
 export enum MutationType {
@@ -42,7 +42,7 @@ export const mutations: MutationTree<State> & Mutations = {
     state.loading = isLoaded;
   },
   [MutationType.SetRestaurantMenus](state, menus) {
-    state.menus = new Collection(menus);
+    state.menus = new MenuCollection(menus);
   },
   [MutationType.SetRestaurantMenu](state, menu) {
     state.menu = menu;

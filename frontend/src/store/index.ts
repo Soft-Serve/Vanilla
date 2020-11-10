@@ -7,7 +7,6 @@ import {
 } from 'vuex';
 import { State, state } from './state';
 import { Mutations, mutations } from './mutations';
-// eslint-disable-next-line import/no-cycle
 import { Actions, actions } from './actions';
 import { Getters, getters } from './getters';
 
