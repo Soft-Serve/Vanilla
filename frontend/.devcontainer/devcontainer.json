@@ -3,7 +3,7 @@
 {
 	"name": "Existing Dockerfile",
 	// Sets the run context to one level up instead of the .devcontainer folder.
-	"context": "..",
+	"context": "../",
 	// Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
 	"dockerFile": "../Dockerfile",
 	// Set *default* container specific settings.json values on container create.
@@ -33,22 +33,20 @@
 			"source.fixAll.stylelint": true
 		},
 		"path-intellisense.mappings": {
-      		"@": "${workspaceRoot}/src"
+			"@": "${workspaceRoot}/src"
 		},
-		
 		"terminal.integrated.shell.linux": "/bin/zsh",
 		"workbench.sideBar.location": "left",
-
 		// TAILWIND
-		 "tailwindCSS.includeLanguages": {
-    		"plaintext": "html"
-		  },
+		"tailwindCSS.includeLanguages": {
+			"plaintext": "html"
+		},
 		"tailwindCSS.emmetCompletions": true,
-
 		// ESLINT
 		// ----------------------------------------
 		"eslint.validate": [
-			"typescript"
+			"typescript",
+			"html",
 		],
 		"eslint.alwaysShowStatus": true,
 		"eslint.options": {
@@ -64,7 +62,8 @@
 		// ----------------------------------------
 		"vetur.validation.template": false,
 		"vetur.validation.style": false,
-		"vetur.format.defaultFormatter.html": "none",
+		"vetur.format.defaultFormatter.html": "prettier",
+		"vetur.experimental.templateInterpolationService": true,
 		"vetur.format.defaultFormatter.css": "none",
 		"vetur.format.defaultFormatter.scss": "none",
 		"vetur.format.defaultFormatter.js": "none",
@@ -81,7 +80,6 @@
 		"emmet.includeLanguages": {
 			"vue-html": "html"
 		},
-
 		// FILES
 		// ----------------------------------------
 		"files.exclude": {
@@ -123,13 +121,12 @@
 		"humao.rest-client"
 	],
 	// Add the IDs of extensions you want installed when the container is created.
-
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	"forwardPorts": [
 		8080
 	],
 	// Uncomment the next line to run commands after the container is created - for example installing git.
-	"postCreateCommand": "git config --global core.autocrlf input && git config --global core.safecrlf false",	// Uncomment when using a ptrace-based debugger like C++, Go, and Rust
+	"postCreateCommand": "git config --global core.autocrlf input && git config --global core.safecrlf false", // Uncomment when using a ptrace-based debugger like C++, Go, and Rust
 	// "runArgs": [ "--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined" ],
 	// Uncomment to use the Docker CLI from inside the container. See https://aka.ms/vscode-remote/samples/docker-in-docker.
 	// "mounts": [

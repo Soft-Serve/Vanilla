@@ -1,5 +1,5 @@
 <template>
-<SlideOver @toggleAllergyScreen="toggleAllergyScreen" :isScreenVisible="isAllergyScreenVisible"/>
+  <SlideOver @toggleAllergyScreen="toggleAllergyScreen" :isScreenVisible="isAllergyScreenVisible"/>
   <div class="wrapper" v-if="categories.collection.length">
     <BaseWrapper :column="3" class="my-4">
       <BaseButton
@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, watch } from 'vue';
 import { BUTTONSTYLES } from '@/helpers';
 import useApi from '@/composables/useApi';
 import BaseWrapper from '~/BaseWrapper/BaseWrapper.vue';
@@ -45,6 +45,7 @@ export default defineComponent({
       loading,
       category,
       store,
+      activeDietaries,
     } = useApi();
 
 
@@ -53,6 +54,8 @@ export default defineComponent({
     const toggleAllergyScreen = () => {
       isAllergyScreenVisible.value = !isAllergyScreenVisible.value;
     };
+
+    watch(activeDietaries, () => items.value.filterItemsByDietaries(activeDietaries.value));
 
     return {
       loading,

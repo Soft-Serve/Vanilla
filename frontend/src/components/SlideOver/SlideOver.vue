@@ -40,9 +40,9 @@
                       v-for="dietary in dietaries.collection"
                       :key="dietary.id"
                       class="flex justify-between border border-cool-gray-300 px-2 py-1 items-center rounded-lg cursor-pointer shadow-lg"
-                      @click="dietary.isActive = !dietary.isActive"
+                      @click="dietary.toggleActiveState()"
                     >
-                      <BaseIcon :name="dietary.name.toLowerCase()"/>
+                      <BaseIcon :name="dietary.allergyNameInLowerCase"/>
                       {{ dietary.name }}
                       <BaseToggle :is-on="dietary.isActive" />
                     </span>
@@ -71,16 +71,11 @@
 </template>
 
 <script lang="ts">
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable vue/no-unused-components */
-
-import { defineComponent, ref, computed } from 'vue';
+import { defineComponent } from 'vue';
 import BaseButton from '@/components/BaseButton/BaseButton.vue';
 import BaseToggle from '@/components/BaseToggle/BaseToggle.vue';
 import BaseWrapper from '@/components/BaseWrapper/BaseWrapper.vue';
-import { ActionTypes } from '@/store/actions';
 import useApi from '@/composables/useApi';
-import ItemDietary from '@/models/ItemDietary';
 import BaseIcon from '~/BaseIcon/BaseIcon.vue';
 
 export default defineComponent({
@@ -100,9 +95,9 @@ export default defineComponent({
   },
 
   setup(props, { emit }) {
-    const { store, dietaries } = useApi();
+    const { dietaries } = useApi();
 
-    const toggleAllergyScreen = () => {
+    const toggleAllergyScreen = (): void => {
       emit('toggle-allergy-screen');
     };
 

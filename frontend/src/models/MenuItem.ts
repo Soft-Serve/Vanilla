@@ -23,7 +23,7 @@ export default class MenuItem extends MenuItemDTO {
     return allergies.map((allergy) => {
       const copyOfAllergy = { ...allergy };
       copyOfAllergy.name = copyOfAllergy.name.toLowerCase();
-      return copyOfAllergy;
+      return new ItemDietary(copyOfAllergy);
     });
   }
 

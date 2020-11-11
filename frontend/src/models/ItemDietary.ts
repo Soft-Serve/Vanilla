@@ -6,5 +6,13 @@ export default class ItemDietary extends ItemDietaryDTO {
     Object.assign(this, dto);
   }
 
-  isActive = false;
+  public isActive = false;
+
+  public toggleActiveState(): void{
+    this.isActive = !this.isActive;
+  }
+
+  get allergyNameInLowerCase(): string {
+    return this.name.toLowerCase();
+  }
 }

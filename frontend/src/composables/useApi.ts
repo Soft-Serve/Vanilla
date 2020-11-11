@@ -13,6 +13,7 @@ export default () => {
   const category = computed(() => store.getters.categories.collection[0]);
   const items = computed(() => store.getters.items);
   const dietaries = computed(() => store.getters.dietaries);
+  const activeDietaries = computed(() => store.getters.dietaries.activeDietaries);
 
   const handleCategoryChange = (newCategory: MenuCategory): void => {
     store.dispatch(ActionTypes.getCategory, newCategory);
@@ -50,5 +51,6 @@ export default () => {
     category,
     items,
     handleCategoryChange,
+    activeDietaries,
   };
 };
