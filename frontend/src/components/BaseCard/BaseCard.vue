@@ -3,7 +3,7 @@
     v-if="data"
     class="card"
   >
-    <div
+    <!-- <div
       v-if="data.image"
       class="card__image-container"
     >
@@ -12,18 +12,19 @@
         height="150px"
         :src="data.image"
       />
-    </div>
+    </div> -->
     <div class="card__content">
       <h3 class="card__title">
         {{ data.name }}
       </h3>
-      <div v-if="data.allergies">
+      <!-- <div v-if="dietaries">
          <BaseIcon
-          v-for="(allergy, index) in data.allergies"
+          v-for="(dietary, index) in dietaries"
           :key="index"
-          :name="allergy.name"
+          :name="dietary.allergyNameInLowerCase"
         />
-      </div>
+      </div> -->
+        {{ allergies }}
 
       <p class="card__description">
         {{ data.description }}
@@ -54,40 +55,47 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import {
+  defineComponent, ref, PropType, toRefs,
+} from 'vue';
 import { SIZES } from '@/helpers';
 import MenuItem from '@/models/MenuItem';
-import BaseIcon from '~/BaseIcon/BaseIcon.vue';
+// import BaseIcon from '~/BaseIcon/BaseIcon.vue';
 import BaseButton from '~/BaseButton/BaseButton.vue';
-import BaseImage from '~/BaseImage/BaseImage.vue';
+// import BaseImage from '~/BaseImage/BaseImage.vue';
 import './style.css';
 
 export default defineComponent({
   name: 'BaseCard',
   components: {
     BaseButton,
-    BaseImage,
-    BaseIcon,
+    // BaseImage,
+    // BaseIcon,
   },
   props: {
     data: {
-      type: MenuItem,
+      type: Object as PropType<MenuItem>,
       required: true,
     },
   },
-  data() {
-    return {
-      counter: 0,
-      SIZES,
+  setup(props) {
+    const counter = ref(0);
+
+    const { allergies } = toRefs(props.data);
+
+    const add = () => {
+      counter.value += 1;
     };
-  },
-  methods: {
-    add(): void {
-      this.counter += 1;
-    },
-    remove(): void {
-      this.counter -= 1;
-    },
+    const remove = () => {
+      counter.value -= 1;
+    };
+    return {
+      counter,
+      add,
+      remove,
+      SIZES,
+      allergies,
+    };
   },
 });
 </script>

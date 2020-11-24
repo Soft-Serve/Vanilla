@@ -48,14 +48,15 @@ export default defineComponent({
       activeDietaries,
     } = useApi();
 
-
     const isAllergyScreenVisible = ref(false);
 
     const toggleAllergyScreen = () => {
       isAllergyScreenVisible.value = !isAllergyScreenVisible.value;
     };
 
-    watch(activeDietaries, () => items.value.filterItemsByDietaries(activeDietaries.value));
+    watch(activeDietaries, () => {
+      items.value.filterItemsByDietaries(activeDietaries.value);
+    });
 
     return {
       loading,

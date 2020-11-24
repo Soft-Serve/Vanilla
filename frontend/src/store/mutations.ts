@@ -4,11 +4,8 @@ import RestaurantMenus from '@/models/RestaurantMenu';
 import RestaurantMenu from '@/models/DTO/RestaurantMenuDTO';
 import MenuCategory from '@/models/MenuCategory';
 import MenuItem from '@/models/MenuItem';
-import ItemsCollection from '@/models/ItemsCollection';
-import DietaryCollection from '@/models/DietaryCollection';
-import CategoryCollection from '@/models/CategoryCollection';
 import ItemDietary from '@/models/ItemDietary';
-import MenuCollection from '@/models/MenuCollection';
+
 import { State } from './state';
 
 export enum MutationType {
@@ -19,6 +16,7 @@ export enum MutationType {
   SetMenuCategories = 'SET_MENU_CATEGORIES',
   SetMenuCategory = 'SET_MENU_CATEGORY',
   SetMenuItems = 'SET_MENU_ITEMS',
+  SetItemDietaries = 'SET_ITEM_DIETARIES',
   SetDietaries = 'SET_DIETARIES',
 }
 
@@ -30,7 +28,9 @@ export type Mutations = {
   [MutationType.SetMenuCategories](state: State, payload: MenuCategory[]): void;
   [MutationType.SetMenuCategory](state: State, payload: MenuCategory): void;
   [MutationType.SetMenuItems](state: State, payload: MenuItem[]): void;
+  [MutationType.SetItemDietaries](state: State, payload: ItemDietary[]): void;
   [MutationType.SetDietaries](state: State, payload: ItemDietary[]): void;
+
 
 }
 
@@ -42,21 +42,26 @@ export const mutations: MutationTree<State> & Mutations = {
     state.loading = isLoaded;
   },
   [MutationType.SetRestaurantMenus](state, menus) {
-    state.menus = new MenuCollection(menus);
+    state.menus.collection = menus;
   },
   [MutationType.SetRestaurantMenu](state, menu) {
     state.menu = menu;
   },
   [MutationType.SetMenuCategories](state, categories) {
-    state.categories = new CategoryCollection(categories);
+    state.categories.collection = categories;
   },
   [MutationType.SetMenuCategory](state, category) {
     state.category = category;
   },
   [MutationType.SetMenuItems](state, items) {
-    state.items = new ItemsCollection(items);
+    state.items.collection = items;
+  },
+  [MutationType.SetItemDietaries](state, dietaries) {
+    state.items.collection.forEach((item: MenuItem) => {
+      item.setAllergies(dietaries);
+    });
   },
   [MutationType.SetDietaries](state, dietaries) {
-    state.dietaries = new DietaryCollection(dietaries);
+    state.dietaries.collection = dietaries;
   },
 };

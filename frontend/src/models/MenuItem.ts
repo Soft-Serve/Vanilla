@@ -1,5 +1,3 @@
-// eslint-disable-next-line import/no-cycle
-import ApiService from '@/models/ApiService';
 import MenuItemDTO from './DTO/MenuItemDTO';
 import ItemDietary from './ItemDietary';
 
@@ -19,18 +17,8 @@ export default class MenuItem extends MenuItemDTO {
     this._allergies = payload;
   }
 
-  private convertAllergyNameToLowerCase(allergies: ItemDietary[]) {
-    return allergies.map((allergy) => {
-      const copyOfAllergy = { ...allergy };
-      copyOfAllergy.name = copyOfAllergy.name.toLowerCase();
-      return new ItemDietary(copyOfAllergy);
-    });
-  }
-
-  public fetchAllergies() {
-    ApiService.getItemDietaries(this).then((response: ItemDietary[]) => {
-      this.allergies = this.convertAllergyNameToLowerCase(response);
-    });
+  public setAllergies(payload: ItemDietary[]) {
+    this.allergies = payload;
   }
 
   price = 12.50
