@@ -20,7 +20,9 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, watch } from 'vue';
+import {
+  defineComponent, ref, watch, reactive, computed,
+} from 'vue';
 import { BUTTONSTYLES } from '@/helpers';
 import useApi from '@/composables/useApi';
 import BaseWrapper from '~/BaseWrapper/BaseWrapper.vue';
@@ -41,7 +43,6 @@ export default defineComponent({
     const {
       handleCategoryChange,
       categories,
-      items,
       loading,
       category,
       store,
@@ -49,6 +50,9 @@ export default defineComponent({
     } = useApi();
 
     const isAllergyScreenVisible = ref(false);
+
+    const items = reactive(computed(() => store.getters.items));
+
 
     const toggleAllergyScreen = () => {
       isAllergyScreenVisible.value = !isAllergyScreenVisible.value;

@@ -17,14 +17,14 @@
       <h3 class="card__title">
         {{ data.name }}
       </h3>
-      <!-- <div v-if="dietaries">
+      <div>
          <BaseIcon
-          v-for="(dietary, index) in dietaries"
-          :key="index"
+          v-for="(dietary) in data.dietaries"
+          :key="dietary.id"
           :name="dietary.allergyNameInLowerCase"
         />
-      </div> -->
-        {{ allergies }}
+      </div>
+
 
       <p class="card__description">
         {{ data.description }}
@@ -56,11 +56,11 @@
 
 <script lang="ts">
 import {
-  defineComponent, ref, PropType, toRefs,
+  defineComponent, ref, PropType, onMounted,
 } from 'vue';
 import { SIZES } from '@/helpers';
 import MenuItem from '@/models/MenuItem';
-// import BaseIcon from '~/BaseIcon/BaseIcon.vue';
+import BaseIcon from '~/BaseIcon/BaseIcon.vue';
 import BaseButton from '~/BaseButton/BaseButton.vue';
 // import BaseImage from '~/BaseImage/BaseImage.vue';
 import './style.css';
@@ -70,7 +70,7 @@ export default defineComponent({
   components: {
     BaseButton,
     // BaseImage,
-    // BaseIcon,
+    BaseIcon,
   },
   props: {
     data: {
@@ -79,10 +79,10 @@ export default defineComponent({
     },
   },
   setup(props) {
+    onMounted(() => {
+      props.data.fetchAllergies(props.data);
+    });
     const counter = ref(0);
-
-    const { allergies } = toRefs(props.data);
-
     const add = () => {
       counter.value += 1;
     };
@@ -94,7 +94,6 @@ export default defineComponent({
       add,
       remove,
       SIZES,
-      allergies,
     };
   },
 });

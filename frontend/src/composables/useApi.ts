@@ -11,7 +11,6 @@ export default () => {
   const menu = computed(() => store.getters.menu);
   const categories = computed(() => store.getters.categories);
   const category = computed(() => store.getters.category);
-  const items = computed(() => store.getters.items);
   const dietaries = computed(() => store.getters.dietaries);
   const activeDietaries = computed(() => store.getters.dietaries.activeDietaries);
 
@@ -34,7 +33,6 @@ export default () => {
     dietaries,
     menu,
     categories,
-    items,
     handleCategoryChange,
     activeDietaries,
     category,

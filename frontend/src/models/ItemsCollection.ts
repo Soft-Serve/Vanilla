@@ -7,7 +7,7 @@ export default class ItemsCollection extends Collection<MenuItem> {
   public filterItemsByDietaries(dietaries: ItemDietary[]): MenuItem[] {
     const copy = [...this.collection];
     if (dietaries.length) {
-      return copy.filter((item: MenuItem) => !intersection(dietaries, item.allergies));
+      return copy.filter((item: MenuItem) => !intersection(dietaries, item.dietaries));
     } return copy;
   }
 }

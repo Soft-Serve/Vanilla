@@ -3,7 +3,7 @@ import RestaurantMenu from '@/models/RestaurantMenu';
 import MenuCategory from '@/models/MenuCategory';
 import ApiService from '@/models/ApiService';
 import Restaurant from '@/models/Restaurant';
-import MenuItem from '@/models/MenuItem';
+// import MenuItem from '@/models/MenuItem';
 import { State } from './state';
 import { Mutations, MutationType } from './mutations';
 
@@ -15,7 +15,6 @@ export enum ActionTypes {
   getCategory = 'GET_CATEGORY',
   getItems = 'GET_ITEMS',
   getDietaries = 'GET_DIETARIES',
-  getItemDietaries = 'GET_ITEM_DIETARIES',
 }
 
 type ActionAugments = Omit<ActionContext<State, State>, 'commit'> & {
@@ -33,7 +32,6 @@ export type Actions = {
   [ActionTypes.getCategory](context: ActionAugments, payload: MenuCategory): void;
   [ActionTypes.getItems](context: ActionAugments, payload: MenuCategory): void;
   [ActionTypes.getDietaries](context: ActionAugments, payload: Restaurant): void;
-  [ActionTypes.getItemDietaries](context: ActionAugments, payload: MenuItem): void;
 
 }
 
@@ -80,17 +78,11 @@ export const actions: ActionTree<State, State> & Actions = {
     commit(MutationType.SetMenuCategory, category);
     commit(MutationType.SetLoading, false);
   },
-  async [ActionTypes.getItems]({ commit, dispatch }, payload) {
+  async [ActionTypes.getItems]({ commit }, payload) {
     commit(MutationType.SetLoading, true);
     const items = await ApiService.getItems(payload);
     commit(MutationType.SetMenuItems, items);
-    items.forEach((item: MenuItem) => dispatch(ActionTypes.getItemDietaries, item));
-    commit(MutationType.SetLoading, false);
-  },
-  async [ActionTypes.getItemDietaries]({ commit }, payload) {
-    commit(MutationType.SetLoading, true);
-    const dietaries = await ApiService.getItemDietaries(payload);
-    commit(MutationType.SetItemDietaries, dietaries);
+    // items.forEach((item: MenuItem) => item.fetchAllergies(item));
     commit(MutationType.SetLoading, false);
   },
 };
