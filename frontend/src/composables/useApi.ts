@@ -20,15 +20,9 @@ export default () => {
   const handleCategoryChange = (newCategory: MenuCategory): void => {
     if (newCategory.id > 0) {
       store.commit(MutationType.SetLoading, true);
-      store.commit(MutationType.SetFilteredMenuItems, []);
-      store.commit(MutationType.SetLoading, false);
       store.dispatch(ActionTypes.getCategory, newCategory);
       store.dispatch(ActionTypes.getItems, newCategory);
       store.commit(MutationType.SetLoading, true);
-      // const foo = items.value.filterItemsByDietaries(activeDietaries.value);
-      // store.commit(MutationType.SetFilteredMenuItems, foo);
-      // store.commit(MutationType.SetLoading, false);
-      // console.log(activeDietaries.value);
     }
   };
 
