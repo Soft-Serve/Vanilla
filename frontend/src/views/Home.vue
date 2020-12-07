@@ -5,17 +5,18 @@
       <BaseButton
         v-for="category in categories.collection"
         :key="category.id"
-        :buttonStyle="BUTTONS_STYLES.WHITE"
-        @click="handleCategoryChange(category)">
+        :buttonStyle="BUTTONSTYLES.WHITE"
+        @click="triggerChange(category)">
         {{ category.name }}
       </BaseButton>
-      <BaseButton @click="toggleAllergyScreen" :buttonStyle="BUTTONS_STYLES.SECONDARY">
+      <BaseButton @click="toggleAllergyScreen" :buttonStyle="BUTTONSTYLES.SECONDARY">
         Allergies
       </BaseButton>
     </BaseWrapper>
-    <BaseWrapper>
-      <BaseCard v-for="item in items.collection" :key="item.id" :data="item"/>
+    <BaseWrapper v-if="!loading">
+      <BaseCard v-for="item in items.itemsCollection " :key="item.id" :data="item"/>
     </BaseWrapper>
+    <p v-if="loading">loading...</p>
   </div>
 </template>
 
@@ -25,6 +26,7 @@ import {
 } from 'vue';
 import { BUTTONSTYLES } from '@/helpers';
 import useApi from '@/composables/useApi';
+import MenuCategory from '@/models/MenuCategory';
 import BaseWrapper from '~/BaseWrapper/BaseWrapper.vue';
 import BaseButton from '~/BaseButton/BaseButton.vue';
 import BaseCard from '~/BaseCard/BaseCard.vue';
@@ -39,7 +41,6 @@ export default defineComponent({
     SlideOver,
   },
   setup() {
-    const BUTTONS_STYLES = BUTTONSTYLES;
     const {
       handleCategoryChange,
       categories,
@@ -51,27 +52,31 @@ export default defineComponent({
 
     const isAllergyScreenVisible = ref(false);
 
-    const items = reactive(computed(() => store.getters.items));
-
-
     const toggleAllergyScreen = () => {
       isAllergyScreenVisible.value = !isAllergyScreenVisible.value;
     };
 
-    watch(activeDietaries, () => {
-      items.value.filterItemsByDietaries(activeDietaries.value);
-    });
+    const items = reactive(computed(() => store.getters.items));
+
+    const triggerChange = (payload: MenuCategory) => {
+      items.value.clearFilteredCollection();
+      handleCategoryChange(payload);
+    };
+
+    watch(activeDietaries, (selectedDietaries) => items.value.filterItemsByDietaries(selectedDietaries), { immediate: true, deep: true });
 
     return {
       loading,
       categories,
-      BUTTONS_STYLES,
+      BUTTONSTYLES,
       items,
       category,
       handleCategoryChange,
       store,
       toggleAllergyScreen,
       isAllergyScreenVisible,
+      activeDietaries,
+      triggerChange,
     };
   },
 

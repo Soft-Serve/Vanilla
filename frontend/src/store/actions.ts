@@ -82,7 +82,6 @@ export const actions: ActionTree<State, State> & Actions = {
     commit(MutationType.SetLoading, true);
     const items = await ApiService.getItems(payload);
     commit(MutationType.SetMenuItems, items);
-    // items.forEach((item: MenuItem) => item.fetchAllergies(item));
     commit(MutationType.SetLoading, false);
   },
 };
