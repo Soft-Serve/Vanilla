@@ -15,18 +15,18 @@
     </BaseWrapper>
     <p v-if="loading">loading...</p>
     <BaseWrapper v-else>
-      <BaseCard v-for="item in items.filteredCollection.length ? items.filteredCollection : items.collection  " :key="item.id" :data="item"/>
+      <BaseCard v-for="item in items.collection " :key="item.id" :data="item"/>
     </BaseWrapper>
   </div>
 </template>
 
 <script lang="ts">
 import {
-  defineComponent, ref, watch, reactive, computed,
+  defineComponent, ref, watch,
 } from 'vue';
 import { BUTTONSTYLES } from '@/helpers';
 import useApi from '@/composables/useApi';
-import { MutationType } from '@/store/mutations';
+// import { MutationType } from '@/store/mutations';
 import BaseWrapper from '~/BaseWrapper/BaseWrapper.vue';
 import BaseButton from '~/BaseButton/BaseButton.vue';
 import BaseCard from '~/BaseCard/BaseCard.vue';
@@ -48,6 +48,7 @@ export default defineComponent({
       category,
       store,
       activeDietaries,
+      items,
     } = useApi();
 
     const isAllergyScreenVisible = ref(false);
@@ -56,12 +57,10 @@ export default defineComponent({
       isAllergyScreenVisible.value = !isAllergyScreenVisible.value;
     };
 
-    const items = reactive(computed(() => store.getters.items));
 
-    const collection = reactive(computed(() => store.getters.items.itemsCollection));
 
     watch(activeDietaries, (selectedDietaries) => {
-      store.commit(MutationType.SetFilteredMenuItems, items.value.filterItemsByDietaries(selectedDietaries));
+      console.log(selectedDietaries);
     }, { deep: true });
 
     return {
@@ -75,7 +74,6 @@ export default defineComponent({
       toggleAllergyScreen,
       isAllergyScreenVisible,
       activeDietaries,
-      collection,
     };
   },
 

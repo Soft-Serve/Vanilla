@@ -17,8 +17,4 @@ export default class ItemsCollection extends Collection<MenuItem> {
   public filterItemsByDietaries(dietaries: ItemDietary[]): MenuItem[] {
     return this.collection.filter((item: MenuItem) => !intersection(dietaries, item.dietaries));
   }
-
-  get itemsCollection(): MenuItem[] {
-    return this.filteredCollection.length ? this.filteredCollection : this.collection;
-  }
 }
