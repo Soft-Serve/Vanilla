@@ -2,6 +2,7 @@ import { computed } from 'vue';
 import { useStore } from '@/store';
 import { ActionTypes } from '@/store/actions';
 import MenuCategory from '@/models/MenuCategory';
+import { MutationType } from '@/store/mutations';
 
 export default () => {
   const store = useStore();
@@ -13,9 +14,14 @@ export default () => {
   const category = computed(() => store.getters.category);
   const dietaries = computed(() => store.getters.dietaries);
   const activeDietaries = computed(() => store.getters.dietaries.activeDietaries);
+  const items = computed(() => store.getters.items);
+
 
   const handleCategoryChange = (newCategory: MenuCategory): void => {
     if (newCategory.id > 0) {
+      store.commit(MutationType.SetLoading, true);
+      store.commit(MutationType.SetFilteredMenuItems, []);
+      store.commit(MutationType.SetLoading, false);
       store.dispatch(ActionTypes.getCategory, newCategory);
       store.dispatch(ActionTypes.getItems, newCategory);
     }
@@ -37,5 +43,6 @@ export default () => {
     activeDietaries,
     category,
     menus,
+    items,
   };
 };

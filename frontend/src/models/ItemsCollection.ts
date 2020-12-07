@@ -14,15 +14,8 @@ export default class ItemsCollection extends Collection<MenuItem> {
     this._filteredCollection = payload;
   }
 
-  public clearFilteredCollection(): void {
-    this.filteredCollection.splice(0, this.filteredCollection.length);
-  }
-
-  public filterItemsByDietaries(dietaries: ItemDietary[]): void {
-    this.clearFilteredCollection();
-    if (dietaries.length) {
-      this.filteredCollection = this.collection.filter((item: MenuItem) => !intersection(dietaries, item.dietaries));
-    }
+  public filterItemsByDietaries(dietaries: ItemDietary[]): MenuItem[] {
+    return this.collection.filter((item: MenuItem) => !intersection(dietaries, item.dietaries));
   }
 
   get itemsCollection(): MenuItem[] {
