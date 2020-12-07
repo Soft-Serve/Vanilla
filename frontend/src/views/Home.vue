@@ -13,10 +13,10 @@
         Allergies
       </BaseButton>
     </BaseWrapper>
-    <BaseWrapper v-if="!loading">
-      <BaseCard v-model="items.itemsCollection" v-for="item in items.itemsCollection " :key="item.id" :data="item"/>
-    </BaseWrapper>
     <p v-if="loading">loading...</p>
+    <BaseWrapper v-else>
+      <BaseCard v-for="item in items.filteredCollection.length ? items.filteredCollection : items.collection  " :key="item.id" :data="item"/>
+    </BaseWrapper>
   </div>
 </template>
 
@@ -58,9 +58,11 @@ export default defineComponent({
 
     const items = reactive(computed(() => store.getters.items));
 
+    const collection = reactive(computed(() => store.getters.items.itemsCollection));
+
     watch(activeDietaries, (selectedDietaries) => {
       store.commit(MutationType.SetFilteredMenuItems, items.value.filterItemsByDietaries(selectedDietaries));
-    }, { immediate: true, deep: true });
+    }, { deep: true });
 
     return {
       loading,
@@ -73,6 +75,7 @@ export default defineComponent({
       toggleAllergyScreen,
       isAllergyScreenVisible,
       activeDietaries,
+      collection,
     };
   },
 
