@@ -6,7 +6,7 @@
         v-for="category in categories.collection"
         :key="category.id"
         :buttonStyle="BUTTONSTYLES.WHITE"
-        @click="triggerChange(category)">
+        @click="handleCategoryChange(category)">
         {{ category.name }}
       </BaseButton>
       <BaseButton @click="toggleAllergyScreen" :buttonStyle="BUTTONSTYLES.SECONDARY">
@@ -14,7 +14,7 @@
       </BaseButton>
     </BaseWrapper>
     <BaseWrapper v-if="!loading">
-      <BaseCard v-for="item in items.itemsCollection " :key="item.id" :data="item"/>
+      <BaseCard v-model="items.itemsCollection" v-for="item in items.itemsCollection " :key="item.id" :data="item"/>
     </BaseWrapper>
     <p v-if="loading">loading...</p>
   </div>
@@ -26,7 +26,7 @@ import {
 } from 'vue';
 import { BUTTONSTYLES } from '@/helpers';
 import useApi from '@/composables/useApi';
-import MenuCategory from '@/models/MenuCategory';
+import { MutationType } from '@/store/mutations';
 import BaseWrapper from '~/BaseWrapper/BaseWrapper.vue';
 import BaseButton from '~/BaseButton/BaseButton.vue';
 import BaseCard from '~/BaseCard/BaseCard.vue';
@@ -58,12 +58,9 @@ export default defineComponent({
 
     const items = reactive(computed(() => store.getters.items));
 
-    const triggerChange = (payload: MenuCategory) => {
-      items.value.clearFilteredCollection();
-      handleCategoryChange(payload);
-    };
-
-    watch(activeDietaries, (selectedDietaries) => items.value.filterItemsByDietaries(selectedDietaries), { immediate: true, deep: true });
+    watch(activeDietaries, (selectedDietaries) => {
+      store.commit(MutationType.SetFilteredMenuItems, items.value.filterItemsByDietaries(selectedDietaries));
+    }, { immediate: true, deep: true });
 
     return {
       loading,
@@ -76,7 +73,6 @@ export default defineComponent({
       toggleAllergyScreen,
       isAllergyScreenVisible,
       activeDietaries,
-      triggerChange,
     };
   },
 
