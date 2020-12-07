@@ -12,6 +12,7 @@ module Api
     # Relations
     has_many :menus
     has_many :dietaries
+    has_many :users
 
     # Validations
     validates_presence_of :name

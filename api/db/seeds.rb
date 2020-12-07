@@ -1,5 +1,6 @@
 puts 'Destroying current DB 🔥'
 
+User.destroy_all
 Api::Restaurant.destroy_all
 
 puts 'Creating new restaurant 🍽'
@@ -614,6 +615,16 @@ Api::DietaryInstance.create!(
 Api::DietaryInstance.create!(
   dietary_id: dairy.id,
   menu_item_id: salami_pizza.id
+)
+
+Api::DietaryInstance.create!(
+  dietary_id: gluten.id,
+  menu_item_id: potstickers_lunch.id
+)
+
+Api::DietaryInstance.create!(
+  dietary_id: gluten.id,
+  menu_item_id: potstickers_dinner.id
 )
 
 puts 'All done 🎉🎉🎉'

@@ -10,8 +10,8 @@ module Api
       coll
     end
 
-    private 
-    
+    private
+
     attr_reader :menu_category
 
     def scope_by_menu_category
