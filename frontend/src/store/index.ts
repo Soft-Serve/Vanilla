@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import {
   createStore,
   Store as VuexStore,
@@ -18,9 +19,6 @@ export const store = createStore<State>({
   getters,
 });
 
-export function useStore() {
-  return store as Store;
-}
 
 export type Store = Omit<VuexStore<State>,
   'getters' | 'commit' | 'dispatch'
@@ -40,4 +38,8 @@ export type Store = Omit<VuexStore<State>,
   getters: {
     [K in keyof Getters]: ReturnType<Getters[K]>
   };
+}
+
+export function useStore(): Store {
+  return store as Store;
 }

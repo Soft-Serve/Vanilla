@@ -17,7 +17,7 @@
       <h3 class="card__title">
         {{ data.name }}
       </h3>
-      <div>
+      <div v-if="data.dietaries">
          <BaseIcon
           v-for="(dietary) in data.dietaries"
           :key="dietary.id"

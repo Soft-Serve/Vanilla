@@ -14,19 +14,17 @@
       </BaseButton>
     </BaseWrapper>
     <p v-if="loading">loading...</p>
-    <BaseWrapper v-else>
-      <BaseCard v-for="item in items.collection " :key="item.id" :data="item"/>
+    <BaseWrapper v-if="items.collection.length">
+      <BaseCard v-for="item in items.filteredCollection" :key="item.id" :data="item"/>
     </BaseWrapper>
   </div>
 </template>
 
 <script lang="ts">
-import {
-  defineComponent, ref, watch,
-} from 'vue';
+import { defineComponent, ref, watch } from 'vue';
 import { BUTTONSTYLES } from '@/helpers';
 import useApi from '@/composables/useApi';
-// import { MutationType } from '@/store/mutations';
+import { MutationType } from '@/store/mutations';
 import BaseWrapper from '~/BaseWrapper/BaseWrapper.vue';
 import BaseButton from '~/BaseButton/BaseButton.vue';
 import BaseCard from '~/BaseCard/BaseCard.vue';
@@ -57,11 +55,12 @@ export default defineComponent({
       isAllergyScreenVisible.value = !isAllergyScreenVisible.value;
     };
 
-
-
     watch(activeDietaries, (selectedDietaries) => {
-      console.log(selectedDietaries);
-    }, { deep: true });
+      const filteredItems = items.value.filterItemsByDietaries(selectedDietaries);
+      store.commit(MutationType.SetLoading, true);
+      store.commit(MutationType.SetFilteredMenuItems, filteredItems);
+      store.commit(MutationType.SetLoading, false);
+    }, { immediate: true, deep: true });
 
     return {
       loading,

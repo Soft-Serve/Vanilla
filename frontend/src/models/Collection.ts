@@ -7,7 +7,7 @@ export default class Collection<T> {
 
   private _collection: T[] = [];
 
-  get collection() {
+  get collection(): T[] {
     return this._collection;
   }
 

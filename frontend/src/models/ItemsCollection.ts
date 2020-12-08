@@ -1,12 +1,12 @@
 import intersection from '@/utility/intersection';
-import Collection from './Collection';
-import ItemDietary from './ItemDietary';
-import MenuItem from './MenuItem';
+import Collection from '@/models/Collection';
+import MenuItem from '@/models/MenuItem';
+import ItemDietary from '@/models/ItemDietary';
 
 export default class ItemsCollection extends Collection<MenuItem> {
   private _filteredCollection: MenuItem[] = [];
 
-  get filteredCollection() {
+  get filteredCollection(): MenuItem[] {
     return this._filteredCollection;
   }
 

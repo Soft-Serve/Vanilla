@@ -1,4 +1,4 @@
-import ItemDietaryDTO from './DTO/ItemDietaryDTO';
+import { ItemDietaryDTO } from '@/DTO';
 
 export default class ItemDietary extends ItemDietaryDTO {
   constructor(dto?: ItemDietaryDTO) {
@@ -8,7 +8,7 @@ export default class ItemDietary extends ItemDietaryDTO {
 
   public isActive = false;
 
-  public toggleActiveState(): void{
+  public toggleActiveState(): void {
     this.isActive = !this.isActive;
   }
 

@@ -1,4 +1,9 @@
-import { Category } from '@/interfaces';
+export interface Category {
+  id: number;
+  name: string;
+  category_type: string;
+  menu_id: number;
+}
 
 export default class MenuCategoryDTO implements Category {
   id = 0;

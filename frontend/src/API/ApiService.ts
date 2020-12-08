@@ -1,10 +1,11 @@
 /* eslint-disable import/no-cycle */
 import Axios from 'axios';
-import MenuItem from './MenuItem';
-import Restaurant from './Restaurant';
-import RestaurantMenu from './RestaurantMenu';
-import MenuCategory from './MenuCategory';
-import ItemDietary from './ItemDietary';
+import Restaurant from '@/models/Restaurant';
+import RestaurantMenu from '@/models/RestaurantMenu';
+import MenuCategory from '@/models/MenuCategory';
+import MenuItem from '@/models/MenuItem';
+import ItemDietary from '@/models/ItemDietary';
+
 
 export default class ApiService {
   private static restaurantService = Axios.create({

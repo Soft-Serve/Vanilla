@@ -1,11 +1,9 @@
 import { MutationTree } from 'vuex';
 import Restaurant from '@/models/Restaurant';
-import RestaurantMenus from '@/models/RestaurantMenu';
-import RestaurantMenu from '@/models/DTO/RestaurantMenuDTO';
+import RestaurantMenu from '@/models/RestaurantMenu';
 import MenuCategory from '@/models/MenuCategory';
 import MenuItem from '@/models/MenuItem';
 import ItemDietary from '@/models/ItemDietary';
-
 import { State } from './state';
 
 export enum MutationType {
@@ -23,7 +21,7 @@ export enum MutationType {
 export type Mutations = {
   [MutationType.SetRestaurant](state: State, payload: Restaurant): void;
   [MutationType.SetLoading](state: State, payload: boolean): void;
-  [MutationType.SetRestaurantMenus](state: State, payload: RestaurantMenus[]): void;
+  [MutationType.SetRestaurantMenus](state: State, payload: RestaurantMenu[]): void;
   [MutationType.SetRestaurantMenu](state: State, payload: RestaurantMenu): void;
   [MutationType.SetMenuCategories](state: State, payload: MenuCategory[]): void;
   [MutationType.SetMenuCategory](state: State, payload: MenuCategory): void;
@@ -52,9 +50,14 @@ export const mutations: MutationTree<State> & Mutations = {
     state.category = category;
   },
   [MutationType.SetMenuItems](state, items) {
+    const copy = [...state.items.filteredCollection];
     state.items.collection = items;
+    state.items.filteredCollection = copy;
   },
   [MutationType.SetFilteredMenuItems](state, items) {
+    const copy = [...state.items.collection];
+    state.items.filteredCollection.splice(0, state.items.filteredCollection.length);
+    state.items.collection = copy;
     state.items.filteredCollection = items;
   },
   [MutationType.SetDietaries](state, dietaries) {

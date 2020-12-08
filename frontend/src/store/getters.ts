@@ -2,10 +2,10 @@ import { GetterTree } from 'vuex';
 import Restaurant from '@/models/Restaurant';
 import RestaurantMenu from '@/models/RestaurantMenu';
 import MenuCategory from '@/models/MenuCategory';
-import ItemsCollection from '@/models/ItemsCollection';
-import DietaryCollection from '@/models/DietaryCollection';
-import CategoryCollection from '@/models/CategoryCollection';
 import MenuCollection from '@/models/MenuCollection';
+import ItemsCollection from '@/models/ItemsCollection';
+import CategoryCollection from '@/models/CategoryCollection';
+import DietaryCollection from '@/models/DietaryCollection';
 import { State } from './state';
 
 export type Getters = {

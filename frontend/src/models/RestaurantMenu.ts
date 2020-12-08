@@ -1,4 +1,4 @@
-import RestaurantMenuDTO from './DTO/RestaurantMenuDTO';
+import { RestaurantMenuDTO } from '@/DTO';
 
 export default class RestaurantMenu extends RestaurantMenuDTO {
   constructor(dto?: RestaurantMenuDTO) {

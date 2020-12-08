@@ -1,8 +1,8 @@
-import Collection from './Collection';
-import ItemDietary from './ItemDietary';
+import Collection from '@/models/Collection';
+import ItemDietary from '@/models/ItemDietary';
 
 export default class DietaryCollection extends Collection<ItemDietary> {
-  get activeDietaries() {
+  get activeDietaries(): ItemDietary[] {
     return this.collection.filter((dietary: ItemDietary) => dietary.isActive);
   }
 }

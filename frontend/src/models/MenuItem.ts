@@ -1,7 +1,7 @@
-// eslint-disable-next-line import/no-cycle
-import ApiService from '@/models/ApiService';
-import MenuItemDTO from './DTO/MenuItemDTO';
-import ItemDietary from './ItemDietary';
+/* eslint-disable import/no-cycle */
+import ApiService from '@/API/ApiService';
+import { MenuItemDTO } from '@/DTO';
+import ItemDietary from '@/models/ItemDietary';
 
 export default class MenuItem extends MenuItemDTO {
   constructor(dto: MenuItemDTO) {
@@ -11,7 +11,7 @@ export default class MenuItem extends MenuItemDTO {
 
   private _dietaries: ItemDietary[] = [];
 
-  get dietaries() {
+  get dietaries(): ItemDietary[] {
     return this._dietaries;
   }
 
@@ -19,7 +19,7 @@ export default class MenuItem extends MenuItemDTO {
     this._dietaries = payload;
   }
 
-  public setDietaries(payload: ItemDietary[]) {
+  public setDietaries(payload: ItemDietary[]): void {
     this.dietaries = payload;
   }
 

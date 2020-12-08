@@ -1,6 +1,4 @@
-import Collection from './Collection';
-import MenuCategory from './MenuCategory';
+import MenuCategory from '@/models/MenuCategory';
+import Collection from '@/models/Collection';
 
-export default class DietaryCollection extends Collection<MenuCategory> {
-
-}
+export default class DietaryCollection extends Collection<MenuCategory> {}

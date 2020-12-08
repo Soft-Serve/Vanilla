@@ -32,6 +32,10 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'off',
     'no-multiple-empty-lines': 'off',
     'import/prefer-default-export': 'off',
+    camelcase: 'off',
+    '@typescript-eslint/camelcase': ['off'],
+    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': ['off'],
   },
   overrides: [
     {

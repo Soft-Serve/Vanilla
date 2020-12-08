@@ -1,4 +1,4 @@
-import MenuCategoryDTO from './DTO/MenuCategoryDTO';
+import { MenuCategoryDTO } from '@/DTO';
 
 export default class MenuCategory extends MenuCategoryDTO {
   constructor(dto?: MenuCategoryDTO) {

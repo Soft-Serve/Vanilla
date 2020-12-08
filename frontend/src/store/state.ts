@@ -3,8 +3,8 @@ import RestaurantMenu from '@/models/RestaurantMenu';
 import MenuCategory from '@/models/MenuCategory';
 import MenuCollection from '@/models/MenuCollection';
 import ItemsCollection from '@/models/ItemsCollection';
-import DietaryCollection from '@/models/DietaryCollection';
 import CategoryCollection from '@/models/CategoryCollection';
+import DietaryCollection from '@/models/DietaryCollection';
 
 export type State = {
   loading: boolean;
