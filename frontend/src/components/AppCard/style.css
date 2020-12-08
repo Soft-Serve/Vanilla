@@ -1,0 +1,67 @@
+.card {
+  @apply flex flex-col m-4;
+}
+
+.card--default {
+  @apply rounded-lg shadow-lg overflow-hidden;
+}
+
+.card--column {
+  @apply flex-col;
+}
+
+.card--row {
+  @apply flex-row flex-1 xs:flex-col;
+}
+
+.card--primary {
+  @apply bg-white;
+}
+
+.card--secondary {
+  @apply bg-cool-gray-50 shadow-xl;
+}
+
+.card--accent {
+  @apply bg-red-600;
+}
+
+.card__container {
+  @apply w-full flex flex-wrap px-4 py-5 xs:px-6 xs:justify-center xs:flex-col;
+}
+
+.card__container--reverse {
+  @apply flex-row-reverse;
+}
+
+.card__divider {
+  @apply border-b;
+}
+
+.card__divider--row {
+  @apply border-b-0 border-r xs:border-b;
+}
+
+.card__divider--primary {
+  @apply border-gray-200;
+}
+
+.card__divider--secondary {
+  @apply border-cool-gray-300;
+}
+
+.card__divider--accent {
+  @apply border-white;
+}
+
+.card__wrapper {
+  @apply -ml-4 -mt-4 flex justify-between items-center flex-wrap xs:flex-no-wrap;
+}
+
+.card__inside-wrapper {
+  @apply ml-4 mt-4;
+}
+
+.card__column {
+  @apply flex items-center space-x-4 lg:space-x-6;
+}
