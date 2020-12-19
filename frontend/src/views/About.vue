@@ -87,7 +87,7 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
+<style>
 .wrapper {
   max-width: 900px;
   margin: 0 auto;

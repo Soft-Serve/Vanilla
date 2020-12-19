@@ -40,3 +40,17 @@ export enum CARDSTYLES {
   SECONDARY = 'secondary',
   NAKED ='naked',
 }
+
+export enum INPUTTYPES {
+  PASSWORD = 'password',
+  TEXT = 'text',
+  NUMBER = 'number',
+  EMAIL = 'email',
+  TELEPHONE = 'telephone',
+  LABEL = 'label',
+}
+
+export enum EYESVGVARIANTS {
+  EYE = 'eye',
+  EYEOFF = 'eye-off'
+}

@@ -1,99 +1,89 @@
 <template>
   <div
-    v-if="data"
     class="card"
+    :class="`card--default  card--${layout} card--${cardStyles}`"
   >
-    <!-- <div
-      v-if="data.image"
-      class="card__image-container"
+    <div
+      v-if="cardHasHeading || cardHasSubHeading || cardHasAddons"
+      class="card__container card__divider"
+      :class="[
+        {'card__container--reverse' : reverseHeading},
+        alignHeading,
+        cardHasBody && dividerStyles ? dividerStyles :  `card__divider--${layout}`
+      ]"
     >
-      <BaseImage
-        width="150px"
-        height="150px"
-        :src="data.image"
-      />
-    </div> -->
-    <div class="card__content">
-      <h3 class="card__title">
-        {{ data.name }}
-      </h3>
-      <div v-if="data.dietaries">
-         <BaseIcon
-          v-for="(dietary) in data.dietaries"
-          :key="dietary.id"
-          :name="dietary.allergyNameInLowerCase"
-        />
-      </div>
-
-
-      <p class="card__description">
-        {{ data.description }}
-      </p>
-      <div class="card__pricing">
-        <span class="card__price">
-          <span class="card__currency">$</span>
-          {{ counter > 0 ? data.price * counter : data.price }}
-        </span>
-        <div class="card__actions">
-          <span class="card__button-container">
-            <BaseButton :buttonSize="SIZES.EXTRASMALL" @click="remove">
-                <span>-</span>
-            </BaseButton>
-          </span>
-          <span class="card__counter">
-            {{ counter }}
-          </span>
-          <span class="card__button-container">
-            <BaseButton :buttonSize="SIZES.EXTRASMALL" @click="add">
-                <span>+</span>
-            </BaseButton>
-          </span>
+      <div class="card__wrapper">
+        <div
+          v-if="cardHasHeading || cardHasSubHeading "
+          class="card__inside-wrapper"
+        >
+          <slot name="heading" />
+          <div
+            v-if="cardHasSubHeading"
+            class="card_column"
+          >
+            <slot name="subHeading" />
+          </div>
         </div>
       </div>
+      <slot name="addons" />
+    </div>
+    <div
+      v-if="cardHasBody"
+      class="card__container card__divider"
+      :class="[ cardHasFooter && dividerStyles ? dividerStyles :  `card__divider--${layout}`]"
+    >
+      <slot name="body" />
+    </div>
+    <div
+      v-if="cardHasFooter"
+      class="card__container "
+    >
+      <slot name="footer" />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import {
-  defineComponent, ref, PropType, onMounted,
-} from 'vue';
-import { SIZES } from '@/helpers';
-import MenuItem from '@/models/MenuItem';
-import BaseIcon from '~/BaseIcon/BaseIcon.vue';
-import BaseButton from '~/BaseButton/BaseButton.vue';
-// import BaseImage from '~/BaseImage/BaseImage.vue';
+import { CARDDIRECTION, FLEXJUSTIFY, CARDSTYLES } from '@/helpers';
+import { defineComponent, computed } from 'vue';
 import './style.css';
 
 export default defineComponent({
   name: 'BaseCard',
-  components: {
-    BaseButton,
-    // BaseImage,
-    BaseIcon,
-  },
   props: {
-    data: {
-      type: Object as PropType<MenuItem>,
-      required: true,
+    layout: {
+      type: String,
+      default: CARDDIRECTION.COLUMN,
+    },
+    dividerStyles: {
+      type: String,
+    },
+    cardStyles: {
+      default: CARDSTYLES.PRIMARY,
+    },
+    reverseHeading: {
+      type: Boolean,
+    },
+    alignHeading: {
+      type: String,
+      default: FLEXJUSTIFY.BETWEEN,
     },
   },
-  setup(props) {
-    onMounted(() => {
-      props.data.fetchAllergies(props.data);
-    });
-    const counter = ref(0);
-    const add = () => {
-      counter.value += 1;
-    };
-    const remove = () => {
-      counter.value -= 1;
-    };
+
+  setup(props, { slots }) {
+    const cardHasHeading = computed(() => !!slots.heading);
+    const cardHasSubHeading = computed(() => !!slots.subHeading);
+    const cardHasAddons = computed(() => !!slots.addons);
+    const cardHasBody = computed(() => !!slots.body);
+    const cardHasFooter = computed(() => !!slots.footer);
+
     return {
-      counter,
-      add,
-      remove,
-      SIZES,
+      cardHasHeading,
+      cardHasSubHeading,
+      cardHasAddons,
+      cardHasBody,
+      cardHasFooter,
     };
   },
 });

@@ -1,60 +1,67 @@
 .card {
-  @apply flex rounded-lg overflow-hidden shadow-2xl bg-white;
+  @apply flex flex-col m-4;
 }
 
-.card__image-container {
-  @apply flex flex-col justify-center ml-2;
+.card--default {
+  @apply rounded-lg shadow-lg overflow-hidden;
 }
 
-.card__button {
-  @apply inline-flex items-center px-2.5 py-1.5 border border-transparent bg-red-600
-    text-xs leading-4 font-bold rounded-full text-white transition ease-in-out duration-150;
+.card--column {
+  @apply flex-col;
 }
 
-.card__button:focus {
-  @apply outline-none border-red-700 shadow-outline-red;
+.card--row {
+  @apply flex-row flex-1 xs:flex-col;
 }
 
-.card__button:hover {
-  @apply bg-red-500;
+.card--primary {
+  @apply bg-white;
 }
 
-.card__button:active {
-  @apply bg-red-700;
+.card--secondary {
+  @apply bg-cool-gray-50 shadow-xl;
 }
 
-.card__content {
-  @apply flex-1 bg-white p-4 flex flex-col w-full justify-between items-start flex-wrap;
+.card--accent {
+  @apply bg-red-600;
 }
 
-.card__title {
-  @apply mt-2 leading-7 font-semibold text-gray-900 m-1;
+.card__container {
+  @apply w-full flex px-4 py-5 xs:px-6 xs:justify-center;
 }
 
-.card__description {
-  @apply mt-2 leading-3 text-gray-500 text-xs italic;
+.card__container--reverse {
+  @apply flex-row-reverse;
 }
 
-.card__pricing {
-  @apply flex w-full justify-between items-center mt-2;
+.card__divider {
+  @apply border-b;
 }
 
-.card__price {
-  @apply inline-flex w-full text-sm italic;
+.card__divider--row {
+  @apply border-b-0 border-r xs:border-b;
 }
 
-.card__currency {
-  @apply text-red-500 mx-1;
+.card__divider--primary {
+  @apply border-gray-200;
 }
 
-.card__actions {
-  @apply w-full inline-flex justify-end items-center;
+.card__divider--secondary {
+  @apply border-cool-gray-300;
 }
 
-.card__button-container {
-  @apply inline-flex rounded-full shadow-sm mx-2;
+.card__divider--accent {
+  @apply border-white;
 }
 
-.card__counter {
-  @apply font-bold text-sm;
+.card__wrapper {
+  @apply -ml-4 -mt-4 flex justify-between items-center xs:flex-no-wrap;
+}
+
+.card__inside-wrapper {
+  @apply ml-4 mt-4;
+}
+
+.card__column {
+  @apply flex items-center space-x-4 lg:space-x-6;
 }

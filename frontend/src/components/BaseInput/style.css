@@ -1,0 +1,94 @@
+.input {
+  @apply block w-full;
+}
+
+.input--error {
+  @apply border-red-300 text-red-900;
+}
+
+.input--with-icon--left {
+  @apply pr-10 !important;
+}
+
+.input--with-icon--right {
+  @apply pl-10 !important;
+}
+
+.input--error:placeholder-shown,
+.input--error:placeholder {
+  @apply text-red-300;
+}
+
+.input--error:focus {
+  @apply border-solid border-red-300 shadow-outline-red;
+}
+
+.input__label {
+  @apply block text-sm font-medium leading-6 text-gray-700;
+}
+
+.input__label--not-visible {
+  @apply sr-only;
+}
+
+.input__helper-text {
+  @apply mt-2 text-sm;
+}
+
+.input__helper-text--default {
+  @apply text-cool-gray-500;
+}
+
+.input__helper-text--error {
+  @apply text-red-700 text-sm;
+}
+
+.input__container {
+  @apply relative rounded-md shadow-sm;
+}
+
+.input__addon-container {
+  @apply absolute flex items-center inset-y-0 right-0 mx-4;
+}
+
+.input__addon-container--right {
+  @apply left-0 pl-3;
+}
+
+.input__addon-container--left {
+  @apply right-0 pr-3;
+}
+
+.input__addon {
+  @apply h-5 w-5;
+}
+
+.input__addon-container--attached--left {
+  @apply right-0 p-0;
+}
+
+.input__addon-container--attached--right {
+  @apply left-0 p-0;
+}
+
+.input--with-icon--attached--left {
+  padding-right: var(--slot-addon) !important;
+}
+
+.input--with-icon--attached--right {
+  padding-left: var(--slot-addon) !important;
+}
+
+.input__addon--default {
+  @apply text-cool-gray-500;
+}
+
+.input__addon--clickable {
+  @apply cursor-pointer;
+}
+
+@media (min-width: 640px) {
+  .input {
+    @apply text-sm leading-5;
+  }
+}

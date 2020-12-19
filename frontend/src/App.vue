@@ -9,6 +9,9 @@
           <div class="w-32 mx-3 xs:my-1 xs:w-full xs:px-4 xs:mt-2">
             <router-link to="/about">About</router-link>
           </div>
+            <div class="w-32 mx-3 xs:my-1 xs:w-full xs:px-4 xs:mt-2">
+            <router-link to="/login">Login</router-link>
+          </div>
         </template>
       </ToolBar>
     </div>
@@ -50,6 +53,7 @@ export default defineComponent({
   width: 100%;
   padding-left: 20px;
   padding-right: 20px;
+  margin: 0 auto;
 }
 
 .component-fade-enter-active,
