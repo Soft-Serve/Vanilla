@@ -12,17 +12,17 @@ import ItemsCollection from '@/models/ItemsCollection';
 import { MutationType } from '@/store/mutations';
 
 export interface UseAPI {
-  store: Store,
-  restaurant: ComputedRef<Restaurant>
-  loading: ComputedRef<boolean>
-  menus: ComputedRef<MenuCollection>
-  menu: ComputedRef<RestaurantMenu>
-  categories: ComputedRef<CategoryCollection>
-  category: ComputedRef<MenuCategory>
-  dietaries: ComputedRef<DietaryCollection>
-  activeDietaries: ComputedRef<ItemDietary[]>
-  items: ComputedRef<ItemsCollection>
-  handleCategoryChange: (payload: MenuCategory) => void
+  store: Store;
+  restaurant: ComputedRef<Restaurant>;
+  loading: ComputedRef<boolean>;
+  menus: ComputedRef<MenuCollection>;
+  menu: ComputedRef<RestaurantMenu>;
+  categories: ComputedRef<CategoryCollection>;
+  category: ComputedRef<MenuCategory>;
+  dietaries: ComputedRef<DietaryCollection>;
+  activeDietaries: ComputedRef<ItemDietary[]>;
+  items: ComputedRef<ItemsCollection>;
+  handleCategoryChange: (payload: MenuCategory) => void;
   populateStore: () => void;
 }
 
