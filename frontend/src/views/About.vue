@@ -1,89 +1,30 @@
 <template>
-<div>
-   <BaseButton :text="'hello sdasdasd'" />
+<button @click="toggleIsShowing">
+  open modal
+</button>
+<div v-if="isShowing">
+  <Modal :toggleIsShowing="toggleIsShowing" :title="'Upload a dish'"/>
 </div>
-  <!-- <BaseImage :src="'https://picsum.photos/200/300'"/> -->
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import BaseButton from '~/BaseButton/BaseButton.vue';
-
-// import BaseWrapper from '@/components/BaseWrapper/BaseWrapper.vue';
-// import BaseButton from '@/components/BaseButton/BaseButton.vue';
-// import SlideOver from '@/components/SlideOver/SlideOver.vue';
-// import BaseCard from '@/components/BaseCard/BaseCard.vue';
-// import BaseImage from '~/BaseImage/BaseImage.vue';
-// import { Dish } from '@/interfaces';
-// import intersection from '@/utility/intersection';
-// import ApiService from '@/models/ApiService';
+import useToggle from '@/composables/useToggle';
+import Modal from '~/Modal/Modal.vue';
 
 export default defineComponent({
   name: 'About',
   components: {
-    // BaseImage,
-    // BaseWrapper,
-    BaseButton,
-    // SlideOver,
-    // BaseCard,
+    Modal,
+  },
+  setup() {
+    const { isShowing, toggleIsShowing } = useToggle();
+    return {
+      isShowing,
+      toggleIsShowing,
+    };
   },
 
-  methods: {
-    // closeSlideOver(payload: boolean) {
-    //   this.isVisible = payload;
-    // },
-    // handleClick() {
-    //   this.isVisible = !this.isVisible;
-    // },
-    // triggerCategoryChange(category: string) {
-    //   this.filter = category;
-    //   this.toggleSlideLeft();
-    // },
-    // compareAllergies(dishAllergies: Array<string>, userAllergies: Array<string>): boolean {
-    //   if (this.userAllergies.length) {
-    //     return intersection(dishAllergies, userAllergies);
-    //   }
-    //   return false;
-    // },
-    // filterByAllergies(dishes: Array<Dish>) {
-    //   return [...dishes].filter((dish: Dish) => !this.compareAllergies(dish.allergies, this.userAllergies));
-    // },
-    // toggleSlideLeft() {
-    //   this.slideLeft = !this.slideLeft;
-    // },
-  },
-  computed: {
-    // slideDirection() {
-    //   return this.slideLeft ? 'slide-left' : 'slide-right';
-    // },
-    // filteredDishesByAllergies(): Array<Dish> {
-    //   return this.filterByAllergies(this.dishes);
-    // },
-    // filteredDishesCategory(): Array<Dish> {
-    //   return [...this.dishes].filter((dish) => dish.category === this.filter);
-    // },
-    // filteredDishesByAllergiesAndCategory(): Array<Dish> {
-    //   return this.filterByAllergies(this.filteredDishesCategory);
-    // },
-    // renderDishes(): Array<Dish> {
-    //   if (this.filter && !this.userAllergies) {
-    //     return this.filteredDishesCategory;
-    //   }
-    //   if (this.filter && this.userAllergies) {
-    //     return this.filteredDishesByAllergiesAndCategory;
-    //   }
-    //   if (!this.filter && this.userAllergies) {
-    //     return this.filteredDishesByAllergies;
-    //   }
-    //   return this.dishes;
-    // },
-    // userAllergies(): Array<string> {
-    //   return User.selectedAllergies;
-    // },
-    // userHasAllergies(): boolean {
-    //   return User.hasAllergies;
-    // },
-  },
 });
 </script>
 
