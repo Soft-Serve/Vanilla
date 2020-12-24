@@ -1,0 +1,19 @@
+.wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+
+  @apply w-full px-8;
+}
+
+.modal {
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+  transition: all 0.5s ease-in-out;
+  display: flex;
+}
+
+.title {
+  font-size: 16px;
+  font-weight: 600;
+
+  @apply flex justify-center w-full text-red-400 ;
+}
