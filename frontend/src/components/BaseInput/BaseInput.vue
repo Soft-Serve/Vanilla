@@ -14,9 +14,10 @@
   >
     <input
       v-bind="$attrs"
+      :value="modelValue"
       :type="inputType"
       :class="customStyles"
-      v-model="inputValue"
+      @input="$emit('update:modelValue', $event.target.value)"
       class="form-input input"
     >
     <div
@@ -71,11 +72,7 @@ export default defineComponent({
     },
   },
 
-  setup(props, { attrs, slots, emit }) {
-    const inputValue = computed({
-      get: () => props.modelValue,
-      set: (value) => emit('update:modelValue', value),
-    });
+  setup(props, { attrs, slots }) {
     const isPasswordVisible = ref(false);
     const hasSibling = ref(false);
     const isUpdated = ref(false);
@@ -132,7 +129,6 @@ export default defineComponent({
       inputHasLabel,
       togglePasswordVisibility,
       hasSibling,
-      inputValue,
     };
   },
 });
