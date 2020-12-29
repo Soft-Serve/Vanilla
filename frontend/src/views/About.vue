@@ -1,27 +1,58 @@
 <template>
-<button @click="toggleIsShowing">
-  open modal
-</button>
-<div v-if="isShowing">
-  <Modal :toggleIsShowing="toggleIsShowing" :title="'Upload a dish'"/>
-</div>
+  <div class="wrapper">
+    <div class="flex">
+        <BaseButton @click="handleAddMenu">
+          add Menu
+        </BaseButton>
+        <BaseInput v-model="name"/>
+    </div>
+    <p v-if="isLoading">loading..</p>
+    <ul v-if="!isLoading">
+      <li v-for="(menu) in menus.collection" :key="menu.id">
+        {{ menu.name }}
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import useToggle from '@/composables/useToggle';
-import Modal from '~/Modal/Modal.vue';
+import {
+  defineComponent, reactive, toRefs,
+} from 'vue';
+import useApi from '@/composables/useApi';
+import { ActionTypes } from '@/store/actions';
+import BaseInput from '~/BaseInput/BaseInput.vue';
+import BaseButton from '~/BaseButton/BaseButton.vue';
 
 export default defineComponent({
   name: 'About',
   components: {
-    Modal,
+    BaseInput,
+    BaseButton,
   },
+
   setup() {
-    const { isShowing, toggleIsShowing } = useToggle();
+    const {
+      restaurant, menus, isLoading, store,
+    } = useApi();
+
+    const menu = reactive({
+      name: '',
+      restaurant_id: restaurant.id,
+      id: 0,
+    });
+
+    const handleAddMenu = () => {
+      store.dispatch(ActionTypes.postMenu, JSON.stringify(menu));
+      menu.name = '';
+    };
     return {
-      isShowing,
-      toggleIsShowing,
+      ...toRefs(menu),
+      menu,
+      menus,
+      isLoading,
+      handleAddMenu,
+      store,
     };
   },
 

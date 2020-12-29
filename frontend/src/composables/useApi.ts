@@ -13,30 +13,28 @@ import { MutationType } from '@/store/mutations';
 
 export interface UseAPI {
   store: Store;
-  restaurant: ComputedRef<Restaurant>;
-  loading: ComputedRef<boolean>;
-  menus: ComputedRef<MenuCollection>;
-  menu: ComputedRef<RestaurantMenu>;
-  categories: ComputedRef<CategoryCollection>;
-  category: ComputedRef<MenuCategory>;
-  dietaries: ComputedRef<DietaryCollection>;
+  restaurant: Restaurant;
+  menus: MenuCollection;
+  menu: RestaurantMenu
+  categories: CategoryCollection;
+  category: MenuCategory;
+  dietaries:DietaryCollection
   activeDietaries: ComputedRef<ItemDietary[]>;
-  items: ComputedRef<ItemsCollection>;
+  items: ItemsCollection,
+  isLoading: ComputedRef<boolean>;
   handleCategoryChange: (payload: MenuCategory) => void;
   populateStore: () => void;
 }
 
 export default (): UseAPI => {
   const store = useStore();
-  const restaurant = computed(() => store.getters.restaurant);
-  const loading = computed(() => store.state.loading);
-  const menus = computed(() => store.getters.menus);
-  const menu = computed(() => store.getters.menu);
-  const categories = computed(() => store.getters.categories);
-  const category = computed(() => store.getters.category);
-  const dietaries = computed(() => store.getters.dietaries);
   const activeDietaries = computed(() => store.getters.dietaries.activeDietaries);
-  const items = computed(() => store.getters.items);
+  const {
+    menus, menu, items, restaurant, categories, category, dietaries,
+  } = store.getters;
+
+  const isLoading = computed(() => store.getters.loading);
+
 
   const handleCategoryChange = (payload: MenuCategory): void => {
     if (payload.id > 0) {
@@ -54,7 +52,6 @@ export default (): UseAPI => {
   return {
     store,
     populateStore,
-    loading,
     restaurant,
     dietaries,
     menu,
@@ -64,5 +61,6 @@ export default (): UseAPI => {
     category,
     menus,
     items,
+    isLoading,
   };
 };

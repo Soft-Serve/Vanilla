@@ -16,6 +16,7 @@ export enum ActionTypes {
   getCategory = 'GET_CATEGORY',
   getItems = 'GET_ITEMS',
   getDietaries = 'GET_DIETARIES',
+  postMenu = 'POST_MENU',
 }
 
 type ActionAugments = Omit<ActionContext<State, State>, 'commit'> & {
@@ -33,6 +34,8 @@ export type Actions = {
   [ActionTypes.getCategory](context: ActionAugments, payload: MenuCategory): void;
   [ActionTypes.getItems](context: ActionAugments, payload: MenuCategory): void;
   [ActionTypes.getDietaries](context: ActionAugments, payload: Restaurant): void;
+  [ActionTypes.postMenu](context: ActionAugments, payload: string): void;
+
 }
 
 export const actions: ActionTree<State, State> & Actions = {
@@ -46,10 +49,10 @@ export const actions: ActionTree<State, State> & Actions = {
   async [ActionTypes.getMenus]({ commit, dispatch }) {
     commit(MutationType.SetLoading, true);
     const menus = await ApiService.getRestaurantMenus();
+    commit(MutationType.SetRestaurantMenus, menus);
     dispatch(ActionTypes.getDietaries, menus[0]);
     dispatch(ActionTypes.getMenu, menus[0]);
     dispatch(ActionTypes.getCategories, menus[0]);
-    commit(MutationType.SetRestaurantMenus, menus);
     commit(MutationType.SetLoading, false);
   },
   async [ActionTypes.getDietaries]({ commit }, payload) {
@@ -86,4 +89,15 @@ export const actions: ActionTree<State, State> & Actions = {
     commit(MutationType.SetFilteredMenuItems, dietaries);
     commit(MutationType.SetLoading, false);
   },
+  async [ActionTypes.postMenu]({ dispatch, commit }, payload) {
+    commit(MutationType.SetLoading, true);
+    const menus = await ApiService.postMenu(payload);
+    commit(MutationType.SetRestaurantMenus, menus);
+    dispatch(ActionTypes.getDietaries, menus[0]);
+    dispatch(ActionTypes.getMenu, menus[0]);
+    dispatch(ActionTypes.getCategories, menus[0]);
+    commit(MutationType.SetLoading, false);
+    dispatch(ActionTypes.getMenus, undefined);
+  },
+
 };

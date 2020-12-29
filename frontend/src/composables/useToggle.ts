@@ -1,6 +1,11 @@
-import { ref } from 'vue';
+import { ref, Ref } from 'vue';
 
-export default () => {
+interface UseToggle {
+  isShowing: Ref<boolean>;
+  toggleIsShowing: () => void;
+}
+
+export default (): UseToggle => {
   const isShowing = ref(false);
   const toggleIsShowing = () => {
     isShowing.value = !isShowing.value;

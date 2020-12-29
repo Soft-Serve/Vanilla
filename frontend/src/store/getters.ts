@@ -16,6 +16,7 @@ export type Getters = {
   category(state: State): MenuCategory;
   items(state: State): ItemsCollection;
   dietaries(state: State): DietaryCollection;
+  loading(state: State): boolean;
 }
 
 export const getters: GetterTree<State, State> & Getters = {
@@ -39,5 +40,8 @@ export const getters: GetterTree<State, State> & Getters = {
   },
   dietaries(state) {
     return state.dietaries;
+  },
+  loading(state) {
+    return state.loading;
   },
 };

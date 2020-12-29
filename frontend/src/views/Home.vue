@@ -14,8 +14,8 @@
         Allergies
       </BaseButton>
     </BaseWrapper>
-    <p v-if="loading">loading...</p>
-    <BaseWrapper v-if="items.filteredCollection.length && !loading">
+    <p v-if="isLoading">loading...</p>
+    <BaseWrapper v-if="items.filteredCollection.length && !isLoading">
       <BaseCard :dividerStyles="'border-0'" v-for="item in items.filteredCollection" :key="item.id">
         <template #heading>
            <div class="w-full flex justify-start items-end">
@@ -82,11 +82,11 @@ export default defineComponent({
     const {
       handleCategoryChange,
       categories,
-      loading,
       category,
       store,
       activeDietaries,
       items,
+      isLoading,
     } = useApi();
 
     const { counter, increment, decrement } = useCounter();
@@ -98,18 +98,18 @@ export default defineComponent({
     };
 
     onUpdated(() => {
-      items.value.collection.forEach((item: MenuItem) => item.fetchAllergies(item));
+      items.collection.forEach((item: MenuItem) => item.fetchAllergies(item));
     });
 
+
     watch(activeDietaries, (selectedDietaries) => {
-      const filteredItems = items.value.filterItemsByDietaries(selectedDietaries);
+      const filteredItems = items.filterItemsByDietaries(selectedDietaries);
       store.commit(MutationType.SetLoading, true);
       store.commit(MutationType.SetFilteredMenuItems, filteredItems);
       store.commit(MutationType.SetLoading, false);
     }, { immediate: true, deep: true });
 
     return {
-      loading,
       categories,
       BUTTONSTYLES,
       items,
@@ -123,6 +123,7 @@ export default defineComponent({
       counter,
       increment,
       decrement,
+      isLoading,
     };
   },
 

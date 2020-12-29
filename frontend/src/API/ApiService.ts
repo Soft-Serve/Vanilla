@@ -12,6 +12,11 @@ interface User {
   password: string;
 }
 
+export interface MenuPost {
+  name: string;
+  restaurant_id: number;
+}
+
 export default class ApiService {
   private static restaurantService = Axios.create({
     baseURL: 'http://localhost:3091',
@@ -62,6 +67,12 @@ export default class ApiService {
   static async getRestaurantDietaries(restaurant: Restaurant): Promise<ItemDietary[]> {
     return this.restaurantService.get(`/api/restaurants/${restaurant.id}/dietaries`)
       .then((response) => response.data.map((result: ItemDietary) => new ItemDietary(result)));
+  }
+
+  static async postMenu(menu: string): Promise<RestaurantMenu[]> {
+    return this.restaurantService.post('/api/menus', menu)
+      .then(() => this.restaurantService.get('/api/restaurants/1/menus')
+        .then((response) => response.data.map((result: RestaurantMenu) => new RestaurantMenu(result))));
   }
 
   static async loginUser(user: Record<string, User>): Promise<any> {
