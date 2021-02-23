@@ -13,7 +13,7 @@ interface Query {
 
 const GET_MENUS = gql`
   query menus {
-    menus @rest(type: Menus, path: "restaurants/1/menus/") {
+    menus @rest(type: Menu, path: "restaurants/1/menus/") {
       id
       name
       restaurant_id
@@ -21,7 +21,7 @@ const GET_MENUS = gql`
   }
 `;
 
-const useMenu = () => {
+const useMenus = () => {
   const { data, loading, error } = useQuery<Query>(GET_MENUS);
 
   return {
@@ -31,4 +31,4 @@ const useMenu = () => {
   };
 };
 
-export { useMenu };
+export default useMenus;
