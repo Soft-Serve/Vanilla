@@ -14,7 +14,7 @@ interface Query {
 
 const GET_MENUS = gql`
   query menus {
-    menus @rest(type: Menu, path: "restaurants/1/menus/") {
+    menus @rest(type: Menus, path: "restaurants/1/menus/") {
       id
       name
       restaurant_id

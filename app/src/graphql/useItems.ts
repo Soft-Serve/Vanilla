@@ -9,6 +9,7 @@ export interface Item {
   description: string;
   menu_category_id: number;
   photo: Photo;
+  __typename: string;
 }
 
 interface Query {
@@ -18,7 +19,7 @@ interface Query {
 const GET_ITEMS = gql`
   query items($id: Int!) {
     items(id: $id)
-      @rest(type: Item, path: "menu_categories/{args.id}/menu_items") {
+      @rest(type: Items, path: "menu_categories/{args.id}/menu_items") {
       id
       name
       description

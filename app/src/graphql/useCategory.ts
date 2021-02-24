@@ -6,6 +6,7 @@ interface Category {
   name: string;
   category_type: string;
   menu_id: number;
+  __typename: string;
 }
 
 interface Query {
@@ -14,7 +15,7 @@ interface Query {
 
 const GET_CATEGORY = gql`
   query category($id: Int!) {
-    category(id: $id) @rest(type: Menu, path: "menu_categories/{args.id}") {
+    category(id: $id) @rest(type: Category, path: "menu_categories/{args.id}") {
       id
       name
       menu_id

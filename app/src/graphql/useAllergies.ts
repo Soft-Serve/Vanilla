@@ -2,6 +2,7 @@ import gql from "graphql-tag";
 import { useQuery } from "react-apollo";
 
 interface Dietary {
+  __typename: string;
   id: number;
   name: string;
   menu_item_id: number;
@@ -14,7 +15,7 @@ interface Query {
 const GET_ALLERGIES = gql`
   query allergies($id: Int!) {
     allergies(id: $id)
-      @rest(type: Dietary, path: "restaurants/{args.id}/dietaries") {
+      @rest(type: Allergies, path: "restaurants/{args.id}/dietaries") {
       id
       name
       menu_item_id

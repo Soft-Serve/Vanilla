@@ -6,6 +6,7 @@ interface Dietary {
   name: string;
   menu_item_id: number;
   dietary_id: number;
+  __typename: string;
 }
 
 interface Query {
@@ -15,7 +16,7 @@ interface Query {
 const GET_DIETARIES = gql`
   query dietaries($id: Int!) {
     dietaries(id: $id)
-      @rest(type: Dietary, path: "menu_items/{args.id}/dietary_instances") {
+      @rest(type: Dietaries, path: "menu_items/{args.id}/dietary_instances") {
       id
       name
       menu_item_id
