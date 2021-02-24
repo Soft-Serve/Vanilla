@@ -5,6 +5,7 @@ interface Menu {
   id: number;
   name: string;
   restaurant_id: number;
+  __typename: string;
 }
 
 interface Query {

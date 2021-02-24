@@ -24,10 +24,10 @@ const GET_CATEGORIES = gql`
   }
 `;
 
-const useCategories = (id: number) => {
+const useCategories = (menuId: number) => {
   const { data, loading, error } = useQuery<Query>(GET_CATEGORIES, {
     variables: {
-      id,
+      menuId,
     },
   });
 
