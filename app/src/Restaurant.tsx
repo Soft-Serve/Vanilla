@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from "react";
 // import useMenu from "./graphql/useMenu";
 // import useMenus from "./graphql/useMenus";
-// import { useRestaurant } from "./graphql/useRestaurant";
+// import useRestaurant from "./graphql/useRestaurant";
 // import useCategories from "./graphql/useCategories";
 // import useCategory from "./graphql/useCategory";
 
@@ -10,9 +10,9 @@ import React, { FC, useEffect } from "react";
 import useAllergies from "./graphql/useAllergies";
 
 const Restaurant: FC = () => {
-  // const { data, error, loading, restaurantName } = useRestaurant();
+  const { data, error, loading } = useAllergies(1);
+  // const { data, loading, error } = useMenu(1);
   // const { data, loading, error } = useMenus();
-  const { data, loading, error } = useAllergies(1);
   useEffect(() => {
     console.log(data);
   }, [data]);
@@ -25,11 +25,11 @@ const Restaurant: FC = () => {
   }
   return (
     <ul>
-      <li>
-        {data?.allergies.map((menu) => (
+      {/* <li>
+        {data?.dietaries.map((menu) => (
           <span key={menu.id}>{menu.name}</span>
         ))}
-      </li>
+      </li> */}
       {/* <li>{data?.category.name}</li> */}
     </ul>
   );

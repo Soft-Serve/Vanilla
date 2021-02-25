@@ -14,12 +14,14 @@ interface Query {
 }
 
 const GET_CATEGORY = gql`
-  query category($id: Int!) {
-    category(id: $id) @rest(type: Category, path: "menu_categories/{args.id}") {
+  query category($categoryId: Int!) {
+    category(categoryId: $categoryId)
+      @rest(type: Category, path: "menu_categories/{args.categoryId}") {
       id
       name
       menu_id
       category_type
+      __typename
     }
   }
 `;

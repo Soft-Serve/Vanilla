@@ -13,13 +13,12 @@ interface Query {
 }
 
 const GET_ALLERGIES = gql`
-  query allergies($id: Int!) {
-    allergies(id: $id)
-      @rest(type: Allergies, path: "restaurants/{args.id}/dietaries") {
+  query allergies($restaurantId: Int!) {
+    allergies(restaurantId: $restaurantId)
+      @rest(type: Dietary, path: "restaurants/{args.restaurantId}/dietaries") {
       id
       name
-      menu_item_id
-      dietary_id
+      __typename
     }
   }
 `;

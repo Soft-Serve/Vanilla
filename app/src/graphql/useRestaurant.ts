@@ -22,6 +22,7 @@ const GET_RESTAURANT = gql`
       currency
       primary_colour
       secondary_colour
+      __typename
     }
   }
 `;

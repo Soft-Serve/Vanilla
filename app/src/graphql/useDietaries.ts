@@ -14,9 +14,12 @@ interface Query {
 }
 
 const GET_DIETARIES = gql`
-  query dietaries($id: Int!) {
-    dietaries(id: $id)
-      @rest(type: Dietaries, path: "menu_items/{args.id}/dietary_instances") {
+  query dietaries($itemId: Int!) {
+    dietaries(itemId: $itemId)
+      @rest(
+        type: Dietaries
+        path: "menu_items/{args.itemId}/dietary_instances"
+      ) {
       id
       name
       menu_item_id
