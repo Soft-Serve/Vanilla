@@ -1,4 +1,5 @@
 import React, { FC, useEffect } from "react";
+import { Button } from "./components/Button/Button";
 // import useMenu from "./graphql/useMenu";
 // import useMenus from "./graphql/useMenus";
 // import useRestaurant from "./graphql/useRestaurant";
@@ -24,15 +25,9 @@ const Restaurant: FC = () => {
     return <h4>{error.message}</h4>;
   }
   return (
-    <ul>
-      {/* <li>
-        {data?.dietaries.map((menu) => (
-          <span key={menu.id}>{menu.name}</span>
-        ))}
-      </li> */}
-      {/* <li>{data?.category.name}</li> */}
-    </ul>
+    <div>
+      <Button size="LG">hello</Button>
+    </div>
   );
 };
-
 export default Restaurant;

@@ -28,7 +28,7 @@
     "react-apollo": "^3.1.5",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.2",
-    "tailwindcss": "2.x",
+    "tailwindcss": "^2.0.3",
     "typescript": "4.x"
   },
   "scripts": {
@@ -55,5 +55,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {}
 }
