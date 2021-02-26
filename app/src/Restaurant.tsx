@@ -8,7 +8,7 @@ import { Button } from "./components/Button/Button";
 
 // import useItems from "./graphql/useItems";
 // import useDietaries from "./graphql/useDietaries";
-import useAllergies from "./graphql/useAllergies";
+import useAllergies from "./graphql/queries/useAllergies";
 
 const Restaurant: FC = () => {
   const { data, error, loading } = useAllergies(1);
