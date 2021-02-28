@@ -31,8 +31,20 @@ const POST_MENU = gql`
   }
 `;
 
+const DELETE_MENU = gql`
+  mutation DeleteMenu($input: input) {
+    deleteMenu(input: $input)
+      @rest(type: Menu, path: "menus/{args.input.id}", method: "DELETE") {
+      id
+      name
+      restaurant_id
+    }
+  }
+`;
+
 const useMenus = () => {
   const { data, loading, error } = useQuery<Query>(GET_MENUS);
+
   const [addMenu] = useMutation(POST_MENU, {
     update(cache, { data: { postMenu } }) {
       const { menus } = cache.readQuery({ query: GET_MENUS }) as Query;
@@ -44,11 +56,25 @@ const useMenus = () => {
       });
     },
   });
+
+  const [removeMenu] = useMutation(DELETE_MENU, {
+    update(cache, { data: { deleteMenu } }) {
+      const { menus } = cache.readQuery({ query: GET_MENUS }) as Query;
+      cache.writeQuery({
+        query: GET_MENUS,
+        data: {
+          menus: [deleteMenu, ...menus],
+        },
+      });
+    },
+  });
+
   return {
     data,
     loading,
     error,
     addMenu,
+    removeMenu,
   };
 };
 
