@@ -1,33 +1,59 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { ApolloProvider } from "react-apollo";
-import Restaurant from "./Restaurant";
-import { Grid } from "./components/Grid/Grid";
 import { client } from "./client";
-import { Card } from "./components/Card/Card";
-import { Title } from "./components/Title/Title";
-import { Button } from "./components/Button/Button";
-
-const CardActions: FC = () => {
-  return (
-    <div className="-mt-px flex divide-x divide-gray-200">
-      <div className="w-0 flex-1 flex p-4">
-        <Button>hello</Button>
-      </div>
-    </div>
-  );
-};
+import useMenus from "./graphql/queries/useMenus";
+import useRestaurant from "./graphql/queries/useRestaurant";
 
 const App: FC = () => {
+  const { data, loading, error, addMenu } = useMenus();
+  const { data: restaurantData } = useRestaurant();
+
+  const [value, setValue] = useState("");
+
+  const input = {
+    name: value,
+    restaurant_id: restaurantData?.restaurant.id,
+    id: 0,
+  };
+  if (loading) {
+    return <p>loading</p>;
+  }
+  if (error) {
+    return <p> error </p>;
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1 className="App-title">Welcome to Apollo Rest Link Example</h1>
-      </header>
-      <Restaurant />
-      <Grid />
-      <Card actions={<CardActions />}>Body</Card>
-      <Title type={1}>title</Title>
-    </div>
+    <>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          addMenu({
+            variables: { input },
+            optimisticResponse: {
+              __typename: "Mutation",
+              postMenu: {
+                __typename: "Menu",
+                name: input.name,
+                id: 0,
+                restaurant_id: restaurantData?.restaurant.id,
+              },
+            },
+          });
+          setValue("");
+        }}
+      >
+        <input
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          type="text"
+        />
+        <input type="submit" value="submit" />
+      </form>
+      <ul>
+        {data?.menus.map((menu) => (
+          <li key={menu.id}>{menu.name}</li>
+        ))}
+      </ul>
+    </>
   );
 };
 
