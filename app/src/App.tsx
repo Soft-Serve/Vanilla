@@ -52,7 +52,7 @@ const App: FC = () => {
       <ul>
         {data?.menus.map((input) => (
           <li key={input.id}>
-            {input.name}{" "}
+            <input type="text" value={input.name} readOnly={false} />
             <button
               onClick={() =>
                 removeMenu({
@@ -72,6 +72,7 @@ const App: FC = () => {
             >
               delete
             </button>
+            <button className="bg-blue-500">update</button>
           </li>
         ))}
       </ul>
