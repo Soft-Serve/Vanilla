@@ -22,7 +22,7 @@ const GET_MENUS = gql`
 `;
 
 const POST_MENU = gql`
-  mutation PostMenu($input: input) {
+  mutation PostMenu($input: MenuInput) {
     postMenu(input: $input) @rest(type: Menu, path: "/menus", method: "POST") {
       id
       name
@@ -32,7 +32,7 @@ const POST_MENU = gql`
 `;
 
 const DELETE_MENU = gql`
-  mutation DeleteMenu($input: input) {
+  mutation DeleteMenu($input: MenuInput) {
     deleteMenu(input: $input)
       @rest(type: Menu, path: "menus/{args.input.id}", method: "DELETE") {
       id
@@ -58,12 +58,13 @@ const useMenus = () => {
   });
 
   const [removeMenu] = useMutation(DELETE_MENU, {
-    update(cache, { data: { deleteMenu } }) {
+    update(cache, { data }) {
       const { menus } = cache.readQuery({ query: GET_MENUS }) as Query;
+      console.log(data.deleteMenu);
       cache.writeQuery({
         query: GET_MENUS,
         data: {
-          menus: [deleteMenu, ...menus],
+          menus: menus.filter((menu) => menu.id !== data.deleteMenu.id),
         },
       });
     },

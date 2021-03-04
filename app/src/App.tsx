@@ -14,6 +14,7 @@ const App: FC = () => {
     name: value,
     restaurant_id: restaurantData?.restaurant.id,
     id: 0,
+    __typename: "Menu",
   };
   if (loading) {
     return <p>loading</p>;
@@ -58,7 +59,7 @@ const App: FC = () => {
                   variables: { input },
                   optimisticResponse: {
                     __typename: "Mutation",
-                    postMenu: {
+                    deleteMenu: {
                       __typename: "Menu",
                       name: input.name,
                       id: input.id,
