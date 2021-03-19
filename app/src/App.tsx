@@ -1,44 +1,45 @@
 import React, { FC, useState } from "react";
 import { ApolloProvider } from "react-apollo";
 import { client } from "./client";
-import useMenus from "./graphql/queries/useMenus";
+import { Menu, useMenus } from "./graphql/useMenus";
 import useRestaurant from "./graphql/queries/useRestaurant";
+//
+// import useCategories from "./graphql/queries/useCategories";
+// import { useMenuItems } from "./graphql/useMenuItems";
 
 const App: FC = () => {
-  const { data, loading, error, addMenu, removeMenu } = useMenus();
+  const { menus, loading, error, setMenu, deleteMenu } = useMenus();
   const { data: restaurantData } = useRestaurant();
+  // const { data: menuItem } = useMenuItems(2);
+  // console.log(menuItem);
 
   const [value, setValue] = useState("");
 
-  const input = {
-    name: value,
-    restaurant_id: restaurantData?.restaurant.id,
-    id: 0,
-    __typename: "Menu",
-  };
+  // const { data: categoriesQuery } = useCategories(data?.menus[0].id!!);
+  // const { data: itemsQuery } = useMenuItems(
+  //   categoriesQuery?.categories[1].id!!
+  // );
+
   if (loading) {
     return <p>loading</p>;
   }
   if (error) {
     return <p> error </p>;
   }
+
+  const input = {
+    name: value,
+    restaurant_id: restaurantData?.restaurant.id,
+    id: 0,
+    __typename: "Menu",
+  } as Menu;
+
   return (
     <>
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          addMenu({
-            variables: { input },
-            optimisticResponse: {
-              __typename: "Mutation",
-              postMenu: {
-                __typename: "Menu",
-                name: input.name,
-                id: 0,
-                restaurant_id: restaurantData?.restaurant.id,
-              },
-            },
-          });
+          setMenu(input);
           setValue("");
         }}
       >
@@ -50,29 +51,12 @@ const App: FC = () => {
         <input type="submit" value="submit" />
       </form>
       <ul>
-        {data?.menus.map((input) => (
+        {menus?.menus.map((input) => (
           <li key={input.id}>
-            <input type="text" value={input.name} readOnly={false} />
-            <button
-              onClick={() =>
-                removeMenu({
-                  variables: { input },
-                  optimisticResponse: {
-                    __typename: "Mutation",
-                    deleteMenu: {
-                      __typename: "Menu",
-                      name: input.name,
-                      id: input.id,
-                      restaurant_id: restaurantData?.restaurant.id,
-                    },
-                  },
-                })
-              }
-              className="bg-red-500"
-            >
+            {input.name}
+            <button onClick={() => deleteMenu(input)} className="bg-red-500">
               delete
             </button>
-            <button className="bg-blue-500">update</button>
           </li>
         ))}
       </ul>
