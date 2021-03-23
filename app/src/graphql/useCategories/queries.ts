@@ -14,9 +14,9 @@ export const GET_CATEGORIES = gql`
 `;
 
 export const GET_CATEGORY = gql`
-  query category($categoryId: Int!) {
-    category(categoryId: $categoryId)
-      @rest(type: Category, path: "menu_categories/{args.categoryId}") {
+  query category($categoryID: Int!) {
+    category(categoryID: $categoryID)
+      @rest(type: Category, path: "menu_categories/{args.categoryID}") {
       id
       name
       menu_id

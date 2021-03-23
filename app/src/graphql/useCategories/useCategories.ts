@@ -19,12 +19,12 @@ const useCategories = (menuID: number) => {
     }
   );
 
-  const useGetCategory = (categoryId: number) => {
+  const useGetCategory = (categoryID: number) => {
     const { data: category, loading, error } = useQuery<CategoryQuery>(
       GET_CATEGORY,
       {
         variables: {
-          categoryId,
+          categoryID,
         },
       }
     );
