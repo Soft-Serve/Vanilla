@@ -1,31 +1,16 @@
+import { useMutation, useQuery } from "react-apollo";
 import { DELETE_MENU, POST_MENU } from "./mutations";
 import { GET_MENU, GET_MENUS } from "./queries";
-import { useMutation, useQuery } from "react-apollo";
 import {
   MenuQuery,
   Variables,
   PostMenuMutationData,
   DeleteMenuMutationData,
   Menu,
-} from "./index";
+} from ".";
 
 const useMenus = () => {
   const { data: menus, loading, error } = useQuery<MenuQuery>(GET_MENUS);
-
-  const [removeMenu] = useMutation<DeleteMenuMutationData, Variables>(
-    DELETE_MENU,
-    {
-      update(cache, { data }) {
-        const { menus } = cache.readQuery({ query: GET_MENUS }) as MenuQuery;
-        cache.writeQuery({
-          query: GET_MENUS,
-          data: {
-            menus: menus.filter((menu) => menu.id !== data?.deleteMenu.id),
-          },
-        });
-      },
-    }
-  );
 
   const useGetMenu = (menuID: number) => {
     const { data: menu, loading, error } = useQuery<MenuQuery>(GET_MENU, {
@@ -61,10 +46,25 @@ const useMenus = () => {
           name: input.name,
           id: input.id,
           restaurant_id: input.restaurant_id,
-          __typename: "Menu",
+          __typename: input.__typename,
         },
       },
     });
+
+  const [removeMenu] = useMutation<DeleteMenuMutationData, Variables>(
+    DELETE_MENU,
+    {
+      update(cache, { data }) {
+        const { menus } = cache.readQuery({ query: GET_MENUS }) as MenuQuery;
+        cache.writeQuery({
+          query: GET_MENUS,
+          data: {
+            menus: menus.filter((menu) => menu.id !== data?.deleteMenu.id),
+          },
+        });
+      },
+    }
+  );
 
   const deleteMenu = (input: Menu) =>
     removeMenu({
@@ -75,7 +75,7 @@ const useMenus = () => {
           name: input.name,
           id: input.id,
           restaurant_id: input.restaurant_id,
-          __typename: "Menu",
+          __typename: input.__typename,
         },
       },
     });

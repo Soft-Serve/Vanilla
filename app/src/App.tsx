@@ -3,12 +3,13 @@ import { ApolloProvider } from "react-apollo";
 import { client } from "./client";
 import { Menu, useMenus } from "./graphql/useMenus";
 import useRestaurant from "./graphql/queries/useRestaurant";
-//
+import { useCategories, Category } from "./graphql/useCategories";
 // import useCategories from "./graphql/queries/useCategories";
 // import { useMenuItems } from "./graphql/useMenuItems";
 
 const App: FC = () => {
   const { menus, loading, error, setMenu, deleteMenu } = useMenus();
+  const { categories, setCategory, deleteCategory } = useCategories(2);
   const { data: restaurantData } = useRestaurant();
   // const { data: menuItem } = useMenuItems(2);
   // console.log(menuItem);
@@ -27,19 +28,27 @@ const App: FC = () => {
     return <p> error </p>;
   }
 
+  // const input = {
+  //   name: value,
+  //   restaurant_id: restaurantData?.restaurant.id,
+  //   id: 0,
+  //   __typename: "Menu",
+  // } as Menu;
+
   const input = {
     name: value,
-    restaurant_id: restaurantData?.restaurant.id,
+    menu_id: menus?.menus[1].id,
+    category_type: "food",
     id: 0,
-    __typename: "Menu",
-  } as Menu;
+    __typename: "Category",
+  } as Category;
 
   return (
     <>
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          setMenu(input);
+          setCategory(input);
           setValue("");
         }}
       >
@@ -50,11 +59,24 @@ const App: FC = () => {
         />
         <input type="submit" value="submit" />
       </form>
-      <ul>
+      {/* <ul>
         {menus?.menus.map((input) => (
           <li key={input.id}>
             {input.name}
             <button onClick={() => deleteMenu(input)} className="bg-red-500">
+              delete
+            </button>
+          </li>
+        ))}
+      </ul> */}
+      <ul>
+        {categories?.categories.map((input) => (
+          <li key={input.id}>
+            {input.name}
+            <button
+              onClick={() => deleteCategory(input)}
+              className="bg-red-500"
+            >
               delete
             </button>
           </li>
