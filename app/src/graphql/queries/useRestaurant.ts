@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 import { useQuery } from "react-apollo";
 
-interface Restaurant {
+export interface Restaurant {
   __typename: string;
   id: number;
   name: string;
