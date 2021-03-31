@@ -7,7 +7,7 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   colour?: "PRIMARY" | "ACCENT" | "NAKED";
 }
 
-const BASE = `inline d-flex items-center border border-transparent font-medium shadow-sm focus:outline-none h-full w-full`;
+const BASE = `inline d-flex items-center border border-transparent font-medium shadow-sm focus:outline-none h-full `;
 const S = `px-2.5 py-1.5 text-xs rounded`;
 const M = `px-3 py-2 text-sm leading-4 rounded-md`;
 const LG = `px-4 py-2 text-sm rounded-md`;
