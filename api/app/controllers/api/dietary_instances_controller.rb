@@ -26,7 +26,7 @@ module Api
       ).call
 
       if result.successful?
-        head :no_content
+        render json: serialize(result.value)
       else
         render json: result.errors, status: :unprocessable_entity
       end
