@@ -8,7 +8,11 @@ import { Tab } from "../Tab/Tab";
 import { Tabs } from "../Tabs/Tabs";
 import { SlideOver } from "../SlideOver/SlideOver";
 
-const Page: FC = () => {
+interface Props {
+  restaurantID: number;
+}
+
+const Page: FC<Props> = ({ restaurantID }) => {
   const { menus, error, loading } = useMenus();
   const [activeMenu, setActiveMenu] = useState(menus?.menus[0].id);
   const [isSlideOverOpen, setIsSlideOverOpen] = useState(false);
@@ -38,6 +42,7 @@ const Page: FC = () => {
         <div style={{ height: "8px" }}></div>
         <Categories menuID={activeMenu ? activeMenu : 1} />
         <SlideOver
+          restaurantID={restaurantID}
           setIsSlideOverOpen={setIsSlideOverOpen}
           isSlideOverOpen={isSlideOverOpen}
         />

@@ -7,7 +7,7 @@ import useRestaurant from "./graphql/queries/useRestaurant";
 const App: FC = () => {
   const { data, error, loading } = useRestaurant();
   if (loading) return <p>loading</p>;
-  if (data?.restaurant) return <Page />;
+  if (data?.restaurant) return <Page restaurantID={data?.restaurant?.id} />;
   return <p>{error?.message}</p>;
 };
 
