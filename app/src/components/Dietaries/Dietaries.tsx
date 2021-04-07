@@ -9,7 +9,7 @@ const Dietaries: FC<Props> = ({ itemID }) => {
   return (
     <div>
       {dietaries?.dietaries.map((dietary) => (
-        <p>{dietary.name}</p>
+        <p key={dietary.id}>{dietary.name}</p>
       ))}
     </div>
   );

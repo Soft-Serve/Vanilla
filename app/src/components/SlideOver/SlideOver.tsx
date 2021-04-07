@@ -1,21 +1,19 @@
-import React, { FC, SetStateAction, useState } from "react";
+import React, { FC, SetStateAction, useContext } from "react";
 import { Transition } from "@headlessui/react";
 import { Button } from "../Button/Button";
 import { Toggle } from "../Toggle/Toggle";
-import useAllergies from "../../graphql/queries/useAllergies";
+import { AllergyContext } from "../../contexts/AllergyContext";
+import { AllergyContextData } from "../../contexts/AllergyContext/AllergyContext";
 interface Props {
   isSlideOverOpen: boolean;
   setIsSlideOverOpen: (value: SetStateAction<boolean>) => void;
   restaurantID: number;
 }
 
-const SlideOver: FC<Props> = ({
-  isSlideOverOpen,
-  setIsSlideOverOpen,
-  restaurantID,
-}) => {
-  const [enabled, setEnabled] = useState(false);
-  const { data } = useAllergies(restaurantID);
+const SlideOver: FC<Props> = ({ isSlideOverOpen, setIsSlideOverOpen }) => {
+  const { addAllergy, removeAllergy, data, isAllergyActive } = useContext(
+    AllergyContext
+  ) as AllergyContextData;
 
   if (isSlideOverOpen) {
     return (
@@ -59,9 +57,9 @@ const SlideOver: FC<Props> = ({
                               aria-hidden="true"
                             >
                               <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
                                 d="M6 18L18 6M6 6l12 12"
                               />
                             </svg>
@@ -74,9 +72,14 @@ const SlideOver: FC<Props> = ({
                           {data?.allergies.map((allergy) => (
                             <div key={allergy.id}>
                               <Toggle
-                                setEnabled={setEnabled}
-                                enabled={enabled}
-                              />{" "}
+                                allergy={allergy}
+                                isEnabled={isAllergyActive(allergy)}
+                                setIsEnabled={
+                                  isAllergyActive(allergy)
+                                    ? removeAllergy
+                                    : addAllergy
+                                }
+                              />
                               <span>{allergy.name}</span>
                             </div>
                           ))}

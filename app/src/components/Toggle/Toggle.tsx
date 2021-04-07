@@ -1,10 +1,12 @@
-import React, { FC, SetStateAction } from "react";
+import React, { FC } from "react";
+import { Dietary } from "../../graphql/useAllergies/types";
 
 interface Props {
-  enabled: boolean;
-  setEnabled: (value: SetStateAction<boolean>) => void;
+  isEnabled: boolean;
+  setIsEnabled: (allergy: Dietary) => void;
+  allergy: Dietary;
 }
-const Toggle: FC<Props> = ({ enabled, setEnabled }) => {
+const Toggle: FC<Props> = ({ isEnabled, setIsEnabled, allergy }) => {
   const BASE = `relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`;
   const DISABLED = `bg-gray-200`;
   const ENABLED = `bg-indigo-600`;
@@ -23,20 +25,20 @@ const Toggle: FC<Props> = ({ enabled, setEnabled }) => {
 
   return (
     <button
-      onClick={() => setEnabled((prevState) => (prevState = !prevState))}
+      onClick={() => setIsEnabled(allergy)}
       type="button"
-      className={`${BASE} ${enabled ? ENABLED : DISABLED}`}
+      className={`${BASE} ${isEnabled ? ENABLED : DISABLED}`}
       aria-pressed="false"
     >
       <span className="sr-only">Use setting</span>
       <span
         className={`${BUTTON_WRAPPER} ${
-          enabled ? BUTTON_WRAPPER_ENABLED : BUTTON_WRAPPER_DISBLED
+          isEnabled ? BUTTON_WRAPPER_ENABLED : BUTTON_WRAPPER_DISBLED
         }`}
       >
         <span
           className={`${BUTTON_ON} ${
-            enabled ? BUTTON_ON_ENABLED : BUTTON_ON_DISABLED
+            isEnabled ? BUTTON_ON_ENABLED : BUTTON_ON_DISABLED
           }`}
           aria-hidden="true"
         >
@@ -48,16 +50,15 @@ const Toggle: FC<Props> = ({ enabled, setEnabled }) => {
             <path
               d="M4 8l2-2m0 0l2-2M6 6L4 4m2 2l2 2"
               stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
         </span>
-        {/* <!-- Enabled: "", Not Enabled: "" --> */}
         <span
           className={`${BUTTON_OFF} ${
-            enabled ? BUTTON_OFF_ENABLED : BUTTON_OFF_DISABLED
+            isEnabled ? BUTTON_OFF_ENABLED : BUTTON_OFF_DISABLED
           }`}
           aria-hidden="true"
         >

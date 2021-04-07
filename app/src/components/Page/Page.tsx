@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useContext, useState } from "react";
 import { Button } from "../Button/Button";
 import { Container } from "../Container/Container";
 import { useMenus } from "../../graphql/useMenus";
@@ -7,6 +7,8 @@ import { PageHeader } from "./PageHeader/PageHeader";
 import { Tab } from "../Tab/Tab";
 import { Tabs } from "../Tabs/Tabs";
 import { SlideOver } from "../SlideOver/SlideOver";
+import { useAllergyContext } from "../../contexts/AllergyContext/useAllergyContext";
+import { AllergyContext } from "../../contexts/AllergyContext";
 
 interface Props {
   restaurantID: number;
