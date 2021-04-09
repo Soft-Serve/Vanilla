@@ -1,17 +1,17 @@
-import React, { FC, useState } from "react";
+import React, { FC, useContext } from "react";
+import { GlobalContext, GlobalContextData } from "../../contexts/GlobalContext";
 import { useCategories } from "../../graphql/useCategories";
 import { Button } from "../Button/Button";
 import { Container } from "../Container/Container";
 import { Grid } from "../Grid/Grid";
 import { Items } from "../Items/Items";
 
-interface Props {
-  menuID: number;
-}
-const Categories: FC<Props> = ({ menuID }) => {
-  const { categories, error, loading } = useCategories(menuID);
-  const [activeCategory, setActiveCategory] = useState(
-    categories?.categories[0].id
+const Categories: FC = () => {
+  const { activeMenuID, activeCategoryID, setActiveCategoryID } = useContext(
+    GlobalContext
+  ) as GlobalContextData;
+  const { categories, error, loading } = useCategories(
+    activeMenuID ? activeMenuID : 0
   );
 
   if (loading) return <p>loading</p>;
@@ -21,7 +21,7 @@ const Categories: FC<Props> = ({ menuID }) => {
         <Grid size="LG" mobileColumns={3}>
           {categories.categories.map((category) => (
             <Button
-              onClick={() => setActiveCategory(category.id)}
+              onClick={() => setActiveCategoryID(category.id)}
               key={category.id}
             >
               {category.name}
@@ -29,7 +29,7 @@ const Categories: FC<Props> = ({ menuID }) => {
           ))}
         </Grid>
 
-        <Items categoryID={activeCategory ? activeCategory : 1} />
+        {activeCategoryID && <Items categoryID={activeCategoryID} />}
       </Container>
     );
   }

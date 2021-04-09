@@ -2,8 +2,11 @@ import React, { FC, SetStateAction, useContext } from "react";
 import { Transition } from "@headlessui/react";
 import { Button } from "../Button/Button";
 import { Toggle } from "../Toggle/Toggle";
-import { AllergyContext } from "../../contexts/AllergyContext";
-import { AllergyContextData } from "../../contexts/AllergyContext/AllergyContext";
+import {
+  AllergyContext,
+  AllergyContextData,
+} from "../../contexts/AllergyContext";
+
 interface Props {
   isSlideOverOpen: boolean;
   setIsSlideOverOpen: (value: SetStateAction<boolean>) => void;

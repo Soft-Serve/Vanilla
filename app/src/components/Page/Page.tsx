@@ -7,17 +7,14 @@ import { PageHeader } from "./PageHeader/PageHeader";
 import { Tab } from "../Tab/Tab";
 import { Tabs } from "../Tabs/Tabs";
 import { SlideOver } from "../SlideOver/SlideOver";
-import { useAllergyContext } from "../../contexts/AllergyContext/useAllergyContext";
-import { AllergyContext } from "../../contexts/AllergyContext";
+import { GlobalContext, GlobalContextData } from "../../contexts/GlobalContext";
 
-interface Props {
-  restaurantID: number;
-}
-
-const Page: FC<Props> = ({ restaurantID }) => {
+const Page: FC = () => {
   const { menus, error, loading } = useMenus();
-  const [activeMenu, setActiveMenu] = useState(menus?.menus[0].id);
   const [isSlideOverOpen, setIsSlideOverOpen] = useState(false);
+  const { activeRestaurantID, activeMenuID, setActiveMenuID } = useContext(
+    GlobalContext
+  ) as GlobalContextData;
 
   if (loading) return <p>loading</p>;
   if (menus?.menus) {
@@ -30,7 +27,7 @@ const Page: FC<Props> = ({ restaurantID }) => {
               return (
                 <Tab key={menu.id}>
                   <Button
-                    onClick={() => setActiveMenu(menu.id)}
+                    onClick={() => setActiveMenuID(menu.id)}
                     colour="NAKED"
                     size="XXL"
                   >
@@ -42,12 +39,14 @@ const Page: FC<Props> = ({ restaurantID }) => {
           </Tabs>
         </Container>
         <div style={{ height: "8px" }}></div>
-        <Categories menuID={activeMenu ? activeMenu : 1} />
-        <SlideOver
-          restaurantID={restaurantID}
-          setIsSlideOverOpen={setIsSlideOverOpen}
-          isSlideOverOpen={isSlideOverOpen}
-        />
+        {activeMenuID && <Categories />}
+        {activeRestaurantID && (
+          <SlideOver
+            restaurantID={activeRestaurantID}
+            setIsSlideOverOpen={setIsSlideOverOpen}
+            isSlideOverOpen={isSlideOverOpen}
+          />
+        )}
       </>
     );
   }
