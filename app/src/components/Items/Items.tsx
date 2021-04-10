@@ -1,16 +1,16 @@
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
+import { GlobalContext, GlobalContextData } from "../../contexts/GlobalContext";
 import useItems from "../../graphql/useItems/useItems";
 import { Card } from "../Card/Card";
 import { Container } from "../Container/Container";
 import { Dietaries } from "../Dietaries/Dietaries";
 import { Grid } from "../Grid/Grid";
 
-interface Props {
-  categoryID: number;
-}
-
-const Items: FC<Props> = ({ categoryID }) => {
-  const { items, error, loading } = useItems(categoryID);
+const Items: FC = () => {
+  const { activeCategoryID } = useContext(GlobalContext) as GlobalContextData;
+  const { items, error, loading } = useItems(
+    activeCategoryID ? activeCategoryID : 0
+  );
   if (loading) return <p>loading</p>;
   if (items?.items) {
     return (

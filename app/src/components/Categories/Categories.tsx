@@ -29,7 +29,7 @@ const Categories: FC = () => {
           ))}
         </Grid>
 
-        {activeCategoryID && <Items categoryID={activeCategoryID} />}
+        {activeCategoryID && <Items />}
       </Container>
     );
   }

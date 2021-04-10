@@ -10,7 +10,6 @@ import {
 interface Props {
   isSlideOverOpen: boolean;
   setIsSlideOverOpen: (value: SetStateAction<boolean>) => void;
-  restaurantID: number;
 }
 
 const SlideOver: FC<Props> = ({ isSlideOverOpen, setIsSlideOverOpen }) => {

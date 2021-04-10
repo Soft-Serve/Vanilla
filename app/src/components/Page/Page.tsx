@@ -42,7 +42,6 @@ const Page: FC = () => {
         {activeMenuID && <Categories />}
         {activeRestaurantID && (
           <SlideOver
-            restaurantID={activeRestaurantID}
             setIsSlideOverOpen={setIsSlideOverOpen}
             isSlideOverOpen={isSlideOverOpen}
           />
