@@ -9,7 +9,7 @@ import {
 import { DELETE_ITEM, POST_ITEM } from "./mutations";
 import { GET_ITEM, GET_ITEMS } from "./queries";
 
-const useItems = (categoryID: number) => {
+const useItems = (categoryID: number | undefined) => {
   const { data: items, loading, error } = useQuery<ItemQuery>(GET_ITEMS, {
     variables: {
       categoryID,

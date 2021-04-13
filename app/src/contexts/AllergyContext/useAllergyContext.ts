@@ -1,34 +1,11 @@
-import { useState } from "react";
-import { Dietary, useAllergies } from "../../graphql/useAllergies";
+import { useContext } from "react";
+import { AllergyContext } from "./AllergyContext";
 
-const useAllergyContext = (restaurantID: number) => {
-  const { useGetAllergies } = useAllergies(restaurantID);
-  const [activeAllergies, setActiveAllergy] = useState<Dietary[]>([]);
-  const { data } = useGetAllergies();
-
-  const addAllergy = (allergy: Dietary) => {
-    setActiveAllergy([...activeAllergies, allergy]);
-  };
-
-  const removeAllergy = (allergy: Dietary) => {
-    setActiveAllergy(
-      activeAllergies.filter((activeAllergy) => activeAllergy.id !== allergy.id)
-    );
-  };
-
-  const isAllergyActive = (allergy: Dietary) => {
-    return !!activeAllergies.find(
-      (activeAllergy) => activeAllergy.id === allergy.id
-    );
-  };
-
-  return {
-    addAllergy,
-    removeAllergy,
-    isAllergyActive,
-    data,
-    activeAllergies,
-  };
+const useAllergyContext = () => {
+  const context = useContext(AllergyContext);
+  if (context === null)
+    throw new Error("useAllergyContext is not being used within a provider");
+  return context;
 };
 
 export { useAllergyContext };

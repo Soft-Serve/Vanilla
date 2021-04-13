@@ -1,12 +1,26 @@
 import React, { FC } from "react";
 import { Dietary } from "../../graphql/useAllergies/types";
 
+enum ACTION_TYPES {
+  ADD = "add",
+  REMOVE = "remove",
+  TOGGLE = "toggle",
+}
+
+interface Action {
+  type: ACTION_TYPES;
+  payload: Dietary;
+}
+
+type Dispatch = (action: Action) => void;
+
 interface Props {
   isEnabled: boolean;
-  setIsEnabled: (allergy: Dietary) => void;
+  dispatch: Dispatch;
   allergy: Dietary;
 }
-const Toggle: FC<Props> = ({ isEnabled, setIsEnabled, allergy }) => {
+
+const Toggle: FC<Props> = ({ isEnabled, dispatch, allergy }) => {
   const BASE = `relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`;
   const DISABLED = `bg-gray-200`;
   const ENABLED = `bg-indigo-600`;
@@ -23,9 +37,14 @@ const Toggle: FC<Props> = ({ isEnabled, setIsEnabled, allergy }) => {
   const BUTTON_OFF_ENABLED = `opacity-100 ease-in duration-200`;
   const BUTTON_OFF_DISABLED = `opacity-0 ease-out duration-100`;
 
+  const handleClick = () => {
+    isEnabled
+      ? dispatch({ type: ACTION_TYPES.REMOVE, payload: allergy })
+      : dispatch({ type: ACTION_TYPES.ADD, payload: allergy });
+  };
   return (
     <button
-      onClick={() => setIsEnabled(allergy)}
+      onClick={handleClick}
       type="button"
       className={`${BASE} ${isEnabled ? ENABLED : DISABLED}`}
       aria-pressed="false"

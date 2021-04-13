@@ -1,11 +1,8 @@
-import React, { FC, SetStateAction, useContext } from "react";
+import React, { FC, SetStateAction } from "react";
 import { Transition } from "@headlessui/react";
 import { Button } from "../Button/Button";
 import { Toggle } from "../Toggle/Toggle";
-import {
-  AllergyContext,
-  AllergyContextData,
-} from "../../contexts/AllergyContext";
+import { useAllergyContext } from "../../contexts/AllergyContext";
 
 interface Props {
   isSlideOverOpen: boolean;
@@ -13,9 +10,7 @@ interface Props {
 }
 
 const SlideOver: FC<Props> = ({ isSlideOverOpen, setIsSlideOverOpen }) => {
-  const { addAllergy, removeAllergy, data, isAllergyActive } = useContext(
-    AllergyContext
-  ) as AllergyContextData;
+  const { dispatch, allergies, isAllergyActive } = useAllergyContext();
 
   if (isSlideOverOpen) {
     return (
@@ -69,18 +64,14 @@ const SlideOver: FC<Props> = ({ isSlideOverOpen, setIsSlideOverOpen }) => {
                         </div>
                       </div>
 
-                      {data?.allergies && (
+                      {allergies?.allergies && (
                         <div className="mt-6 relative flex-1 px-4 sm:px-6">
-                          {data?.allergies.map((allergy) => (
+                          {allergies?.allergies.map((allergy) => (
                             <div key={allergy.id}>
                               <Toggle
                                 allergy={allergy}
                                 isEnabled={isAllergyActive(allergy)}
-                                setIsEnabled={
-                                  isAllergyActive(allergy)
-                                    ? removeAllergy
-                                    : addAllergy
-                                }
+                                dispatch={dispatch}
                               />
                               <span>{allergy.name}</span>
                             </div>

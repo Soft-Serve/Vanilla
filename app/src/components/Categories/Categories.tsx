@@ -10,9 +10,7 @@ const Categories: FC = () => {
   const { activeMenuID, activeCategoryID, setActiveCategoryID } = useContext(
     GlobalContext
   ) as GlobalContextData;
-  const { categories, error, loading } = useCategories(
-    activeMenuID ? activeMenuID : 0
-  );
+  const { categories, error, loading } = useCategories(activeMenuID);
 
   if (loading) return <p>loading</p>;
   if (categories?.categories) {

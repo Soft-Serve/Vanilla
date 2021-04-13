@@ -9,7 +9,7 @@ import {
   DeleteCategoryMutationData,
 } from ".";
 
-const useCategories = (menuID: number) => {
+const useCategories = (menuID: number | undefined) => {
   const { data: categories, loading, error } = useQuery<CategoryQuery>(
     GET_CATEGORIES,
     {

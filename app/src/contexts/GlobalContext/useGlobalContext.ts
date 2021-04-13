@@ -9,7 +9,7 @@ const useGlobalContext = () => {
 
   const activeRestaurantID = restaurant?.restaurant.id;
   const [activeMenuID, setActiveMenuID] = useState(menus?.menus[0].id);
-  const { categories } = useCategories(activeMenuID ? activeMenuID : 1);
+  const { categories } = useCategories(activeMenuID);
   const [activeCategoryID, setActiveCategoryID] = useState(
     categories?.categories[0].id
   );
