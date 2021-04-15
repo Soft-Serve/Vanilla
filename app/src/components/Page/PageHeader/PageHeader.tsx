@@ -3,7 +3,7 @@ import useRestaurant from "../../../graphql/queries/useRestaurant";
 import { Header } from "../../Header/Header";
 import { Title } from "../../Title/Title";
 import { HEADING_TYPE } from "../../../styles/constants/typography";
-import { Button } from "../../Button/Button";
+import { Button } from "../../BaseComponents/Button/Button";
 
 interface Props {
   setIsSlideOverOpen: (value: SetStateAction<boolean>) => void;
@@ -25,7 +25,14 @@ const PageHeader: FC<Props> = ({ setIsSlideOverOpen }) => {
           </Title>
         </div>
         <div className="flex justify-start w-full">
-          <Button onClick={() => setIsSlideOverOpen(true)}>allergies</Button>
+          <Button
+            type="button"
+            colour="PRIMARY"
+            size="M"
+            onClick={() => setIsSlideOverOpen(true)}
+          >
+            allergies
+          </Button>
         </div>
       </Header>
     </div>

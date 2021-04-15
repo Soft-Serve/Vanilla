@@ -1,5 +1,5 @@
 import React, { FC, useContext, useState } from "react";
-import { Button } from "../Button/Button";
+import { Button } from "../BaseComponents/Button/Button";
 import { Container } from "../Container/Container";
 import { useMenus } from "../../graphql/useMenus";
 import { Categories } from "../Categories/Categories";
@@ -27,8 +27,9 @@ const Page: FC = () => {
               return (
                 <Tab key={menu.id}>
                   <Button
+                    type="button"
+                    colour="PRIMARY"
                     onClick={() => setActiveMenuID(menu.id)}
-                    colour="NAKED"
                     size="XXL"
                   >
                     {menu.name}
