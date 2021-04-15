@@ -1,7 +1,7 @@
 import React, { FC, useContext } from "react";
 import { GlobalContext, GlobalContextData } from "../../contexts/GlobalContext";
 import { useCategories } from "../../graphql/useCategories";
-import { Button } from "../BaseComponents";
+import { Button } from "@BaseComponents";
 import { Container } from "../Container/Container";
 import { Grid } from "../Grid/Grid";
 import { Items } from "../Items/Items";
