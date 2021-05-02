@@ -1,10 +1,13 @@
 import React, { FC, useContext } from "react";
 
-import { GlobalContext, GlobalContextData } from "../../contexts/GlobalContext";
+import {
+  GlobalContext,
+  GlobalContextData,
+} from "../../../contexts/GlobalContext";
 
-import useItems from "../../graphql/useItems/useItems";
-import { Container } from "../Container/Container";
-import { Grid } from "../Grid/Grid";
+import useItems from "../../../graphql/useItems/useItems";
+import { Container } from "../../BaseComponents/Container/Container";
+import { Grid } from "../../BaseComponents/Grid/Grid";
 import { MenuItem } from "../MenuItem/MenuItem";
 
 const Items: FC = () => {

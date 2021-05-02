@@ -1,9 +1,12 @@
 import React, { FC, useContext } from "react";
-import { GlobalContext, GlobalContextData } from "../../contexts/GlobalContext";
-import { useCategories } from "../../graphql/useCategories";
-import { Button } from "@BaseComponents";
-import { Container } from "../Container/Container";
-import { Grid } from "../Grid/Grid";
+import {
+  GlobalContext,
+  GlobalContextData,
+} from "../../../contexts/GlobalContext";
+import { useCategories } from "../../../graphql/useCategories";
+import { Button } from "@base";
+import { Container } from "../../BaseComponents/Container/Container";
+import { Grid } from "../../BaseComponents/Grid/Grid";
 import { Items } from "../Items/Items";
 
 const Categories: FC = () => {
@@ -20,7 +23,7 @@ const Categories: FC = () => {
           {categories.categories.map((category) => (
             <Button
               type="button"
-              colour="PRIMARY"
+              colour="primary"
               size="M"
               onClick={() => setActiveCategoryID(category.id)}
               key={category.id}

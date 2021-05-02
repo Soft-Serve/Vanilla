@@ -324,10 +324,16 @@ module.exports = function (webpackEnv) {
         .map((ext) => `.${ext}`)
         .filter((ext) => useTypeScript || !ext.includes("ts")),
       alias: {
-        "@BaseComponents": path.resolve(
+        "@base": path.resolve(__dirname, "../src/components/BaseComponents/"),
+        "@presentational": path.resolve(
           __dirname,
-          "../src/components/BaseComponents/"
+          "../src/components/PresentationalComponents/*"
         ),
+        "@graphql": path.resolve(__dirname, "../src/graphql/"),
+        "@context": path.resolve(__dirname, "../src/context/"),
+        "@hooks": path.resolve(__dirname, "../src/hooks/"),
+        "@views": path.resolve(__dirname, "../src/views/*"),
+
         // Support React Native Web
         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
         "react-native": "react-native-web",

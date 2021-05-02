@@ -1,13 +1,16 @@
 import React, { FC, useContext, useState } from "react";
-import { Button } from "../BaseComponents/Button/Button";
-import { Container } from "../Container/Container";
-import { useMenus } from "../../graphql/useMenus";
+import { Button } from "@base";
+import { Container } from "../../BaseComponents/Container/Container";
+import { useMenus } from "../../../graphql/useMenus";
 import { Categories } from "../Categories/Categories";
 import { PageHeader } from "./PageHeader/PageHeader";
-import { Tab } from "../Tab/Tab";
-import { Tabs } from "../Tabs/Tabs";
-import { SlideOver } from "../SlideOver/SlideOver";
-import { GlobalContext, GlobalContextData } from "../../contexts/GlobalContext";
+import { Tab } from "../../Tab/Tab";
+import { Tabs } from "../../Tabs/Tabs";
+import { SlideOver } from "../../SlideOver/SlideOver";
+import {
+  GlobalContext,
+  GlobalContextData,
+} from "../../../contexts/GlobalContext";
 
 const Page: FC = () => {
   const { menus, error, loading } = useMenus();
@@ -28,7 +31,7 @@ const Page: FC = () => {
                 <Tab key={menu.id}>
                   <Button
                     type="button"
-                    colour="PRIMARY"
+                    colour="primary"
                     onClick={() => setActiveMenuID(menu.id)}
                     size="XXL"
                   >

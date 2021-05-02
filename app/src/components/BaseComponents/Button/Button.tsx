@@ -1,8 +1,9 @@
 import React, { ButtonHTMLAttributes, FC } from "react";
-import { buildStyles } from "./styles";
-import { BUTTON_TYPES, COLOURS_TYPES, SIZE_TYPES } from "./types";
+import { buildStyles, SIZE_TYPES, COLOURS_TYPES } from "./styles";
+
+type BUTTON_TYPES = "button" | "submit" | "reset" | undefined;
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
-  type: BUTTON_TYPES;
+  type?: BUTTON_TYPES;
   size: SIZE_TYPES;
   colour: COLOURS_TYPES;
 }
@@ -14,4 +15,7 @@ const Button: FC<Props> = ({ children, type, size, colour, ...rest }) => {
   );
 };
 
+Button.defaultProps = {
+  type: "button",
+};
 export { Button };

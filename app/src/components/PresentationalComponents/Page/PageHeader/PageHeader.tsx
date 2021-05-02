@@ -1,9 +1,9 @@
 import React, { FC, SetStateAction } from "react";
-import useRestaurant from "../../../graphql/queries/useRestaurant";
-import { Header } from "../../Header/Header";
-import { Title } from "../../Title/Title";
-import { HEADING_TYPE } from "../../../styles/constants/typography";
-import { Button } from "../../BaseComponents/Button/Button";
+import useRestaurant from "../../../../graphql/queries/useRestaurant";
+import { Header } from "../../../BaseComponents/Header/Header";
+import { Title } from "@base";
+import { HEADING_TYPE } from "../../../../styles/constants/typography";
+import { Button } from "../../../BaseComponents/Button/Button";
 
 interface Props {
   setIsSlideOverOpen: (value: SetStateAction<boolean>) => void;
@@ -27,7 +27,7 @@ const PageHeader: FC<Props> = ({ setIsSlideOverOpen }) => {
         <div className="flex justify-start w-full">
           <Button
             type="button"
-            colour="PRIMARY"
+            colour="primary"
             size="M"
             onClick={() => setIsSlideOverOpen(true)}
           >

@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import useDietaries from "../../graphql/queries/useDietaries";
+import useDietaries from "../../../graphql/queries/useDietaries";
 
 interface Props {
   itemID: number;

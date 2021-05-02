@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { ApolloProvider } from "react-apollo";
 import { client } from "./client";
-import { Page } from "./components/Page/Page";
+import { Page } from "./components/PresentationalComponents/Page/Page";
 import useRestaurant from "./graphql/queries/useRestaurant";
 import { AllergyProvider } from "./contexts/AllergyContext";
 import { GlobalProvider } from "./contexts/GlobalContext";

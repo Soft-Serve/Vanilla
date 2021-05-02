@@ -1,9 +1,8 @@
 import React, { FC } from "react";
+import * as styles from "./styles";
 
 const Container: FC = ({ children }) => {
-  return (
-    <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 p-2">{children}</div>
-  );
+  return <div className={styles.container}>{children}</div>;
 };
 
 export { Container };

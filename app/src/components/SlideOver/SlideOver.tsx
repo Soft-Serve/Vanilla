@@ -1,7 +1,7 @@
 import React, { FC, SetStateAction } from "react";
 import { Transition } from "@headlessui/react";
 import { Button } from "../BaseComponents/Button/Button";
-import { Toggle } from "../Toggle/Toggle";
+import { Toggle } from "../BaseComponents/Toggle/Toggle";
 import { useAllergyContext } from "../../contexts/AllergyContext";
 
 interface Props {
@@ -82,7 +82,7 @@ const SlideOver: FC<Props> = ({ isSlideOverOpen, setIsSlideOverOpen }) => {
                     <div className="flex-shrink-0 px-4 py-4 flex justify-end">
                       <Button
                         type="button"
-                        colour="PRIMARY"
+                        colour="primary"
                         size="M"
                         onClick={() => setIsSlideOverOpen(false)}
                       >
