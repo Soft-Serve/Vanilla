@@ -24,6 +24,7 @@ const Page: FC = () => {
             {menus?.menus.map((menu) => {
               return (
                 <Button
+                  key={menu.id}
                   type="button"
                   colour="primary"
                   onClick={() => setActiveMenuID(menu.id)}
