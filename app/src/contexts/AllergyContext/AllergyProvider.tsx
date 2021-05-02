@@ -1,7 +1,7 @@
 import { FC, useReducer } from "react";
-import { AllergyContext } from "./AllergyContext";
-import { useActiveAllergies } from "../../hooks/useActiveAllergies";
-import { Dietary } from "../../graphql/useAllergies";
+import { AllergyContext } from "@contexts";
+import { useActiveAllergies } from "@hooks";
+import { Dietary } from "@graphql";
 
 interface Props {
   restaurantID: number;

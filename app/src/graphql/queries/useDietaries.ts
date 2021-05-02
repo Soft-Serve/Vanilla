@@ -42,4 +42,4 @@ const useDietaries = (itemId: number) => {
   };
 };
 
-export default useDietaries;
+export { useDietaries };

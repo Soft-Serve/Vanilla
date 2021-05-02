@@ -40,4 +40,4 @@ const useRestaurant = () => {
   };
 };
 
-export default useRestaurant;
+export { useRestaurant };

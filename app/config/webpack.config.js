@@ -324,13 +324,17 @@ module.exports = function (webpackEnv) {
         .map((ext) => `.${ext}`)
         .filter((ext) => useTypeScript || !ext.includes("ts")),
       alias: {
-        "@base": path.resolve(__dirname, "../src/components/BaseComponents/"),
+        "@base": path.resolve(__dirname, "../src/components/Base/"),
+        "@transitions": path.resolve(
+          __dirname,
+          "../src/components/Transitions/"
+        ),
         "@presentational": path.resolve(
           __dirname,
-          "../src/components/PresentationalComponents/*"
+          "../src/components/Presentational/"
         ),
         "@graphql": path.resolve(__dirname, "../src/graphql/"),
-        "@context": path.resolve(__dirname, "../src/context/"),
+        "@contexts": path.resolve(__dirname, "../src/contexts/"),
         "@hooks": path.resolve(__dirname, "../src/hooks/"),
         "@views": path.resolve(__dirname, "../src/views/*"),
 

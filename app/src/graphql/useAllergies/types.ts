@@ -6,8 +6,8 @@ interface Dietary {
   dietary_id: number;
 }
 
-interface Query {
+interface AllergyQuery {
   allergies: Dietary[];
 }
 
-export type { Dietary, Query };
+export type { Dietary, AllergyQuery };

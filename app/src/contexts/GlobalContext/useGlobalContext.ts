@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
-import useRestaurant from "../../graphql/queries/useRestaurant";
-import { useCategories } from "../../graphql/useCategories";
-import { useMenus } from "../../graphql/useMenus";
+import { useRestaurant, useMenus, useCategories } from "@graphql";
 
 const useGlobalContext = () => {
   const { data: restaurant } = useRestaurant();

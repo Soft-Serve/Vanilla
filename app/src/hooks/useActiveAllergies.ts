@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Dietary, useAllergies } from "../graphql/useAllergies";
+import { Dietary, useAllergies } from "@graphql";
 
 const useActiveAllergies = (restaurantID: number) => {
   const [activeAllergies, setActiveAllergy] = useState<Dietary[]>([]);

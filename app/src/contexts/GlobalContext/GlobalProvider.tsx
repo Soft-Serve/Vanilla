@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { GlobalContext } from "./GlobalContext";
-import { useGlobalContext } from "./useGlobalContext";
+import { GlobalContext } from "@contexts";
+import { useGlobalContext } from "@contexts";
 
 const GlobalProvider: FC = ({ children }) => {
   const {

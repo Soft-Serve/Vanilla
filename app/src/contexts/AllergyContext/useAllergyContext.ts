@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AllergyContext } from "./AllergyContext";
+import { AllergyContext } from "@contexts";
 
 const useAllergyContext = () => {
   const context = useContext(AllergyContext);

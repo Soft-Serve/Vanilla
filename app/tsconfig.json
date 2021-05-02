@@ -17,14 +17,13 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "paths": {
-      "@base": ["src/components/BaseComponents/"],
-      "@graphql": ["src/graphql/*"],
-      "@context": ["src/context/"],
+      "@base": ["src/components/Base"],
+      "@transitions": ["src/components/Transitions/"],
+      "@graphql": ["src/graphql/"],
+      "@contexts": ["src/contexts/"],
       "@hooks": ["src/hooks/"],
       "@views": ["src/views/*"],
-      "@presentational": [
-        "src/components/BaseComponents/PresentationalComponents/*"
-      ]
+      "@presentational": ["src/components/Presentational"]
     }
   },
   "include": ["src"]

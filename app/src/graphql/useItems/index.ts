@@ -5,3 +5,5 @@ export type {
   DeleteItemMutationData,
   Variables,
 } from "./types";
+
+export { useItems } from "./useItems";

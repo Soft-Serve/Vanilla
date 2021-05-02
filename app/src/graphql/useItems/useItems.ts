@@ -111,4 +111,4 @@ const useItems = (categoryID: number | undefined) => {
   };
 };
 
-export default useItems;
+export { useItems };

@@ -1,6 +1,5 @@
 import { createContext } from "react";
-import { Dietary } from "../../graphql/useAllergies";
-import { Query } from "../../graphql/useAllergies/types";
+import { Dietary, AllergyQuery } from "@graphql";
 
 enum ACTION_TYPES {
   ADD = "add",
@@ -16,7 +15,7 @@ interface Action {
 type Dispatch = (action: Action) => void;
 
 interface AllergyContextData {
-  allergies: Query | undefined;
+  allergies: AllergyQuery | undefined;
   activeAllergies: Dietary[];
   dispatch: Dispatch;
   isAllergyActive: (allergy: Dietary) => boolean;

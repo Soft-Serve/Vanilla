@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
 import { useQuery } from "react-apollo";
 import { GET_ALLERGIES } from "./queries";
-import { Query } from "./types";
+import { AllergyQuery } from "@graphql";
 
 const useAllergies = (restaurantID: number) => {
   const useGetAllergies = () => {
-    const { data, loading, error } = useQuery<Query>(GET_ALLERGIES, {
+    const { data, loading, error } = useQuery<AllergyQuery>(GET_ALLERGIES, {
       variables: {
         restaurantID,
       },
