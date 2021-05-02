@@ -6,7 +6,7 @@ import {
 import useDietaries from "../../../graphql/queries/useDietaries";
 import { Item } from "../../../graphql/useItems";
 import intersection from "../../../utility/intersection";
-import { Card } from "../../Card/Card";
+import { Card } from "../../BaseComponents/Card/Card";
 import { Dietaries } from "../Dietaries/Dietaries";
 interface Props {
   item: Item;

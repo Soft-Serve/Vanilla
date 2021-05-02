@@ -4,9 +4,8 @@ import { Container } from "../../BaseComponents/Container/Container";
 import { useMenus } from "../../../graphql/useMenus";
 import { Categories } from "../Categories/Categories";
 import { PageHeader } from "./PageHeader/PageHeader";
-import { Tab } from "../../Tab/Tab";
-import { Tabs } from "../../Tabs/Tabs";
-import { SlideOver } from "../../SlideOver/SlideOver";
+
+import { SlideOver } from "../../BaseComponents/SlideOver/SlideOver";
 import {
   GlobalContext,
   GlobalContextData,
@@ -25,22 +24,20 @@ const Page: FC = () => {
       <>
         <PageHeader setIsSlideOverOpen={setIsSlideOverOpen} />
         <Container>
-          <Tabs numberOfTabs={menus?.menus.length ? menus.menus.length : 3}>
+          <div className={"flex-row flex w-full justify-between"}>
             {menus?.menus.map((menu) => {
               return (
-                <Tab key={menu.id}>
-                  <Button
-                    type="button"
-                    colour="primary"
-                    onClick={() => setActiveMenuID(menu.id)}
-                    size="XXL"
-                  >
-                    {menu.name}
-                  </Button>
-                </Tab>
+                <Button
+                  type="button"
+                  colour="primary"
+                  onClick={() => setActiveMenuID(menu.id)}
+                  size="XXL"
+                >
+                  {menu.name}
+                </Button>
               );
             })}
-          </Tabs>
+          </div>
         </Container>
         <div style={{ height: "8px" }}></div>
         {activeMenuID && <Categories />}

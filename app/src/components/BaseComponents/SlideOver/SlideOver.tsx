@@ -1,8 +1,8 @@
 import React, { FC, SetStateAction } from "react";
 import { Transition } from "@headlessui/react";
-import { Button } from "../BaseComponents/Button/Button";
-import { Toggle } from "../BaseComponents/Toggle/Toggle";
-import { useAllergyContext } from "../../contexts/AllergyContext";
+import { Button } from "../Button/Button";
+import { Toggle } from "../Toggle/Toggle";
+import { useAllergyContext } from "../../../contexts/AllergyContext";
 
 interface Props {
   isSlideOverOpen: boolean;
