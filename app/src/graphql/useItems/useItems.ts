@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "react-apollo";
+import { useMutation, useQuery } from "@apollo/client";
 import {
   ItemQuery,
   PostItemMutationData,
@@ -10,14 +10,22 @@ import { DELETE_ITEM, POST_ITEM } from "./mutations";
 import { GET_ITEM, GET_ITEMS } from "./queries";
 
 const useItems = (categoryID: number | undefined) => {
-  const { data: items, loading, error } = useQuery<ItemQuery>(GET_ITEMS, {
+  const {
+    data: items,
+    loading,
+    error,
+  } = useQuery<ItemQuery>(GET_ITEMS, {
     variables: {
       categoryID,
     },
   });
 
   const useGetItem = (itemID: number) => {
-    const { data: item, loading, error } = useQuery<ItemQuery>(GET_ITEM, {
+    const {
+      data: item,
+      loading,
+      error,
+    } = useQuery<ItemQuery>(GET_ITEM, {
       variables: {
         itemID,
       },

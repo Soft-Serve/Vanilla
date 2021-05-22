@@ -1,21 +1,30 @@
 import React, { FC, useContext } from "react";
 import { GlobalContext, GlobalContextData } from "@contexts";
-import { useCategories } from "@graphql";
 import { Button, Container, Grid } from "@base";
 import { Items } from "@presentational";
+import { useCategoriesQuery } from "./Categories.query";
 
 const Categories: FC = () => {
   const { activeMenuID, activeCategoryID, setActiveCategoryID } = useContext(
     GlobalContext
   ) as GlobalContextData;
-  const { categories, error, loading } = useCategories(activeMenuID);
+
+  const { data, error, loading } = useCategoriesQuery({
+    variables: {
+      menuID: activeMenuID,
+    },
+    onCompleted: (completedData) => {
+      if (completedData?.categories[0].id)
+        return setActiveCategoryID(completedData.categories[0].id);
+    },
+  });
 
   if (loading) return <p>loading</p>;
-  if (categories?.categories) {
+  if (data?.categories) {
     return (
       <Container>
         <Grid size="LG" mobileColumns={3}>
-          {categories.categories.map((category) => (
+          {data?.categories?.map((category) => (
             <Button
               type="button"
               colour="primary"

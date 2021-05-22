@@ -1,8 +1,7 @@
-import { InMemoryCache } from "apollo-cache-inmemory";
-import { ApolloClient } from "apollo-client";
+import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { RestLink } from "apollo-link-rest";
 
-const restLink = new RestLink({
+const link = new RestLink({
   uri: "http://localhost:3091/api/",
   headers: {
     Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.",
@@ -12,8 +11,7 @@ const restLink = new RestLink({
 });
 
 const client = new ApolloClient({
-  link: restLink,
+  link: link as any,
   cache: new InMemoryCache(),
 });
-
 export { client };

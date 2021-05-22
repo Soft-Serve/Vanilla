@@ -4,3 +4,4 @@ export { Items } from "./Items";
 export { MenuItem } from "./MenuItem";
 export { Page } from "./Page";
 export { Restaurant } from "./Restaurant";
+export { Menus } from "./Menus";

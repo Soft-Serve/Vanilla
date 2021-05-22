@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "react-apollo";
+import { useMutation, useQuery } from "@apollo/client";
 import { DELETE_MENU, POST_MENU } from "./mutations";
 import { GET_MENU, GET_MENUS } from "./queries";
 import {
@@ -13,7 +13,11 @@ const useMenus = () => {
   const { data: menus, loading, error } = useQuery<MenuQuery>(GET_MENUS);
 
   const useGetMenu = (menuID: number) => {
-    const { data: menu, loading, error } = useQuery<MenuQuery>(GET_MENU, {
+    const {
+      data: menu,
+      loading,
+      error,
+    } = useQuery<MenuQuery>(GET_MENU, {
       variables: {
         menuID,
       },

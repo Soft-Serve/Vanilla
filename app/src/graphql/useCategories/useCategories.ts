@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "react-apollo";
+import { useMutation, useQuery } from "@apollo/client";
 import { POST_CATEGORY, DELETE_CATEGORY } from "./mutations";
 import { GET_CATEGORIES, GET_CATEGORY } from "./queries";
 import {
@@ -10,24 +10,26 @@ import {
 } from ".";
 
 const useCategories = (menuID: number | undefined) => {
-  const { data: categories, loading, error } = useQuery<CategoryQuery>(
-    GET_CATEGORIES,
-    {
-      variables: {
-        menuID,
-      },
-    }
-  );
+  const {
+    data: categories,
+    loading,
+    error,
+  } = useQuery<CategoryQuery>(GET_CATEGORIES, {
+    variables: {
+      menuID,
+    },
+  });
 
   const useGetCategory = (categoryID: number) => {
-    const { data: category, loading, error } = useQuery<CategoryQuery>(
-      GET_CATEGORY,
-      {
-        variables: {
-          categoryID,
-        },
-      }
-    );
+    const {
+      data: category,
+      loading,
+      error,
+    } = useQuery<CategoryQuery>(GET_CATEGORY, {
+      variables: {
+        categoryID,
+      },
+    });
 
     return {
       category,
