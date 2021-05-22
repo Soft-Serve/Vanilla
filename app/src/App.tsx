@@ -1,28 +1,12 @@
-import React, { FC } from "react";
+import React from "react";
 import { ApolloProvider } from "react-apollo";
 import { client } from "./client";
-import { Page } from "@presentational";
-import { GlobalProvider, AllergyProvider } from "@contexts";
-import { useRestaurant } from "@graphql";
+import { Restaurant } from "@presentational";
 
-const App: FC = () => {
-  const { data, error, loading } = useRestaurant();
-  if (loading) return <p>loading</p>;
-  if (data?.restaurant)
-    return (
-      <GlobalProvider>
-        <AllergyProvider restaurantID={data?.restaurant?.id}>
-          <Page />
-        </AllergyProvider>
-      </GlobalProvider>
-    );
-  return <p>{error?.message}</p>;
-};
-
-const ApolloApp = () => (
+const App = () => (
   <ApolloProvider client={client}>
-    <App />
+    <Restaurant />
   </ApolloProvider>
 );
 
-export default ApolloApp;
+export default App;

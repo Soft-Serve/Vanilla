@@ -5,7 +5,11 @@ import { useMenus } from "@graphql";
 import { Categories } from "@presentational";
 import { PageHeader } from "./PageHeader";
 
-const Page: FC = () => {
+interface Props {
+  restaurantName: string;
+}
+
+const Page: FC<Props> = ({ restaurantName }) => {
   const { menus, error, loading } = useMenus();
   const [isSlideOverOpen, setIsSlideOverOpen] = useState(false);
   const { dispatch, allergies, isAllergyActive } = useAllergyContext();
@@ -18,7 +22,10 @@ const Page: FC = () => {
   if (menus?.menus) {
     return (
       <>
-        <PageHeader setIsSlideOverOpen={setIsSlideOverOpen} />
+        <PageHeader
+          restaurantName={restaurantName}
+          setIsSlideOverOpen={setIsSlideOverOpen}
+        />
         <Container>
           <div className={"flex-row flex w-full justify-between"}>
             {menus?.menus.map((menu) => {
