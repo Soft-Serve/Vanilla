@@ -1,24 +1,10 @@
 import { createContext } from "react";
-import { Dietary, AllergyQuery } from "@graphql";
-
-enum ACTION_TYPES {
-  ADD = "add",
-  REMOVE = "remove",
-  TOGGLE = "toggle",
-}
-
-interface Action {
-  type: ACTION_TYPES;
-  payload: Dietary;
-}
-
-type Dispatch = (action: Action) => void;
+import type { Allergy, Dispatch } from "./types";
 
 interface AllergyContextData {
-  allergies: AllergyQuery | undefined;
-  activeAllergies: Dietary[];
+  activeAllergies: Allergy[];
   dispatch: Dispatch;
-  isAllergyActive: (allergy: Dietary) => boolean;
+  isAllergyActive: (allergy: Allergy) => boolean;
 }
 
 const AllergyContext = createContext<AllergyContextData | null>(null);

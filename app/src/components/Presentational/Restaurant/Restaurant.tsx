@@ -10,7 +10,7 @@ const Restaurant: FC = () => {
   if (data?.restaurant)
     return (
       <GlobalProvider restaurantID={data.restaurant?.id}>
-        <AllergyProvider restaurantID={data?.restaurant?.id}>
+        <AllergyProvider>
           <Page restaurantName={data?.restaurant?.name} />
         </AllergyProvider>
       </GlobalProvider>
