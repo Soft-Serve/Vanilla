@@ -11,6 +11,7 @@ interface Props {
 const Page: FC<Props> = ({ restaurantName }) => {
   const [isSlideOverOpen, setIsSlideOverOpen] = useState(false);
   const { dispatch, allergies, isAllergyActive } = useAllergyContext();
+  const { categoryID, menuID } = useContext(GlobalContext) as GlobalContextData;
 
   return (
     <>
@@ -22,8 +23,8 @@ const Page: FC<Props> = ({ restaurantName }) => {
         <Menus />
       </Container>
       <div style={{ height: "8px" }}></div>
-      <Categories />
-      <Items />
+      {menuID && <Categories />}
+      {categoryID && <Items />}
       <SlideOver
         setIsSlideOverOpen={setIsSlideOverOpen}
         isSlideOverOpen={isSlideOverOpen}
