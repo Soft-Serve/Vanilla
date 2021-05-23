@@ -1,10 +1,11 @@
-import { FC, useContext } from "react";
-import { GlobalContext, GlobalContextData } from "@contexts";
+import React from "react";
+import type { FC } from "react";
+import { useGlobalContext } from "@contexts";
 import { AllergiesToggle } from "./AllergiesToggle";
 import { useAllergiesQuery } from "./Allergies.query";
 
 const Allergies: FC = () => {
-  const { restaurantID } = useContext(GlobalContext) as GlobalContextData;
+  const { restaurantID } = useGlobalContext();
   const { data, loading, error } = useAllergiesQuery({
     variables: {
       restaurantID,

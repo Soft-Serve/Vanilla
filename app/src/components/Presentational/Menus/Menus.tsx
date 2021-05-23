@@ -1,11 +1,11 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import type { FC } from "react";
 import { Button } from "@base";
 import { useMenusQuery } from "./Menus.query";
-import { GlobalContext, GlobalContextData } from "src/contexts";
+import { useGlobalContext } from "src/contexts";
 
 const Menus: FC = () => {
-  const { setMenuID } = useContext(GlobalContext) as GlobalContextData;
+  const { setMenuID } = useGlobalContext();
 
   const { data, error, loading } = useMenusQuery({
     onCompleted: (completedData) => {

@@ -1,13 +1,13 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { GlobalContext } from "@contexts";
-import { useGlobalContext } from "@contexts";
 
 interface Props {
   restaurantID: number;
 }
 const GlobalProvider: FC<Props> = ({ children, restaurantID }) => {
-  const { menuID, setMenuID, categoryID, setCategoryID } =
-    useGlobalContext(restaurantID);
+  const [menuID, setMenuID] = useState(0);
+  const [categoryID, setCategoryID] = useState(0);
+
   return (
     <GlobalContext.Provider
       value={{

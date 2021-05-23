@@ -1,12 +1,11 @@
-import React, { FC, useContext, useEffect } from "react";
-import { GlobalContext, GlobalContextData } from "@contexts";
+import React, { useEffect } from "react";
+import type { FC } from "react";
+import { useGlobalContext } from "@contexts";
 import { Button, Container, Grid } from "@base";
 import { useCategoriesQuery } from "./Categories.query";
 
 const Categories: FC = () => {
-  const { menuID, setCategoryID } = useContext(
-    GlobalContext
-  ) as GlobalContextData;
+  const { menuID, setCategoryID } = useGlobalContext();
 
   const { data, error, loading } = useCategoriesQuery({
     variables: {

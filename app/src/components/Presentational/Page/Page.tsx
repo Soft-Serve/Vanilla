@@ -1,6 +1,6 @@
-import React, { FC, useContext, useState } from "react";
+import React, { FC, useState } from "react";
 import { Container, SlideOver } from "@base";
-import { GlobalContext, GlobalContextData } from "@contexts";
+import { useGlobalContext } from "@contexts";
 import { Categories, Items, Menus, Allergies } from "@presentational";
 import { PageHeader } from "./PageHeader";
 
@@ -10,7 +10,7 @@ interface Props {
 
 const Page: FC<Props> = ({ restaurantName }) => {
   const [isSlideOverOpen, setIsSlideOverOpen] = useState(false);
-  const { categoryID, menuID } = useContext(GlobalContext) as GlobalContextData;
+  const { categoryID, menuID } = useGlobalContext();
 
   return (
     <>

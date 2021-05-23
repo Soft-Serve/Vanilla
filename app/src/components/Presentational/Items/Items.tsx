@@ -1,11 +1,12 @@
-import React, { FC, useContext } from "react";
-import { GlobalContext, GlobalContextData } from "@contexts";
+import React from "react";
+import type { FC } from "react";
+import { useGlobalContext } from "@contexts";
 import { Container, Grid } from "@base";
 import { Item } from "@presentational";
 import { useItemsQuery } from "./Items.query";
 
 const Items: FC = () => {
-  const { categoryID } = useContext(GlobalContext) as GlobalContextData;
+  const { categoryID } = useGlobalContext();
   const { data, loading, error } = useItemsQuery({
     variables: {
       categoryID,
