@@ -1,15 +1,15 @@
 import { Card } from "@base";
 import React, { FC, useContext } from "react";
 import { AllergyContext, AllergyContextData } from "@contexts";
-import { useDietaries, Item } from "@graphql";
+import { useDietaries, MenuItem } from "@graphql";
 import intersection from "src/utility/intersection";
 import { Dietaries } from "@presentational";
 
 interface Props {
-  item: Item;
+  item: MenuItem;
 }
 
-const MenuItem: FC<Props> = ({ item }) => {
+const Item: FC<Props> = ({ item }) => {
   const { data } = useDietaries(item.id);
   const { activeAllergies } = useContext(AllergyContext) as AllergyContextData;
   if (data?.dietaries && !intersection(activeAllergies, data?.dietaries)) {
@@ -23,4 +23,4 @@ const MenuItem: FC<Props> = ({ item }) => {
   return null;
 };
 
-export { MenuItem };
+export { Item };

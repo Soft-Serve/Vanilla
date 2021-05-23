@@ -4,7 +4,7 @@ import {
   PostItemMutationData,
   DeleteItemMutationData,
   Variables,
-  Item,
+  MenuItem,
 } from ".";
 import { DELETE_ITEM, POST_ITEM } from "./mutations";
 import { GET_ITEM, GET_ITEMS } from "./queries";
@@ -58,7 +58,7 @@ const useItems = (categoryID: number | undefined) => {
     },
   });
 
-  const setItem = (input: Item) =>
+  const setItem = (input: MenuItem) =>
     addItem({
       variables: { input },
       optimisticResponse: {
@@ -94,7 +94,7 @@ const useItems = (categoryID: number | undefined) => {
     }
   );
 
-  const deleteCategory = (input: Item) =>
+  const deleteCategory = (input: MenuItem) =>
     removeItem({
       variables: { input },
       optimisticResponse: {

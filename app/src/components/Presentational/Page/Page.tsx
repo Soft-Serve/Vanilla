@@ -12,8 +12,6 @@ const Page: FC<Props> = ({ restaurantName }) => {
   const [isSlideOverOpen, setIsSlideOverOpen] = useState(false);
   const { dispatch, allergies, isAllergyActive } = useAllergyContext();
 
-  const { restaurantID } = useContext(GlobalContext) as GlobalContextData;
-
   return (
     <>
       <PageHeader
@@ -26,27 +24,25 @@ const Page: FC<Props> = ({ restaurantName }) => {
       <div style={{ height: "8px" }}></div>
       <Categories />
       <Items />
-      {restaurantID && (
-        <SlideOver
-          setIsSlideOverOpen={setIsSlideOverOpen}
-          isSlideOverOpen={isSlideOverOpen}
-        >
-          {allergies?.allergies && (
-            <div className="mt-6 relative flex-1 px-4 sm:px-6">
-              {allergies?.allergies.map((allergy) => (
-                <div key={allergy.id}>
-                  <Toggle
-                    allergy={allergy}
-                    isEnabled={isAllergyActive(allergy)}
-                    dispatch={dispatch}
-                  />
-                  <span>{allergy.name}</span>
-                </div>
-              ))}
-            </div>
-          )}
-        </SlideOver>
-      )}
+      <SlideOver
+        setIsSlideOverOpen={setIsSlideOverOpen}
+        isSlideOverOpen={isSlideOverOpen}
+      >
+        {allergies?.allergies && (
+          <div className="mt-6 relative flex-1 px-4 sm:px-6">
+            {allergies?.allergies.map((allergy) => (
+              <div key={allergy.id}>
+                <Toggle
+                  allergy={allergy}
+                  isEnabled={isAllergyActive(allergy)}
+                  dispatch={dispatch}
+                />
+                <span>{allergy.name}</span>
+              </div>
+            ))}
+          </div>
+        )}
+      </SlideOver>
     </>
   );
 };

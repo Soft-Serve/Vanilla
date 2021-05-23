@@ -1,7 +1,7 @@
 import React, { FC, useContext } from "react";
 import { GlobalContext, GlobalContextData } from "@contexts";
 import { Container, Grid } from "@base";
-import { MenuItem } from "@presentational";
+import { Item } from "@presentational";
 import { useItemsQuery } from "./Items.query";
 
 const Items: FC = () => {
@@ -18,7 +18,7 @@ const Items: FC = () => {
     <Container>
       <Grid size="LG">
         {data?.items?.map((item) => (
-          <MenuItem key={item.id} item={item} />
+          <Item key={item.id} item={item} />
         ))}
       </Grid>
     </Container>

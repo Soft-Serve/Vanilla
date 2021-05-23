@@ -1,5 +1,5 @@
 export type {
-  Item,
+  MenuItem,
   ItemQuery,
   PostItemMutationData,
   DeleteItemMutationData,

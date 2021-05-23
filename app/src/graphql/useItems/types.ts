@@ -1,6 +1,6 @@
 export type Photo = { url: string };
 
-export interface Item {
+export interface MenuItem {
   id: number;
   name: string;
   description: string;
@@ -9,19 +9,19 @@ export interface Item {
 }
 
 export interface ItemQuery {
-  items: Item[];
+  items: MenuItem[];
 }
 
 export interface Variables {
-  input: Item;
+  input: MenuItem;
 }
 
 export interface PostItemMutationData {
   __typename: string;
-  postItem: Item;
+  postItem: MenuItem;
 }
 
 export interface DeleteItemMutationData {
   __typename: string;
-  deleteItem: Item;
+  deleteItem: MenuItem;
 }
