@@ -5,19 +5,21 @@ import { useMenusQuery } from "./Menus.query";
 import { GlobalContext, GlobalContextData } from "src/contexts";
 
 const Menus: FC = () => {
-  const { setActiveMenuID } = useContext(GlobalContext) as GlobalContextData;
+  const { setMenuID } = useContext(GlobalContext) as GlobalContextData;
 
   const { data, error, loading } = useMenusQuery({
     onCompleted: (completedData) => {
       if (completedData?.menus[0].id) {
-        setActiveMenuID(completedData?.menus[0].id);
+        setMenuID(completedData.menus[0].id);
       }
     },
   });
 
   useEffect(() => {
-    if (data?.menus[0].id) return setActiveMenuID(data?.menus[0].id);
-  }, [data, setActiveMenuID]);
+    if (data?.menus[0].id) {
+      setMenuID(data?.menus[0].id);
+    }
+  }, [data, setMenuID]);
 
   if (error) return <p>error</p>;
   if (loading) return <p>loading...</p>;
@@ -29,7 +31,7 @@ const Menus: FC = () => {
             key={menu.id}
             type="button"
             colour="primary"
-            onClick={() => setActiveMenuID(menu.id)}
+            onClick={() => setMenuID(menu.id)}
             size="XXL"
           >
             {menu.name}

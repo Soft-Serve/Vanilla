@@ -1,23 +1,29 @@
-import React, { FC, useContext } from "react";
+import React, { FC, useContext, useEffect } from "react";
 import { GlobalContext, GlobalContextData } from "@contexts";
 import { Button, Container, Grid } from "@base";
-import { Items } from "@presentational";
 import { useCategoriesQuery } from "./Categories.query";
 
 const Categories: FC = () => {
-  const { activeMenuID, activeCategoryID, setActiveCategoryID } = useContext(
+  const { menuID, setCategoryID } = useContext(
     GlobalContext
   ) as GlobalContextData;
 
   const { data, error, loading } = useCategoriesQuery({
     variables: {
-      menuID: activeMenuID,
+      menuID,
     },
     onCompleted: (completedData) => {
-      if (completedData?.categories[0].id)
-        return setActiveCategoryID(completedData.categories[0].id);
+      if (completedData?.categories[0].id) {
+        setCategoryID(completedData?.categories[0].id);
+      }
     },
   });
+
+  useEffect(() => {
+    if (data?.categories[0].id) {
+      setCategoryID(data?.categories[0].id);
+    }
+  }, [data, setCategoryID, menuID]);
 
   if (loading) return <p>loading</p>;
   if (data?.categories) {
@@ -29,15 +35,13 @@ const Categories: FC = () => {
               type="button"
               colour="primary"
               size="M"
-              onClick={() => setActiveCategoryID(category.id)}
+              onClick={() => setCategoryID(category.id)}
               key={category.id}
             >
               {category.name}
             </Button>
           ))}
         </Grid>
-
-        {activeCategoryID && <Items />}
       </Container>
     );
   }

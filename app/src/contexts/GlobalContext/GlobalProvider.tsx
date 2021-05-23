@@ -6,21 +6,16 @@ interface Props {
   restaurantID: number;
 }
 const GlobalProvider: FC<Props> = ({ children, restaurantID }) => {
-  const {
-    activeRestaurantID,
-    activeMenuID,
-    setActiveMenuID,
-    activeCategoryID,
-    setActiveCategoryID,
-  } = useGlobalContext(restaurantID);
+  const { menuID, setMenuID, categoryID, setCategoryID } =
+    useGlobalContext(restaurantID);
   return (
     <GlobalContext.Provider
       value={{
-        activeRestaurantID,
-        activeMenuID,
-        setActiveMenuID,
-        activeCategoryID,
-        setActiveCategoryID,
+        restaurantID,
+        menuID,
+        setMenuID,
+        categoryID,
+        setCategoryID,
       }}
     >
       {children}
