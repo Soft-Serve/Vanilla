@@ -5,3 +5,4 @@ export { Item } from "./Item";
 export { Page } from "./Page";
 export { Restaurant } from "./Restaurant";
 export { Menus } from "./Menus";
+export { Allergies } from "./Allergies";

@@ -1,5 +1,4 @@
 import React, { FC } from "react";
-import { Dietary } from "../../../graphql/useAllergies";
 import {
   buildButtonStyles,
   buildWrapperStyles,
@@ -9,31 +8,12 @@ import {
 import { ReactComponent as CheckmarkSVG } from "./svgs/checkmark.svg";
 import { ReactComponent as CloseSVG } from "./svgs/close.svg";
 
-enum ACTION_TYPES {
-  ADD = "add",
-  REMOVE = "remove",
-  TOGGLE = "toggle",
-}
-
-interface Action {
-  type: ACTION_TYPES;
-  payload: Dietary;
-}
-
-type Dispatch = (action: Action) => void;
-
 interface Props {
   isEnabled: boolean;
-  dispatch: Dispatch;
-  allergy: Dietary;
+  handleClick: () => void;
 }
 
-const Toggle: FC<Props> = ({ isEnabled, dispatch, allergy }) => {
-  const handleClick = () => {
-    isEnabled
-      ? dispatch({ type: ACTION_TYPES.REMOVE, payload: allergy })
-      : dispatch({ type: ACTION_TYPES.ADD, payload: allergy });
-  };
+const Toggle: FC<Props> = ({ isEnabled, handleClick }) => {
   return (
     <button
       onClick={handleClick}

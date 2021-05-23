@@ -1,7 +1,7 @@
 import React, { FC, useContext, useState } from "react";
-import { Container, Toggle, SlideOver } from "@base";
-import { GlobalContext, GlobalContextData, useAllergyContext } from "@contexts";
-import { Categories, Items, Menus } from "@presentational";
+import { Container, SlideOver } from "@base";
+import { GlobalContext, GlobalContextData } from "@contexts";
+import { Categories, Items, Menus, Allergies } from "@presentational";
 import { PageHeader } from "./PageHeader";
 
 interface Props {
@@ -10,7 +10,6 @@ interface Props {
 
 const Page: FC<Props> = ({ restaurantName }) => {
   const [isSlideOverOpen, setIsSlideOverOpen] = useState(false);
-  const { dispatch, allergies, isAllergyActive } = useAllergyContext();
   const { categoryID, menuID } = useContext(GlobalContext) as GlobalContextData;
 
   return (
@@ -29,20 +28,7 @@ const Page: FC<Props> = ({ restaurantName }) => {
         setIsSlideOverOpen={setIsSlideOverOpen}
         isSlideOverOpen={isSlideOverOpen}
       >
-        {allergies?.allergies && (
-          <div className="mt-6 relative flex-1 px-4 sm:px-6">
-            {allergies?.allergies.map((allergy) => (
-              <div key={allergy.id}>
-                <Toggle
-                  allergy={allergy}
-                  isEnabled={isAllergyActive(allergy)}
-                  dispatch={dispatch}
-                />
-                <span>{allergy.name}</span>
-              </div>
-            ))}
-          </div>
-        )}
+        <Allergies />
       </SlideOver>
     </>
   );
