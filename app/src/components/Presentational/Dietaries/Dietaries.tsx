@@ -1,17 +1,23 @@
-import React, { FC } from "react";
-import { useDietaries } from "@graphql";
+import React from "react";
+import type { FC } from "react";
+import { useDietaryQuery } from "@graphql";
 
 interface Props {
   itemID: number;
 }
 const Dietaries: FC<Props> = ({ itemID }) => {
-  const { data: dietaries } = useDietaries(itemID);
+  const { data: dietaries } = useDietaryQuery({
+    variables: {
+      itemID,
+    },
+  });
+
   return (
-    <div>
+    <ul>
       {dietaries?.dietaries.map((dietary) => (
-        <p key={dietary.id}>{dietary.name}</p>
+        <li key={dietary.id}>{dietary.name}</li>
       ))}
-    </div>
+    </ul>
   );
 };
 

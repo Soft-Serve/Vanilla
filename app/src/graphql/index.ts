@@ -1,6 +1,6 @@
 export { useAllergies } from "./useAllergies";
 export { useCategories } from "./useCategories";
-export { useDietaries } from "./queries/useDietaries";
+export { useDietaryQuery } from "./queries/useDietaryQuery";
 export { useMenus } from "./useMenus";
 export { useItems } from "./useItems";
 export type { MenuItem } from "./useItems";
