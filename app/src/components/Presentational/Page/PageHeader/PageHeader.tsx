@@ -3,6 +3,8 @@ import type { FC, SetStateAction } from "react";
 import { Header, Title, Button } from "@base";
 import { H1, H6 } from "src/styles";
 import * as styles from "./styles";
+import { routes } from "src/routes";
+import { Link } from "react-router-dom";
 
 interface Props {
   setIsSlideOverOpen: (value: SetStateAction<boolean>) => void;
@@ -28,6 +30,11 @@ const PageHeader: FC<Props> = ({ setIsSlideOverOpen, restaurantName }) => {
         >
           allergies
         </Button>
+        <Link to={routes.admin}>
+          <Button type="button" colour="primary" size="M">
+            admin
+          </Button>
+        </Link>
       </Header>
     </div>
   );
