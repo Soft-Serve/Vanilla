@@ -2,7 +2,7 @@ import type { QueryHookOptions } from "@apollo/client";
 import gql from "graphql-tag";
 import { useQuery } from "@apollo/client";
 
-export const CATEGORIES_QUERY = gql`
+const CATEGORIES_QUERY = gql`
   query CategoriesQuery($menuID: Int!) {
     categories(menuID: $menuID)
       @rest(type: Category, path: "menus/{args.menuID}/menu_categories") {

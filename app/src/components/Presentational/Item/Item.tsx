@@ -5,6 +5,7 @@ import { useAllergyContext } from "@contexts";
 import { useDietaryQuery, MenuItem } from "@graphql";
 import intersection from "src/utility/intersection";
 import { Dietaries } from "@presentational";
+import { ItemSizes } from "./ItemSizes";
 
 interface Props {
   item: MenuItem;
@@ -26,6 +27,7 @@ const Item: FC<Props> = ({ item }) => {
     <Card key={item.id}>
       {item.name}
       <Dietaries itemID={item.id} />
+      <ItemSizes itemID={item.id} />
     </Card>
   );
 };
