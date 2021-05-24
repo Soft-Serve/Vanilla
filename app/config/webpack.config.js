@@ -336,7 +336,8 @@ module.exports = function (webpackEnv) {
         "@graphql": path.resolve(__dirname, "../src/graphql/"),
         "@contexts": path.resolve(__dirname, "../src/contexts/"),
         "@hooks": path.resolve(__dirname, "../src/hooks/"),
-        "@views": path.resolve(__dirname, "../src/views/*"),
+        "@views": path.resolve(__dirname, "../src/views/"),
+        "@routes": path.resolve(__dirname, "../src/routes/"),
 
         // Support React Native Web
         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/

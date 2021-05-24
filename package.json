@@ -12,5 +12,6 @@
     "cleanup": "docker-compose down -v",
     "db:seed": "docker-compose run api rails db:seed",
     "project": "yarn db:reset && docker-compose up"
-  }
+  },
+  "dependencies": {}
 }

@@ -22,7 +22,8 @@
       "@graphql": ["src/graphql/"],
       "@contexts": ["src/contexts/"],
       "@hooks": ["src/hooks/"],
-      "@views": ["src/views/*"],
+      "@views": ["src/views/"],
+      "@routes": ["src/routes/"],
       "@presentational": ["src/components/Presentational"]
     }
   },
