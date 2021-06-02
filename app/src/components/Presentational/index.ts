@@ -7,3 +7,4 @@ export { Restaurant } from "./Restaurant";
 export { Menus } from "./Menus";
 export { Allergies } from "./Allergies";
 export { SignInForm } from "./SignInForm";
+export { PostCategoryForm } from "./PostCategoryForm";
