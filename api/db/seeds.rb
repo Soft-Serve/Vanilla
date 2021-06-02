@@ -120,11 +120,23 @@ potstickers_lunch = Api::MenuItem.create!(
   photo: 'https://res.cloudinary.com/dnyjzmdsk/image/upload/v1600714709/yuxiang-zhang-67mdthfNa1Y-unsplash_pz8dpg.jpg'
 )
 
+Api::ItemSize.create!(
+  price: 9.00,
+  unit: '6',
+  menu_item_id: potstickers_lunch.id
+)
+
 potstickers_dinner = Api::MenuItem.create!(
   name: 'Potstickers',
   description: 'Pan-fried pork potstickers',
   menu_category_id: dinner_apps.id,
   photo: 'https://res.cloudinary.com/dnyjzmdsk/image/upload/v1600714709/yuxiang-zhang-67mdthfNa1Y-unsplash_pz8dpg.jpg'
+)
+
+Api::ItemSize.create!(
+  price: 9.00,
+  unit: '12',
+  menu_item_id: potstickers_dinner.id
 )
 
 garden_salad_lunch = Api::MenuItem.create!(
@@ -134,11 +146,23 @@ garden_salad_lunch = Api::MenuItem.create!(
   photo: 'https://res.cloudinary.com/dnyjzmdsk/image/upload/v1600714807/nadine-primeau--ftWfohtjNw-unsplash_pmknmk.jpg'
 )
 
+Api::ItemSize.create!(
+  price: 9.00,
+  unit: 'small',
+  menu_item_id: garden_salad_lunch.id
+)
+
 garden_salad_dinner = Api::MenuItem.create!(
   name: 'Garden salad',
   description: 'Tomatos, argula, balsamic vinegar',
   menu_category_id: dinner_apps.id,
   photo: 'https://res.cloudinary.com/dnyjzmdsk/image/upload/v1600714807/nadine-primeau--ftWfohtjNw-unsplash_pmknmk.jpg'
+)
+
+Api::ItemSize.create!(
+  price: 9.00,
+  unit: 'large',
+  menu_item_id: garden_salad_dinner.id
 )
 
 mushroom_soup = Api::MenuItem.create!(
@@ -148,11 +172,21 @@ mushroom_soup = Api::MenuItem.create!(
   photo: 'https://res.cloudinary.com/dnyjzmdsk/image/upload/v1600714856/jonathan-borba-3mS4I0GJ3TQ-unsplash_vrif1v.jpg'
 )
 
+Api::ItemSize.create!(
+  price: 9.00,
+  menu_item_id: mushroom_soup.id
+)
+
 tomato_soup = Api::MenuItem.create!(
   name: 'Tomato soup',
   description: 'Homemade fresh tomato soup',
   menu_category_id: lunch_apps.id,
   photo: 'https://res.cloudinary.com/dnyjzmdsk/image/upload/v1600714928/jennifer-burk-8uC3b-unoSE-unsplash_aknxvr.jpg'
+)
+
+Api::ItemSize.create!(
+  price: 9.00,
+  menu_item_id: tomato_soup.id
 )
 
 mac_and_cheese_lunch = Api::MenuItem.create!(
@@ -162,11 +196,21 @@ mac_and_cheese_lunch = Api::MenuItem.create!(
   photo: 'https://res.cloudinary.com/dnyjzmdsk/image/upload/v1600714991/ronaldo-de-oliveira-tf2dNkqagyc-unsplash_zigoko.jpg'
 )
 
+Api::ItemSize.create!(
+  price: 9.00,
+  menu_item_id: mac_and_cheese_lunch.id
+)
+
 mac_and_cheese = Api::MenuItem.create!(
   name: 'Mac & Cheese',
   description: 'Fresh maccaroni, panchetta, topped with goldfish crumbs',
   menu_category_id: dinner_mains.id,
   photo: 'https://res.cloudinary.com/dnyjzmdsk/image/upload/v1600714991/ronaldo-de-oliveira-tf2dNkqagyc-unsplash_zigoko.jpg'
+)
+
+Api::ItemSize.create!(
+  price: 9.00,
+  menu_item_id: mac_and_cheese.id
 )
 
 margarita_pizza_lunch = Api::MenuItem.create!(
@@ -176,11 +220,22 @@ margarita_pizza_lunch = Api::MenuItem.create!(
   photo: 'https://res.cloudinary.com/dnyjzmdsk/image/upload/v1600715048/pierre-antoine-caisso-3z1ifS7ERVY-unsplash_pnf8dv.jpg'
 )
 
+Api::ItemSize.create!(
+  price: 9.00,
+  menu_item_id: margarita_pizza_lunch.id
+)
+
+
 margarita_pizza = Api::MenuItem.create!(
   name: 'Margarita Pizza',
   description: 'Mozzarella, oregano, basl',
   menu_category_id: dinner_mains.id,
   photo: 'https://res.cloudinary.com/dnyjzmdsk/image/upload/v1600715048/pierre-antoine-caisso-3z1ifS7ERVY-unsplash_pnf8dv.jpg'
+)
+
+Api::ItemSize.create!(
+  price: 9.00,
+  menu_item_id: margarita_pizza.id
 )
 
 salami_pizza_lunch = Api::MenuItem.create!(
@@ -190,11 +245,21 @@ salami_pizza_lunch = Api::MenuItem.create!(
   photo: 'https://res.cloudinary.com/dnyjzmdsk/image/upload/v1600715106/engin-akyurt-IfAb0bjhHlc-unsplash_rpm5wd.jpg'
 )
 
+Api::ItemSize.create!(
+  price: 9.00,
+  menu_item_id: salami_pizza_lunch.id
+)
+
 salami_pizza = Api::MenuItem.create!(
   name: 'Salami Pizza',
   description: 'Italian salami, mozzarella, tomato sauce',
   menu_category_id: lunch_mains.id,
   photo: 'https://res.cloudinary.com/dnyjzmdsk/image/upload/v1600715106/engin-akyurt-IfAb0bjhHlc-unsplash_rpm5wd.jpg'
+)
+
+Api::ItemSize.create!(
+  price: 9.00,
+  menu_item_id: salami_pizza.id
 )
 
 club_sandwich = Api::MenuItem.create!(
@@ -204,11 +269,21 @@ club_sandwich = Api::MenuItem.create!(
   photo: 'https://res.cloudinary.com/dnyjzmdsk/image/upload/v1600715168/suea-sivilaisith-foHj73zCV3Y-unsplash_xsdlc3.jpg'
 )
 
+Api::ItemSize.create!(
+  price: 9.00,
+  menu_item_id: club_sandwich.id
+)
+
 burger = Api::MenuItem.create!(
   name: 'Cheese Burger',
   description: 'Angus Beef, cheddar, lettuce & tomato',
   menu_category_id: lunch_mains.id,
   photo: 'https://res.cloudinary.com/dnyjzmdsk/image/upload/v1600715207/amirali-mirhashemian-Tht2Sdwqey8-unsplash_ypahgc.jpg'
+)
+
+Api::ItemSize.create!(
+  price: 9.00,
+  menu_item_id: burger.id
 )
 
 rib_eye = Api::MenuItem.create!(
@@ -218,11 +293,21 @@ rib_eye = Api::MenuItem.create!(
   photo: 'https://res.cloudinary.com/dnyjzmdsk/image/upload/v1600715269/alex-munsell-auIbTAcSH6E-unsplash_qwsnyc.jpg'
 )
 
+Api::ItemSize.create!(
+  price: 9.00,
+  menu_item_id: rib_eye.id
+)
+
 salmon = Api::MenuItem.create!(
   name: 'Maple Glaze Salmon',
   description: 'Atlantic Salmon with maple syrup glaze',
   menu_category_id: dinner_mains.id,
   photo: 'https://res.cloudinary.com/dnyjzmdsk/image/upload/v1600715307/sebastian-coman-photography-Co-T6odt0es-unsplash_n8oxnp.jpg'
+)
+
+Api::ItemSize.create!(
+  price: 9.00,
+  menu_item_id: salmon.id
 )
 
 gnocchi = Api::MenuItem.create!(
@@ -232,11 +317,21 @@ gnocchi = Api::MenuItem.create!(
   photo: 'https://res.cloudinary.com/dnyjzmdsk/image/upload/v1600715350/sebastian-coman-photography-Zmhi-OMDVbw-unsplash_p7bhqn.jpg'
 )
 
+Api::ItemSize.create!(
+  price: 9.00,
+  menu_item_id: gnocchi.id
+)
+
 sorbet = Api::MenuItem.create!(
   name: 'Sorbet Trio',
   description: 'Strawberry, mango, blueberry',
   menu_category_id: desserts.id,
   photo: 'https://res.cloudinary.com/dnyjzmdsk/image/upload/v1600715399/sebastian-coman-photography--hM0-PSO3FY-unsplash_viiw5w.jpg'
+)
+
+Api::ItemSize.create!(
+  price: 9.00,
+  menu_item_id: sorbet.id
 )
 
 brownie = Api::MenuItem.create!(
@@ -246,11 +341,21 @@ brownie = Api::MenuItem.create!(
   photo: 'https://res.cloudinary.com/dnyjzmdsk/image/upload/v1600715446/alena-ganzhela-MONzTP2XxUE-unsplash_jypjog.jpg'
 )
 
+Api::ItemSize.create!(
+  price: 9.00,
+  menu_item_id: brownie.id
+)
+
 creme_brulee = Api::MenuItem.create!(
   name: 'Creme Brulee',
   description: 'Classic cream brulee',
   menu_category_id: desserts.id,
   photo: 'https://res.cloudinary.com/dnyjzmdsk/image/upload/v1600715487/alex-munsell-wiTWDYLURr8-unsplash_lua4p5.jpg'
+)
+
+Api::ItemSize.create!(
+  price: 9.00,
+  menu_item_id: creme_brulee.id
 )
 
 whiskey_sour = Api::MenuItem.create!(
@@ -260,17 +365,33 @@ whiskey_sour = Api::MenuItem.create!(
   photo: 'https://res.cloudinary.com/dnyjzmdsk/image/upload/v1558087280/frapzo3jjewuo3xkfpcb.jpg'
 )
 
+Api::ItemSize.create!(
+  price: 9.00,
+  menu_item_id: whiskey_sour.id
+)
+
 french_martini = Api::MenuItem.create!(
   name: 'French Martini',
   description: 'Grey goose, Chambord, pineapple',
   menu_category_id: cocktails.id,
   photo: 'https://res.cloudinary.com/dnyjzmdsk/image/upload/v1558109315/cb1cxjvngzz7cdv3gosy.jpg'
 )
+
+Api::ItemSize.create!(
+  price: 9.00,
+  menu_item_id: french_martini.id
+)
+
 japanese_slipper = Api::MenuItem.create!(
   name: 'Japanese Slipper',
   description: 'Midori, Cointreau & lemon',
   menu_category_id: cocktails.id,
   photo: 'https://res.cloudinary.com/dnyjzmdsk/image/upload/v1558109563/ezn9k4l4iqg3xtdsy9wr.jpg'
+)
+
+Api::ItemSize.create!(
+  price: 9.00,
+  menu_item_id: japanese_slipper.id
 )
 
 margarita = Api::MenuItem.create!(
@@ -280,11 +401,21 @@ margarita = Api::MenuItem.create!(
   photo: 'https://res.cloudinary.com/dnyjzmdsk/image/upload/v1558087299/acfhxpjk7eiwryqdwwfs.jpg'
 )
 
+Api::ItemSize.create!(
+  price: 9.00,
+  menu_item_id: margarita.id
+)
+
 mojito = Api::MenuItem.create!(
   name: 'Classic Mojito',
   description: 'Bacardi, mint & lime',
   menu_category_id: cocktails.id,
   photo: 'https://res.cloudinary.com/dnyjzmdsk/image/upload/v1558087255/tvsdmyyvblwt1u5tbhep.jpg'
+)
+
+Api::ItemSize.create!(
+  price: 9.00,
+  menu_item_id: mojito.id
 )
 
 pinot_noir = Api::MenuItem.create!(

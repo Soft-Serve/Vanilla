@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2020_11_07_135147) do
 
   create_table "item_sizes", force: :cascade do |t|
     t.float "price", null: false
-    t.string "unit"
+    t.string "unit", default: "1"
     t.bigint "menu_item_id", null: false
     t.index ["menu_item_id"], name: "index_item_sizes_on_menu_item_id"
   end
