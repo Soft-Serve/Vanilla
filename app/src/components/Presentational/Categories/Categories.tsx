@@ -32,7 +32,7 @@ const Categories: FC = () => {
           {data?.categories?.map((category) => (
             <Button
               type="button"
-              colour="primary"
+              colour="naked"
               size="M"
               onClick={() => setCategoryID(category.id)}
               key={category.id}

@@ -6,16 +6,13 @@ const SIGN_IN_FORM_MUTATION = gql`
   mutation SignInFormMutation($input: input) {
     signIn(input: $input)
       @rest(type: SignIn, path: "users/sign_in", method: "POST") {
-      email
-      first_name
-      last_name
-      role
-      __typename
+      id
     }
   }
 `;
 
 interface User {
+  id: number;
   email: string;
   first_name: string;
   last_name: string;
