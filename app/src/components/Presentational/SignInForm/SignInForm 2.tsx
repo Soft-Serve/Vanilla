@@ -6,7 +6,7 @@ import { useSignInFormMutation } from "./SignInForm.mutation";
 const SignInForm: FC = () => {
   // const [password, setPassword] = useState(" ");
   // const [email, setEmail] = useState(" ");
-  const [signIn, { data }] = useSignInFormMutation({onCompleted:  (completedData) => console.log(completedData)});
+  const [signIn, { data }] = useSignInFormMutation();
   const [input, setInput] = useState({ email: "", password: "" });
 
   console.log(data);
