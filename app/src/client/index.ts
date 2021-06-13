@@ -2,7 +2,7 @@ import { ApolloClient, InMemoryCache } from "@apollo/client";
 import { RestLink } from "apollo-link-rest";
 
 const link = new RestLink({
-  uri: "http://localhost:3091/api/",
+  uri: "http://localhost:3091/",
   headers: {
     Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.",
     "Content-Type": "application/json; charset=utf-8",

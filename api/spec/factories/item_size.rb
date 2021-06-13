@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :item_size, class: Api::ItemSize do
+  factory :item_size, class: ItemSize do
     price { 11 }
     unit { '9 oz' }
 

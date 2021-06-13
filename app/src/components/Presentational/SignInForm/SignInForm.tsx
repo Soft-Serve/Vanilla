@@ -4,14 +4,16 @@ import { Input, Button } from "@base";
 import { useSignInFormMutation } from "./SignInForm.mutation";
 
 const SignInForm: FC = () => {
-  const [signIn, { data }] = useSignInFormMutation({
+  const [signIn, {error}] = useSignInFormMutation({
     onCompleted: (completedData) => {
-      console.log(completedData);
+      console.log(completedData)
     },
   });
-  const [input, setInput] = useState({ email: "", password: "" });
+  const [loginData, setInput] = useState({ email: "", password: "" });
+  console.log(error);
 
-  console.log(data);
+  const input = {user: loginData}
+
   return (
     <form
       onSubmit={(e) => {
@@ -24,8 +26,8 @@ const SignInForm: FC = () => {
       }}
     >
       <Input
-        onChange={(e) => setInput({ ...input, email: e.target.value })}
-        value={input.email}
+        onChange={(e) => setInput({ ...loginData, email: e.target.value })}
+        value={loginData.email}
         id="email-address"
         name="email"
         type="email"
@@ -35,8 +37,8 @@ const SignInForm: FC = () => {
       />
 
       <Input
-        value={input.password}
-        onChange={(e) => setInput({ ...input, password: e.target.value })}
+        value={loginData.password}
+        onChange={(e) => setInput({ ...loginData, password: e.target.value })}
         id="password"
         name="password"
         type="password"

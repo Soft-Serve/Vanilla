@@ -4,5 +4,5 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  belongs_to :restaurant, class_name: 'Api::Restaurant'
+  belongs_to :restaurant, class_name: ' Restaurant'
 end
