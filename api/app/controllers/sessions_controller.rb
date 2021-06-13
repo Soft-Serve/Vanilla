@@ -7,7 +7,7 @@ class SessionsController < Devise::SessionsController
     sign_in(resource_name, resource)
 
     yield resource if block_given?
-    byebug
+
     ::UserPresenter.new(resource).serialize
   end
 end
