@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :menu_item, class: Api::MenuItem do
+  factory :menu_item, class: MenuItem do
     name { 'Sauvignon Blanc' }
     description { 'Kim Crawford, 2017' }
 
