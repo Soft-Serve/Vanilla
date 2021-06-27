@@ -16,7 +16,7 @@ const SIZE_MAP = {
 type SIZE_TYPES = keyof typeof SIZE_MAP;
 
 const buildStyles = (size: SIZE_TYPES, mobileColumns?: number) => {
-  const mobileStyles = `grid-cols-${mobileColumns ? mobileColumns : 1}` as TArg;
+  const mobileStyles = `grid-cols-${mobileColumns || 1}` as TArg;
   return classnames(base, SIZE_MAP[size], mobileStyles);
 };
 

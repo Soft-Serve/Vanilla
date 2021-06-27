@@ -1,7 +1,8 @@
 import React, { FC, SetStateAction } from "react";
 import { Button } from "src/components/Base";
-import { slideOver, section } from "./styles";
 import { SlideTransition } from "@transitions";
+import { slideOver, section } from "./styles";
+
 interface Props {
   isSlideOverOpen: boolean;
   setIsSlideOverOpen: (value: SetStateAction<boolean>) => void;

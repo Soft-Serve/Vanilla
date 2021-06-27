@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import { useMutation, useQuery } from "@apollo/client";
 import { DELETE_MENU, POST_MENU } from "./mutations";
 import { GET_MENU, GET_MENUS } from "./queries";
@@ -10,7 +11,7 @@ import {
 } from ".";
 
 const useMenus = () => {
-  const { data: menus, loading, error } = useQuery<MenuQuery>(GET_MENUS);
+  const { data: menus } = useQuery<MenuQuery>(GET_MENUS);
 
   const useGetMenu = (menuID: number) => {
     const {
@@ -31,11 +32,13 @@ const useMenus = () => {
 
   const [addMenu] = useMutation<PostMenuMutationData, Variables>(POST_MENU, {
     update(cache, { data }) {
-      const { menus } = cache.readQuery({ query: GET_MENUS }) as MenuQuery;
+      const { menus: newMenu } = cache.readQuery({
+        query: GET_MENUS,
+      }) as MenuQuery;
       cache.writeQuery({
         query: GET_MENUS,
         data: {
-          menus: [data?.postMenu, ...menus],
+          menus: [data?.postMenu, ...newMenu],
         },
       });
     },
@@ -59,11 +62,13 @@ const useMenus = () => {
     DELETE_MENU,
     {
       update(cache, { data }) {
-        const { menus } = cache.readQuery({ query: GET_MENUS }) as MenuQuery;
+        const { menus: newMenu } = cache.readQuery({
+          query: GET_MENUS,
+        }) as MenuQuery;
         cache.writeQuery({
           query: GET_MENUS,
           data: {
-            menus: menus.filter((menu) => menu.id !== data?.deleteMenu.id),
+            menus: newMenu.filter((menu) => menu.id !== data?.deleteMenu.id),
           },
         });
       },
@@ -86,8 +91,6 @@ const useMenus = () => {
 
   return {
     menus,
-    loading,
-    error,
     setMenu,
     deleteMenu,
     useGetMenu,

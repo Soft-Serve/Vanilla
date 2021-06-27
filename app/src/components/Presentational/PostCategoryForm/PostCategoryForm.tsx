@@ -1,5 +1,6 @@
 import { Input, Button } from "@base";
-import { FC, FormEvent, useState } from "react";
+import React, { FormEvent, useState } from "react";
+import type { FC } from "react";
 import { usePostCategoryMutation } from "./PostCategoryForm.mutation";
 
 const PostCategoryForm: FC = () => {
@@ -11,8 +12,7 @@ const PostCategoryForm: FC = () => {
     menu_id: 2,
   });
 
-  const [postCategory, { data }] = usePostCategoryMutation();
-  console.log(data);
+  const [postCategory] = usePostCategoryMutation();
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();

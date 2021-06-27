@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import type { FC } from "react";
 import { Button } from "@base";
-import { useMenusQuery } from "./Menus.query";
 import { useGlobalContext } from "src/contexts";
+import { useMenusQuery } from "./Menus.query";
 
 const Menus: FC = () => {
   const { setMenuID } = useGlobalContext();
@@ -24,7 +24,7 @@ const Menus: FC = () => {
   if (error) return <p>error</p>;
   if (loading) return <p>loading...</p>;
   return (
-    <div className={"flex-row flex w-full justify-between"}>
+    <div className="flex-row flex w-full justify-between">
       {data?.menus?.map((menu) => {
         return (
           <Button

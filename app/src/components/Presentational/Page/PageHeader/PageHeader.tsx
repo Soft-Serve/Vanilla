@@ -2,9 +2,9 @@ import React from "react";
 import type { FC, SetStateAction } from "react";
 import { Header, Title, Button } from "@base";
 import { H1, H6 } from "src/styles";
-import * as styles from "./styles";
 import { routes } from "src/routes";
 import { Link } from "react-router-dom";
+import * as styles from "./styles";
 
 interface Props {
   setIsSlideOverOpen: (value: SetStateAction<boolean>) => void;

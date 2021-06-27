@@ -4,15 +4,10 @@ import { Input, Button } from "@base";
 import { useSignInFormMutation } from "./SignInForm.mutation";
 
 const SignInForm: FC = () => {
-  const [signIn, {error}] = useSignInFormMutation({
-    onCompleted: (completedData) => {
-      console.log(completedData)
-    },
-  });
+  const [signIn] = useSignInFormMutation();
   const [loginData, setInput] = useState({ email: "", password: "" });
-  console.log(error);
 
-  const input = {user: loginData}
+  const input = { user: loginData };
 
   return (
     <form

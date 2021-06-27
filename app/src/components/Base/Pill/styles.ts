@@ -33,11 +33,7 @@ type COLOUR_TYPES = keyof typeof CALOUR_MAP | undefined;
 type SIZE_TYPES = keyof typeof PILL_SIZES | undefined;
 
 const buildStyles = (size: SIZE_TYPES, colour: COLOUR_TYPES) =>
-  classnames(
-    base,
-    PILL_SIZES[size ? size : "SM"],
-    CALOUR_MAP[colour ? colour : "success"]
-  );
+  classnames(base, PILL_SIZES[size || "SM"], CALOUR_MAP[colour || "success"]);
 
 export { buildStyles };
 export type { COLOUR_TYPES, SIZE_TYPES };

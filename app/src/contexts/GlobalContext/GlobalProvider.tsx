@@ -1,4 +1,5 @@
-import { FC, useState } from "react";
+import React, { useState } from "react";
+import type { FC } from "react";
 import { GlobalContext } from "@contexts";
 
 interface Props {

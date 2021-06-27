@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import { useMutation, useQuery } from "@apollo/client";
 import {
   ItemQuery,
@@ -21,11 +22,7 @@ const useItems = (categoryID: number | undefined) => {
   });
 
   const useGetItem = (itemID: number) => {
-    const {
-      data: item,
-      loading,
-      error,
-    } = useQuery<ItemQuery>(GET_ITEM, {
+    const { data: item } = useQuery<ItemQuery>(GET_ITEM, {
       variables: {
         itemID,
       },
@@ -40,7 +37,7 @@ const useItems = (categoryID: number | undefined) => {
 
   const [addItem] = useMutation<PostItemMutationData, Variables>(POST_ITEM, {
     update(cache, { data }) {
-      const { items } = cache.readQuery({
+      const { items: newItems } = cache.readQuery({
         query: GET_ITEMS,
         variables: {
           categoryID,
@@ -52,7 +49,7 @@ const useItems = (categoryID: number | undefined) => {
           categoryID,
         },
         data: {
-          categories: [data?.postItem, ...items],
+          categories: [data?.postItem, ...newItems],
         },
       });
     },
@@ -77,7 +74,7 @@ const useItems = (categoryID: number | undefined) => {
     DELETE_ITEM,
     {
       update(cache, { data }) {
-        const { items } = cache.readQuery({
+        const { items: newItems } = cache.readQuery({
           query: GET_ITEMS,
           variables: categoryID,
         }) as ItemQuery;
@@ -87,7 +84,7 @@ const useItems = (categoryID: number | undefined) => {
             categoryID,
           },
           data: {
-            items: items.filter((item) => item.id !== data?.deleteItem.id),
+            items: newItems.filter((item) => item.id !== data?.deleteItem.id),
           },
         });
       },

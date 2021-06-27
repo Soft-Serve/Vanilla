@@ -65,11 +65,7 @@ const SIZE_MAP = {
 };
 
 const buildStyles = (size?: Sizes, colour?: Colours) =>
-  classnames(
-    base,
-    SIZE_MAP[size ? size : "S"],
-    COLOUR_MAP[colour ? colour : "primary"]
-  );
+  classnames(base, SIZE_MAP[size || "S"], COLOUR_MAP[colour || "primary"]);
 
 export type { Sizes, Colours };
 export { buildStyles };

@@ -21,7 +21,7 @@ const Page: FC<Props> = ({ restaurantName }) => {
       <Container>
         <Menus />
       </Container>
-      <div style={{ height: "8px" }}></div>
+      <div style={{ height: "8px" }} />
       {menuID && <Categories />}
       {categoryID && <Items />}
       <SlideOver

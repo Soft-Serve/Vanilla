@@ -1,3 +1,4 @@
+import React from "react";
 import { Toggle } from "@base";
 import type { FC } from "react";
 import { useAllergyContext } from "@contexts";
@@ -16,7 +17,7 @@ const AllergiesToggle: FC<Props> = ({ allergy }) => {
   }
 
   const handleClick = () => {
-    isEnabled
+    return isEnabled
       ? dispatch({ type: ACTION_TYPES.REMOVE, payload: allergy })
       : dispatch({ type: ACTION_TYPES.ADD, payload: allergy });
   };

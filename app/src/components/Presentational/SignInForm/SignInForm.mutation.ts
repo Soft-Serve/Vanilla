@@ -5,17 +5,16 @@ import { useMutation } from "@apollo/client";
 const SIGN_IN_FORM_MUTATION = gql`
   mutation SignInFormMutation($input: input) {
     signIn(input: $input)
-      @rest(type: SignIn, path: "users/sign_in", method: "POST"){
-        __typename
-        id
-        email
-        first_name
-        last_name
-        role
-      }
+      @rest(type: SignIn, path: "users/sign_in", method: "POST") {
+      __typename
+      id
+      email
+      first_name
+      last_name
+      role
+    }
   }
 `;
-
 
 interface User {
   id: number;
@@ -31,7 +30,7 @@ interface SignInFormData {
 }
 
 interface Variables {
-  input: Object;
+  input: Record<string, unknown>;
 }
 
 const useSignInFormMutation = (

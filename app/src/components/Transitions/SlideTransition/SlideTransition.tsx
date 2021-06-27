@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { Transition } from "@headlessui/react";
 import { transition, from, to } from "./styles";
+
 interface Props {
   isVisible: boolean;
 }

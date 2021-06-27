@@ -1,4 +1,5 @@
-import { FC, useReducer } from "react";
+import React, { useReducer } from "react";
+import type { FC } from "react";
 import { AllergyContext } from "@contexts";
 import type { Allergy, Action } from "./types";
 import { ACTION_TYPES } from "./types";

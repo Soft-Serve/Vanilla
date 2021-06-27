@@ -1,5 +1,7 @@
-import { FC } from "react";
+import React from "react";
+import type { FC } from "react";
 import { PostCategoryForm } from "@presentational";
+
 const PostCategory: FC = () => {
   return (
     <div>

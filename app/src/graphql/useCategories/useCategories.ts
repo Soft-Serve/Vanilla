@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import { useMutation, useQuery } from "@apollo/client";
 import { POST_CATEGORY, DELETE_CATEGORY } from "./mutations";
 import { GET_CATEGORIES, GET_CATEGORY } from "./queries";
@@ -21,11 +22,7 @@ const useCategories = (menuID: number | undefined) => {
   });
 
   const useGetCategory = (categoryID: number) => {
-    const {
-      data: category,
-      loading,
-      error,
-    } = useQuery<CategoryQuery>(GET_CATEGORY, {
+    const { data: category } = useQuery<CategoryQuery>(GET_CATEGORY, {
       variables: {
         categoryID,
       },
@@ -42,7 +39,7 @@ const useCategories = (menuID: number | undefined) => {
     POST_CATEGORY,
     {
       update(cache, { data }) {
-        const { categories } = cache.readQuery({
+        const { categories: newCat } = cache.readQuery({
           query: GET_CATEGORIES,
           variables: {
             menuID,
@@ -54,7 +51,7 @@ const useCategories = (menuID: number | undefined) => {
             menuID,
           },
           data: {
-            categories: [data?.postCategory, ...categories],
+            categories: [data?.postCategory, ...newCat],
           },
         });
       },
@@ -71,6 +68,7 @@ const useCategories = (menuID: number | undefined) => {
           name: input.name,
           menu_id: input.menu_id,
           category_type: input.category_type,
+          // eslint-disable-next-line no-underscore-dangle
           __typename: input.__typename,
         },
       },
@@ -80,7 +78,7 @@ const useCategories = (menuID: number | undefined) => {
     DELETE_CATEGORY,
     {
       update(cache, { data }) {
-        const { categories } = cache.readQuery({
+        const { categories: newCat } = cache.readQuery({
           query: GET_CATEGORIES,
           variables: menuID,
         }) as CategoryQuery;
@@ -90,7 +88,7 @@ const useCategories = (menuID: number | undefined) => {
             menuID,
           },
           data: {
-            categories: categories.filter(
+            categories: newCat.filter(
               (category) => category.id !== data?.deleteCategory.id
             ),
           },

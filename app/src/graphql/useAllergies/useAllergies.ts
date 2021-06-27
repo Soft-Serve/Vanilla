@@ -1,6 +1,6 @@
 import { useQuery } from "@apollo/client";
-import { GET_ALLERGIES } from "./queries";
 import { AllergyQuery } from "@graphql";
+import { GET_ALLERGIES } from "./queries";
 
 const useAllergies = (restaurantID: number) => {
   const useGetAllergies = () => {
