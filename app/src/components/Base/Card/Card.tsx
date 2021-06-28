@@ -1,20 +1,17 @@
-import React, { FC } from "react";
+import React, { FC, ReactNode } from "react";
 import * as styles from "./styles";
 
 interface Props {
-  hasPadding?: boolean;
+  header?: ReactNode;
 }
 
-const Card: FC<Props> = ({ children, hasPadding }) => {
+const Card: FC<Props> = ({ children, header }) => {
   return (
-    <div className={styles.base}>
-      <div className={styles.buildBodyStyles(hasPadding)}>{children}</div>
+    <div className="bg-white overflow-hidden shadow rounded-lg divide-y divide-pink-500">
+      <div className="px-4 py-5 sm:px-6 text-blue-500 ">{header}</div>
+      <div className="px-4 py-5 sm:p-6">{children}</div>
     </div>
   );
-};
-
-Card.defaultProps = {
-  hasPadding: true,
 };
 
 export { Card };

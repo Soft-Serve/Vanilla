@@ -14,10 +14,13 @@ const base = classnames(
 );
 
 const primary = classnames(
-  "bg-red-500",
-  "hover:bg-red-300",
+  "bg-white",
+  "border-pink-500",
+  "hover:bg-pink-300",
+  "hover:text-white",
   "focus:ring-red-400",
-  "text-white"
+  "font-bold",
+  "text-blue-600"
 );
 
 const accent = classnames(

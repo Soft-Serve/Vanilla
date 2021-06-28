@@ -21,7 +21,7 @@ const ItemSizes: FC<Props> = ({ itemID }) => {
           return (
             <ul key={size.id}>
               <li>{size.price} $</li>
-              <li>{size.unit}</li>
+              {/* <li>{size.unit}</li> */}
             </ul>
           );
         })}

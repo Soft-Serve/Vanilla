@@ -1,21 +1,26 @@
 import React, { FC } from "react";
 import { Transition } from "@headlessui/react";
-import { transition, from, to } from "./styles";
+import { transition, getFromStyles, getToStyles } from "./styles";
 
 interface Props {
   isVisible: boolean;
+  direction?: "x" | "y";
 }
 
-const SlideTransition: FC<Props> = ({ children, isVisible }) => {
+const SlideTransition: FC<Props> = ({
+  children,
+  isVisible,
+  direction = "x",
+}) => {
   return (
     <Transition
       show={isVisible}
       enter={transition}
-      enterFrom={from}
-      enterTo={to}
+      enterFrom={getFromStyles(direction)}
+      enterTo={getToStyles(direction)}
       leave={transition}
-      leaveFrom={to}
-      leaveTo={from}
+      leaveFrom={getFromStyles(direction)}
+      leaveTo={getToStyles(direction)}
     >
       {children}
     </Transition>

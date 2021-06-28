@@ -6,18 +6,19 @@ const tile = {
     "block",
     "rounded-lg",
     "border",
-    "border-gray-300",
+    "border-blue-700",
     "bg-white",
     "shadow-sm",
     "px-6",
     "py-4",
     "cursor-pointer",
-    "hover:border-gray-400",
+    "hover:border-blue-900",
     "sm:flex",
     "sm:justify-between",
-    "focus:outline-none"
+    "focus:outline-none",
+    "mx-2"
   ),
-  checked: classnames("ring-1", "ring-offset-2", "ring-indigo-500"),
+  checked: classnames("ring-1", "ring-offset-2", "ring-blue-500"),
 };
 
 const buildStyles = (isChecked: boolean) => {

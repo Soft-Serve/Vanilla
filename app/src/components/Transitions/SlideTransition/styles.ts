@@ -11,4 +11,14 @@ const transition = classnames(
 const from = classnames("translate-x-full");
 const to = classnames("translate-x-0");
 
-export { transition, from, to };
+const getFromStyles = (direction: "x" | "y") => {
+  if (direction === "x") return classnames("translate-x-full");
+  return classnames("translate-y-full");
+};
+
+const getToStyles = (direction: "x" | "y") => {
+  if (direction === "x") return classnames("translate-x-full");
+  return classnames("translate-y-full");
+};
+
+export { transition, from, to, getFromStyles, getToStyles };

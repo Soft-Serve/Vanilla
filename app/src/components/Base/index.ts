@@ -8,3 +8,4 @@ export { Header } from "./Header";
 export { SlideOver } from "./SlideOver";
 export { RoundButton, Button } from "./Buttons";
 export { Input } from "./Input";
+export { RadioTile } from "./RadioTile";
