@@ -6,6 +6,7 @@ import { useRestaurantQuery } from "./Restaurant.query";
 
 const Restaurant: FC = () => {
   const { data, error, loading } = useRestaurantQuery();
+  console.log("DATA", data);
   if (loading) return <p>loading</p>;
   if (data?.restaurant)
     return (

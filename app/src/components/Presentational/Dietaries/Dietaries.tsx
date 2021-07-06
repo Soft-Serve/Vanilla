@@ -1,6 +1,7 @@
 import React from "react";
 import type { FC } from "react";
 import { useDietaryQuery } from "@graphql";
+import { DirectiveDefinitionNode } from "graphql";
 
 interface Props {
   itemID: number;
@@ -13,7 +14,7 @@ const Dietaries: FC<Props> = ({ itemID }) => {
   });
 
   return (
-    <ul>
+    <ul className="italic">
       {dietaries?.dietaries.map((dietary) => (
         <li key={dietary.id}>{dietary.name}</li>
       ))}

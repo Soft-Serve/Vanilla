@@ -8,6 +8,7 @@ import { useMenusQuery } from "./Menus.query";
 
 const Menus: FC = () => {
   const { setMenuID, menuID } = useGlobalContext();
+  console.log("setMenuID", setMenuID);
   const [isMenusVisible, setIsMenusVisible] = useState(true);
   const { data, error, loading } = useMenusQuery({
     onCompleted: (completedData) => {

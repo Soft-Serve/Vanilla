@@ -27,7 +27,7 @@ const Item: FC<Props> = ({ item }) => {
   const header = (title: string) => {
     return <Title type="h3">{title}</Title>;
   };
-
+  console.log("Item: ", item);
   return (
     <Card header={header(item.name)} key={item.id}>
       <div className="flex justify-between">

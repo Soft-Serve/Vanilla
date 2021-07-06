@@ -24,6 +24,7 @@ const Page: FC<Props> = ({ restaurantName }) => {
       <div style={{ height: "8px" }} />
       {menuID && <Categories />}
       {categoryID && <Items />}
+      {console.log("MenuID: ", menuID, "categoryID: ", categoryID)}
       <SlideOver
         setIsSlideOverOpen={setIsSlideOverOpen}
         isSlideOverOpen={isSlideOverOpen}
