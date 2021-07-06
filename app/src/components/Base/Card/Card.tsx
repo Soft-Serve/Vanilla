@@ -4,7 +4,7 @@ import * as styles from "./styles";
 interface Props {
   header?: ReactNode;
 }
-
+// card styling branch
 const Card: FC<Props> = ({ children, header }) => {
   return (
     <div className="bg-white overflow-hidden shadow rounded-lg divide-y divide-pink-500">
