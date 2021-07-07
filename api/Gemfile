@@ -10,7 +10,7 @@ gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
 gem 'puma', '~> 4.1'
 
-gem 'mimemagic', github: 'mimemagicrb/mimemagic', ref: '01f92d86d15d85cfd0f20dabd025dcbd36a8a60f'
+gem 'mimemagic', '~> 0.3.7'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.7'
@@ -19,11 +19,15 @@ gem 'mimemagic', github: 'mimemagicrb/mimemagic', ref: '01f92d86d15d85cfd0f20dab
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+gem 'bundler', '1.17.2'
+
 gem 'cloudinary', '~> 1.9.1'
 
 gem 'carrierwave', '~> 1.2'
 
 gem 'devise', '4.7.1' # Authentication
+
+gem 'rake', '13.0.4'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
