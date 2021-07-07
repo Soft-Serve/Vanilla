@@ -1,0 +1,3 @@
+current directory: /api/vendor/cache/ruby/2.6.0/gems/mimemagic-0.3.10/ext/mimemagic
+/usr/local/bin/ruby -rrubygems /api/vendor/cache/ruby/2.6.0/gems/rake-13.0.4/exe/rake RUBYARCHDIR\=/api/vendor/cache/ruby/2.6.0/extensions/x86_64-linux/2.6.0/mimemagic-0.3.10 RUBYLIBDIR\=/api/vendor/cache/ruby/2.6.0/extensions/x86_64-linux/2.6.0/mimemagic-0.3.10
+mkdir -p /api/vendor/cache/ruby/2.6.0/extensions/x86_64-linux/2.6.0/mimemagic-0.3.10/mimemagic
