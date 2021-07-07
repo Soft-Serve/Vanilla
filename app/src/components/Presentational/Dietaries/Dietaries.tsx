@@ -12,12 +12,50 @@ const Dietaries: FC<Props> = ({ itemID }) => {
     },
   });
 
+  interface Allergens {
+    dietary_id: number;
+    id: number;
+    menu_item_id: number;
+    name: string;
+  }
+
+  const renderAllergens = (arr: Allergens[]) => {
+    const items = [];
+    for (let i = 0; i < arr.length; i += 1) {
+      if (i === arr.length - 1) {
+        items.push(
+          <li className="inline-block italic" key={arr[i].id}>
+            {arr[i].name}
+          </li>
+        );
+      } else {
+        items.push(
+          <li className="inline-block italic" key={arr[i].id}>
+            {arr[i].name},&nbsp;
+          </li>
+        );
+      }
+    }
+    return items;
+  };
+
   return (
-    <ul>
-      {dietaries?.dietaries.map((dietary) => (
-        <li key={dietary.id}>{dietary.name}</li>
-      ))}
-    </ul>
+    <>
+      {dietaries?.dietaries && dietaries?.dietaries.length > 0 ? (
+        <p>Restrictions:</p>
+      ) : null}
+      <ul>
+        {dietaries?.dietaries && dietaries?.dietaries.length > 0
+          ? renderAllergens(dietaries?.dietaries)
+          : null}
+        {console.log("DIETARIES ", dietaries)}
+        {/* {dietaries?.dietaries.map((dietary) => (
+          <li className="inline-block" key={dietary.id}>
+            {dietary.name}
+          </li>
+        ))} */}
+      </ul>
+    </>
   );
 };
 

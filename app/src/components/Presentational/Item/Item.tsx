@@ -33,6 +33,7 @@ const Item: FC<Props> = ({ item }) => {
       <div className="flex justify-between">
         <ItemSizes itemID={item.id} />
         <Dietaries itemID={item.id} />
+        {console.log("ITEM: ", item)}
       </div>
     </Card>
   );
