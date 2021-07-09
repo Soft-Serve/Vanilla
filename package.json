@@ -7,7 +7,7 @@
   "private": false,
   "scripts": {
     "db:reset": "docker-compose run api rails db:reset",
-    "frontend": "cd ./frontend && yarn && yarn serve",
+    "frontend": "cd app && yarn start",
     "bundle": "docker-compose run api bundle install",
     "backend": "yarn bundle && yarn db:reset && docker-compose run --service-ports api /bin/sh -c 'rm -f tmp/pids/server.pid && rails s -b 0.0.0.0'",
     "cleanup": "docker-compose down -v",
