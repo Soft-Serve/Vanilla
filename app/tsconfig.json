@@ -1,31 +1,31 @@
 {
-  "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "baseUrl": ".",
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx",
-    "paths": {
-      "@base": ["src/components/Base"],
-      "@transitions": ["src/components/Transitions/"],
-      "@graphql": ["src/graphql/"],
-      "@contexts": ["src/contexts/"],
-      "@hooks": ["src/hooks/"],
-      "@views": ["src/views/"],
-      "@routes": ["src/routes/"],
-      "@presentational": ["src/components/Presentational"]
-    }
-  },
-  "include": ["src"]
+    "compilerOptions": {
+        "target": "es5",
+        "baseUrl": ".",
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "allowJs": true,
+        "skipLibCheck": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "noFallthroughCasesInSwitch": true,
+        "module": "esnext",
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "noEmit": true,
+        "jsx": "react-jsx",
+        "paths": {
+            "@base": ["src/components/Base"],
+            "@transitions": ["src/components/Transitions/"],
+            "@graphql": ["src/graphql/"],
+            "@contexts": ["src/contexts/"],
+            "@hooks": ["src/hooks/"],
+            "@views": ["src/views/"],
+            "@routes": ["src/routes/"],
+            "@presentational": ["src/components/Presentational"]
+        }
+    },
+    "include": ["src", ".eslintrc.js", "tailwind.config.js", "postcss.config.js", "tsdx.config.js"]
 }

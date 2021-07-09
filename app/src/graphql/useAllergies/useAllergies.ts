@@ -3,22 +3,22 @@ import { AllergyQuery } from "@graphql";
 import { GET_ALLERGIES } from "./queries";
 
 const useAllergies = (restaurantID: number) => {
-  const useGetAllergies = () => {
-    const { data, loading, error } = useQuery<AllergyQuery>(GET_ALLERGIES, {
-      variables: {
-        restaurantID,
-      },
-    });
+    const useGetAllergies = () => {
+        const { data, loading, error } = useQuery<AllergyQuery>(GET_ALLERGIES, {
+            variables: {
+                restaurantID,
+            },
+        });
+
+        return {
+            data,
+            loading,
+            error,
+        };
+    };
 
     return {
-      data,
-      loading,
-      error,
+        useGetAllergies,
     };
-  };
-
-  return {
-    useGetAllergies,
-  };
 };
 export { useAllergies };

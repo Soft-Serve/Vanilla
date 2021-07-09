@@ -25,11 +25,21 @@ module.exports = {
         tsconfigRootDir: __dirname,
     },
     rules: {
-        // Include .prettierrc.js rules
-        "prettier/prettier": ["error", {}, { usePrettierrc: true }],
-        // We will use TypeScript's types for component props instead
+        "prettier/prettier": ["error", {}, { usePrettierrc: true, endOfLine: "auto" }],
         "react/prop-types": "off",
-        // We don't want unused vars
         "@typescript-eslint/no-unused-vars": ["error"],
+        "linebreak-style": "off",
+        "import/prefer-default-export": "off",
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "@typescript-eslint/naming-convention": "off",
+        "react/button-has-type": "off",
+        "react/jsx-props-no-spreading": "off",
+        "import/no-cycle": "off",
+        "no-underscore-dangle": "off",
+        "jsx-a11y/label-has-associated-control": "off",
+        "import/no-extraneous-dependencies": [
+            "off",
+            { devDependencies: false, optionalDependencies: false, peerDependencies: false },
+        ],
     },
 };
