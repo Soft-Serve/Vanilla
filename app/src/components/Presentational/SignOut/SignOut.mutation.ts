@@ -10,23 +10,23 @@ const SIGN_OUT_MUTATION = gql`
 `;
 
 interface User {
-    id: number;
-    email: string;
-    first_name: string;
-    last_name: string;
-    role: string;
-    __typename: string;
+  id: number;
+  email: string;
+  first_name: string;
+  last_name: string;
+  role: string;
+  __typename: string;
 }
 
 interface SignOutData {
-    user: User;
+  user: User;
 }
 
 interface Variables {
-    input: Record<string, unknown>;
+  input: Record<string, unknown>;
 }
 
 const useSignOutMutation = (options?: MutationHookOptions<SignOutData, Variables>) =>
-    useMutation<SignOutData, Variables>(SIGN_OUT_MUTATION, options);
+  useMutation<SignOutData, Variables>(SIGN_OUT_MUTATION, options);
 
 export { useSignOutMutation };

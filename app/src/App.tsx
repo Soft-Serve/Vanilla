@@ -6,7 +6,7 @@ import { MenuPage, AdminPage } from "@views";
 import { routes } from "@routes";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { client } from "./client";
-import { PostCategory } from "./views/PostCategoryPage"
+import { PostCategory } from "./views/PostCategoryPage";
 
 const App = () => (
   <ApolloProvider client={client}>

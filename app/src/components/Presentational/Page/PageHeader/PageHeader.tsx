@@ -5,7 +5,7 @@ import { H1, H6 } from "src/styles";
 import { routes } from "src/routes";
 import { Link } from "react-router-dom";
 import * as styles from "./styles";
-import { useSignOutMutation } from "../../SignOut/SignOut.mutation";
+// import { useSignOutMutation } from "../../SignOut/SignOut.mutation";
 
 interface Props {
   setIsSlideOverOpen: (value: SetStateAction<boolean>) => void;
