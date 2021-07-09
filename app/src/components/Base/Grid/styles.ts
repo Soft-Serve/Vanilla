@@ -7,17 +7,17 @@ const M = classnames("lg:grid-cols-2");
 const SM = classnames("grid-cols-1");
 
 const SIZE_MAP = {
-    SM,
-    M,
-    LG,
-    XL,
+  SM,
+  M,
+  LG,
+  XL,
 };
 
 type SIZE_TYPES = keyof typeof SIZE_MAP;
 
 const buildStyles = (size: SIZE_TYPES, mobileColumns?: number) => {
-    const mobileStyles = `grid-cols-${mobileColumns || 1}` as TArg;
-    return classnames(base, SIZE_MAP[size], mobileStyles);
+  const mobileStyles = `grid-cols-${mobileColumns || 1}` as TArg;
+  return classnames(base, SIZE_MAP[size], mobileStyles);
 };
 
 export { buildStyles };

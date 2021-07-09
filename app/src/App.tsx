@@ -9,27 +9,27 @@ import { client } from "./client";
 import { PostCategory } from "./views/PostCategoryPage";
 
 const App = () => (
-    <ApolloProvider client={client}>
-        <Router>
-            <Switch>
-                <Route exact path={routes.menu}>
-                    <MenuPage>
-                        <Restaurant />
-                    </MenuPage>
-                </Route>
-                <Route exact path={routes.admin}>
-                    <MenuPage>
-                        <AdminPage />
-                    </MenuPage>
-                </Route>
-                <Route exact path={routes.postCategory}>
-                    <MenuPage>
-                        <PostCategory />
-                    </MenuPage>
-                </Route>
-            </Switch>
-        </Router>
-    </ApolloProvider>
+  <ApolloProvider client={client}>
+    <Router>
+      <Switch>
+        <Route exact path={routes.menu}>
+          <MenuPage>
+            <Restaurant />
+          </MenuPage>
+        </Route>
+        <Route exact path={routes.admin}>
+          <MenuPage>
+            <AdminPage />
+          </MenuPage>
+        </Route>
+        <Route exact path={routes.postCategory}>
+          <MenuPage>
+            <PostCategory />
+          </MenuPage>
+        </Route>
+      </Switch>
+    </Router>
+  </ApolloProvider>
 );
 
 export default App;
