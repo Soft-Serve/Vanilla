@@ -13,21 +13,21 @@ const SM = classnames("px-2", "text-xs");
 const LG = classnames("px-3", "text-sm");
 
 const CALOUR_MAP = {
-    success,
-    error,
-    warning,
+  success,
+  error,
+  warning,
 };
 
 const PILL_SIZES = {
-    SM,
-    LG,
+  SM,
+  LG,
 };
 
 type COLOUR_TYPES = keyof typeof CALOUR_MAP | undefined;
 type SIZE_TYPES = keyof typeof PILL_SIZES | undefined;
 
 const buildStyles = (size: SIZE_TYPES, colour: COLOUR_TYPES) =>
-    classnames(base, PILL_SIZES[size || "SM"], CALOUR_MAP[colour || "success"]);
+  classnames(base, PILL_SIZES[size || "SM"], CALOUR_MAP[colour || "success"]);
 
 export { buildStyles };
 export type { COLOUR_TYPES, SIZE_TYPES };

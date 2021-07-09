@@ -1,24 +1,24 @@
 export interface Menu {
-    id: number;
-    name: string;
-    restaurant_id?: number;
-    __typename: string;
+  id: number;
+  name: string;
+  restaurant_id?: number;
+  __typename: string;
 }
 
 export interface MenuQuery {
-    menus: Menu[];
+  menus: Menu[];
 }
 
 export interface Variables {
-    input: Menu;
+  input: Menu;
 }
 
 export interface PostMenuMutationData {
-    __typename: string;
-    postMenu: Menu;
+  __typename: string;
+  postMenu: Menu;
 }
 
 export interface DeleteMenuMutationData {
-    __typename: string;
-    deleteMenu: Menu;
+  __typename: string;
+  deleteMenu: Menu;
 }

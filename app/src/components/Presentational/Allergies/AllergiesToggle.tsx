@@ -5,24 +5,24 @@ import { useAllergyContext } from "@contexts";
 import type { Allergy } from "./Allergies.query";
 
 interface Props {
-    allergy: Allergy;
+  allergy: Allergy;
 }
 const AllergiesToggle: FC<Props> = ({ allergy }) => {
-    const { dispatch, isAllergyActive } = useAllergyContext();
-    const isEnabled = isAllergyActive(allergy);
+  const { dispatch, isAllergyActive } = useAllergyContext();
+  const isEnabled = isAllergyActive(allergy);
 
-    enum ACTION_TYPES {
-        ADD = "add",
-        REMOVE = "remove",
-    }
+  enum ACTION_TYPES {
+    ADD = "add",
+    REMOVE = "remove",
+  }
 
-    const handleClick = () => {
-        return isEnabled
-            ? dispatch({ type: ACTION_TYPES.REMOVE, payload: allergy })
-            : dispatch({ type: ACTION_TYPES.ADD, payload: allergy });
-    };
+  const handleClick = () => {
+    return isEnabled
+      ? dispatch({ type: ACTION_TYPES.REMOVE, payload: allergy })
+      : dispatch({ type: ACTION_TYPES.ADD, payload: allergy });
+  };
 
-    return <Toggle isEnabled={isEnabled} handleClick={handleClick} />;
+  return <Toggle isEnabled={isEnabled} handleClick={handleClick} />;
 };
 
 export { AllergiesToggle };
