@@ -1,6 +1,5 @@
 version: "3"
 services:
-
   db:
     image: postgres
     volumes:
@@ -25,15 +24,6 @@ services:
     tty: true
     stdin_open: true
 
-  frontend:
-    build: ./frontend
-    ports:
-      - "8091:8080" # use port that you want to in your local instead of 8091
-    volumes:
-      - ./frontend:/frontend
-      - frontend_node_modules://node_modules
-
 volumes:
   db:
   rails_log:
-  frontend_node_modules:
