@@ -19,7 +19,7 @@ docker-compose run api rails db:seed
 Rails Console
 docker exec -it soft_serve_api_run_455fb92af71e bash
 cd app
-rail console
+rails console
 
 All rails commands must be run as follows
 docker-compose run api ...

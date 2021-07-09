@@ -5,11 +5,13 @@ import { H1, H6 } from "src/styles";
 import { routes } from "src/routes";
 import { Link } from "react-router-dom";
 import * as styles from "./styles";
+import { useSignOutMutation } from "../../SignOut/SignOut.mutation";
 
 interface Props {
   setIsSlideOverOpen: (value: SetStateAction<boolean>) => void;
   restaurantName: string;
 }
+
 const PageHeader: FC<Props> = ({ setIsSlideOverOpen, restaurantName }) => {
   return (
     <div className={styles.container}>
