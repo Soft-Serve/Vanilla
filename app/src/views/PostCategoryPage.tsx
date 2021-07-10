@@ -2,7 +2,7 @@ import React from "react";
 import type { FC } from "react";
 import { PostCategoryForm } from "@presentational";
 
-const PostCategory: FC = () => {
+const PostCategoryPage: FC = () => {
   return (
     <div>
       <h1>post category</h1>
@@ -11,4 +11,4 @@ const PostCategory: FC = () => {
   );
 };
 
-export { PostCategory };
+export { PostCategoryPage };

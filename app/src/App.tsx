@@ -3,32 +3,41 @@ import React from "react";
 import { ApolloProvider } from "@apollo/client";
 import { Restaurant } from "@presentational";
 import { MenuPage, AdminPage } from "@views";
-import { routes } from "@routes";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { routes } from "@routes";
 import { client } from "./client";
-import { PostCategory } from "./views/PostCategoryPage";
+import { PostCategoryPage } from "./views/PostCategoryPage";
+import { PostMenuPage } from "./views/PostMenuPage";
+import { GlobalProvider } from "./contexts";
 
 const App = () => (
   <ApolloProvider client={client}>
-    <Router>
-      <Switch>
-        <Route exact path={routes.menu}>
-          <MenuPage>
-            <Restaurant />
-          </MenuPage>
-        </Route>
-        <Route exact path={routes.admin}>
-          <MenuPage>
-            <AdminPage />
-          </MenuPage>
-        </Route>
-        <Route exact path={routes.postCategory}>
-          <MenuPage>
-            <PostCategory />
-          </MenuPage>
-        </Route>
-      </Switch>
-    </Router>
+    <GlobalProvider>
+      <Router>
+        <Switch>
+          <Route exact path={routes.menu}>
+            <MenuPage>
+              <Restaurant />
+            </MenuPage>
+          </Route>
+          <Route exact path={routes.admin}>
+            <MenuPage>
+              <AdminPage />
+            </MenuPage>
+          </Route>
+          <Route exact path={routes.postCategory}>
+            <MenuPage>
+              <PostCategoryPage />
+            </MenuPage>
+          </Route>
+          <Route exact path={routes.postMenu}>
+            <MenuPage>
+              <PostMenuPage />
+            </MenuPage>
+          </Route>
+        </Switch>
+      </Router>
+    </GlobalProvider>
   </ApolloProvider>
 );
 

@@ -1,6 +1,7 @@
 import { classnames, TArg } from "tailwindcss-classnames";
 
 const base = classnames("grid", "gap-6");
+const XXL = classnames("sm:grid-cols-2", "md:grid-cols-4", "lg:grid-cols-6");
 const XL = classnames("sm:grid-cols-2", "lg:grid-cols-4");
 const LG = classnames("sm:grid-cols-2", "lg:grid-cols-3");
 const M = classnames("lg:grid-cols-2");
@@ -11,6 +12,7 @@ const SIZE_MAP = {
   M,
   LG,
   XL,
+  XXL,
 };
 
 type SIZE_TYPES = keyof typeof SIZE_MAP;

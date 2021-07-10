@@ -37,6 +37,11 @@ const PageHeader: FC<Props> = ({ setIsSlideOverOpen, restaurantName }) => {
             add new category
           </Button>
         </Link>
+        <Link to={routes.postMenu}>
+          <Button type="button" colour="primary" size="M">
+            add new menu
+          </Button>
+        </Link>
       </Header>
     </div>
   );

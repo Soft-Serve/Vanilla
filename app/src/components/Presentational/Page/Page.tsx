@@ -17,9 +17,9 @@ const Page: FC<Props> = ({ restaurantName }) => {
       <PageHeader restaurantName={restaurantName} setIsSlideOverOpen={setIsSlideOverOpen} />
       <Container>
         <Menus />
+        {menuID && <Categories />}
       </Container>
       <div style={{ height: "8px" }} />
-      {menuID && <Categories />}
       {categoryID && <Items />}
       <SlideOver setIsSlideOverOpen={setIsSlideOverOpen} isSlideOverOpen={isSlideOverOpen}>
         <Allergies />

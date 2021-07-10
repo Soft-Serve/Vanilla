@@ -37,6 +37,7 @@ module.exports = {
     "import/no-cycle": "off",
     "no-underscore-dangle": "off",
     "jsx-a11y/label-has-associated-control": "off",
+    "@typescript-eslint/no-explicit-any": "off",
     "import/no-extraneous-dependencies": [
       "off",
       { devDependencies: false, optionalDependencies: false, peerDependencies: false },

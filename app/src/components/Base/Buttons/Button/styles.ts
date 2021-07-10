@@ -13,7 +13,7 @@ const base = classnames(
   "h-full"
 );
 
-const primary = classnames("bg-red-500", "hover:bg-red-300", "focus:ring-red-400", "text-white");
+const primary = classnames("bg-red-400", "hover:bg-red-500", "focus:ring-red-400", "text-white");
 
 const accent = classnames("bg-indigo-600", "hover:bg-indigo-700", "focus:ring-indigo-500");
 

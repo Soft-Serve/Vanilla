@@ -1,13 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import type { FC } from "react";
 import { GlobalContext } from "@contexts";
+import { useRestaurantQuery } from "@shared";
 
-interface Props {
-  restaurantID: number;
-}
-const GlobalProvider: FC<Props> = ({ children, restaurantID }) => {
+const GlobalProvider: FC = ({ children }) => {
   const [menuID, setMenuID] = useState(0);
   const [categoryID, setCategoryID] = useState(0);
+  const [restaurantID, setRestaurantID] = useState(0);
+  const { data } = useRestaurantQuery();
+
+  useEffect(() => {
+    if (data?.restaurant.id) {
+      setRestaurantID(data?.restaurant.id);
+    }
+  }, [data]);
 
   return (
     <GlobalContext.Provider

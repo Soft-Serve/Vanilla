@@ -4,7 +4,7 @@ import type { FC } from "react";
 import { buildStyles, buildRadioStyles } from "./RadioTile.styles";
 
 interface Props {
-  value: number;
+  value: any;
   onChange: () => void;
   isChecked: boolean;
 }
