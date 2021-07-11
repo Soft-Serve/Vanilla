@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import type { FC } from "react";
 import { useGlobalContext } from "@contexts";
-import { Button, Container, Grid } from "@base";
+import { Button, Column, Columns, Grid } from "@base";
 import { useCategoriesQuery } from "./Categories.query";
 
 const Categories: FC = () => {
@@ -27,21 +27,22 @@ const Categories: FC = () => {
   if (loading) return <p>loading</p>;
   if (data?.categories) {
     return (
-      <Container>
-        <Grid size="LG" mobileColumns={3}>
+      <Grid size="XL" mobileColumns={3}>
+        <Columns>
           {data?.categories?.map(category => (
-            <Button
-              type="button"
-              colour="naked"
-              size="M"
-              onClick={() => setCategoryID(category.id)}
-              key={category.id}
-            >
-              {category.name}
-            </Button>
+            <Column key={category.id}>
+              <Button
+                type="button"
+                colour="primary"
+                size="M"
+                onClick={() => setCategoryID(category.id)}
+              >
+                {category.name}
+              </Button>
+            </Column>
           ))}
-        </Grid>
-      </Container>
+        </Columns>
+      </Grid>
     );
   }
   return <p>{error?.message}</p>;

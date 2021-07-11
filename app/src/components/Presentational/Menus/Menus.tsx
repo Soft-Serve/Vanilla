@@ -6,12 +6,13 @@ import { RadioGroup } from "@headlessui/react";
 import { useMenusQuery } from "@shared";
 
 const Menus: FC = () => {
-  const { setMenuID, menuID } = useGlobalContext();
+  const { setMenuID, menuID, setActiveMenu } = useGlobalContext();
   const [isMenusVisible, setIsMenusVisible] = useState(true);
   const { data, error, loading } = useMenusQuery({
     onCompleted: completedData => {
       if (completedData?.menus[0].id) {
         setMenuID(completedData.menus[0].id);
+        setActiveMenu(completedData.menus[0].name);
       }
     },
   });
@@ -31,8 +32,11 @@ const Menus: FC = () => {
         value={isMenusVisible}
         onChange={() => setIsMenusVisible(prevValue => !prevValue)}
       >
-        <RadioGroup.Label as="p" className="font-medium text-sm text-center text-red-400">
-          {isMenusVisible ? "Hide Menu's" : "Show Menu's"}
+        <RadioGroup.Label
+          as="p"
+          className="font-medium text-sm text-center text-red-400 flex w-full justify-between md:flex-col"
+        >
+          <span>{isMenusVisible ? "Hide Menus" : "Show Menus"}</span>
         </RadioGroup.Label>
       </RadioTile>
       {isMenusVisible &&
@@ -45,6 +49,7 @@ const Menus: FC = () => {
               onChange={() => {
                 setMenuID(menu.id);
                 setIsMenusVisible(false);
+                setActiveMenu(menu.name);
               }}
             >
               <RadioGroup.Label as="p" className="font-medium text-sm text-center text-gray-600">

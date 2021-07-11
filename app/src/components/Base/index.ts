@@ -10,3 +10,6 @@ export { RoundButton, Button } from "./Buttons";
 export { Input } from "./Input";
 export { RadioTile } from "./RadioTile";
 export { Dropdown } from "./Dropdown";
+export { Columns } from "./Columns";
+export { Column } from "./Column";
+export { BoxSection } from "./BoxSection";
