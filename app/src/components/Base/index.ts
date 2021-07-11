@@ -13,3 +13,4 @@ export { Dropdown } from "./Dropdown";
 export { Columns } from "./Columns";
 export { Column } from "./Column";
 export { BoxSection } from "./BoxSection";
+export { Tabs, Tab } from "./Tabs";

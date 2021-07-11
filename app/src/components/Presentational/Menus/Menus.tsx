@@ -1,13 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import type { FC } from "react";
-import { Grid, RadioTile } from "@base";
+import { Tab, Tabs } from "@base";
 import { useGlobalContext } from "src/contexts";
-import { RadioGroup } from "@headlessui/react";
 import { useMenusQuery } from "@shared";
 
 const Menus: FC = () => {
-  const { setMenuID, menuID, setActiveMenu } = useGlobalContext();
-  const [isMenusVisible, setIsMenusVisible] = useState(true);
+  const { setMenuID, setActiveMenu, menuID } = useGlobalContext();
+  // const [isMenusVisible, setIsMenusVisible] = useState(true);
   const { data, error, loading } = useMenusQuery({
     onCompleted: completedData => {
       if (completedData?.menus[0].id) {
@@ -26,39 +25,19 @@ const Menus: FC = () => {
   if (error) return <p>error</p>;
   if (loading) return <p>loading...</p>;
   return (
-    <Grid size="XXL">
-      <RadioTile
-        isChecked={isMenusVisible}
-        value={isMenusVisible}
-        onChange={() => setIsMenusVisible(prevValue => !prevValue)}
-      >
-        <RadioGroup.Label
-          as="p"
-          className="font-medium text-sm text-center text-red-400 flex w-full justify-between md:flex-col"
+    <Tabs>
+      {data?.menus.map((menu, index) => (
+        <Tab
+          onClick={() => setMenuID(menu.id)}
+          numOfTabs={data.menus.length}
+          tabIndex={index}
+          isActive={menu.id === menuID}
+          key={menu.id}
         >
-          <span>{isMenusVisible ? "Hide Menus" : "Show Menus"}</span>
-        </RadioGroup.Label>
-      </RadioTile>
-      {isMenusVisible &&
-        data?.menus?.map(menu => {
-          return (
-            <RadioTile
-              isChecked={menu.id === menuID}
-              value={menu.id}
-              key={menu.id}
-              onChange={() => {
-                setMenuID(menu.id);
-                setIsMenusVisible(false);
-                setActiveMenu(menu.name);
-              }}
-            >
-              <RadioGroup.Label as="p" className="font-medium text-sm text-center text-gray-600">
-                {menu.name}
-              </RadioGroup.Label>
-            </RadioTile>
-          );
-        })}
-    </Grid>
+          {menu.name}
+        </Tab>
+      ))}
+    </Tabs>
   );
 };
 

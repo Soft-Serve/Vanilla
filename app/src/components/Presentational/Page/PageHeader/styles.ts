@@ -10,6 +10,6 @@ const wrapper = classnames(
   "flex-col"
 );
 
-const container = classnames("bg-white", "overflow-hidden", "shadow", "mb-2");
+const container = classnames("bg-white", "overflow-hidden", "shadow");
 
 export { wrapper, container };

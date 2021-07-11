@@ -16,9 +16,7 @@ const Page: FC<Props> = ({ restaurantName }) => {
     <>
       <PageHeader restaurantName={restaurantName} setIsSlideOverOpen={setIsSlideOverOpen} />
       <Container>
-        <BoxSection>
-          <Menus />
-        </BoxSection>
+        <Menus />
         <BoxSection>
           <Categories />
         </BoxSection>
