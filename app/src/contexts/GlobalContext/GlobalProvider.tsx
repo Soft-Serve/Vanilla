@@ -8,6 +8,7 @@ const GlobalProvider: FC = ({ children }) => {
   const [categoryID, setCategoryID] = useState(0);
   const [restaurantID, setRestaurantID] = useState(0);
   const [activeMenu, setActiveMenu] = useState("");
+  const [currentUser, setCurrentUser] = useState("fdgrae");
 
   const { data } = useRestaurantQuery();
 
@@ -27,6 +28,8 @@ const GlobalProvider: FC = ({ children }) => {
         setMenuID,
         categoryID,
         setCategoryID,
+        currentUser,
+        setCurrentUser,
       }}
     >
       {children}

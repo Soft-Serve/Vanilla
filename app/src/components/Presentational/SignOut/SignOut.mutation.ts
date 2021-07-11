@@ -3,10 +3,16 @@ import gql from "graphql-tag";
 import { useMutation } from "@apollo/client";
 
 const SIGN_OUT_MUTATION = gql`
-    mutation SignOutMutation($input: input) {
-        signOut(input: $input) @rest(type: SignOut, path: "users/sign_out", method: "DELETE") {
-        }
+  mutation SignOutMutation($input: input) {
+    signOut(input: $input) @rest(type: SignOut, path: "users/sign_out", method: "DELETE") {
+      __typename
+      id
+      email
+      first_name
+      last_name
+      role
     }
+  }
 `;
 
 interface User {
@@ -30,3 +36,5 @@ const useSignOutMutation = (options?: MutationHookOptions<SignOutData, Variables
   useMutation<SignOutData, Variables>(SIGN_OUT_MUTATION, options);
 
 export { useSignOutMutation };
+
+export const foo = "sd";

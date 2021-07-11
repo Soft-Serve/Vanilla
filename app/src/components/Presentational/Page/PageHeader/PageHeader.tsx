@@ -5,7 +5,7 @@ import { H1, H6 } from "src/styles";
 import { routes } from "src/routes";
 import { Link } from "react-router-dom";
 import * as styles from "./styles";
-// import { useSignOutMutation } from "../../SignOut/SignOut.mutation";
+import { useSignOutMutation } from "../../SignOut/SignOut.mutation";
 
 interface Props {
   setIsSlideOverOpen: (value: SetStateAction<boolean>) => void;
@@ -13,6 +13,8 @@ interface Props {
 }
 
 const PageHeader: FC<Props> = ({ setIsSlideOverOpen, restaurantName }) => {
+  const [signOut] = useSignOutMutation();
+
   return (
     <div className={styles.container}>
       <Header>
@@ -29,17 +31,20 @@ const PageHeader: FC<Props> = ({ setIsSlideOverOpen, restaurantName }) => {
         </Button>
         <Link to={routes.admin}>
           <Button type="button" colour="primary" size="M">
-            admin
+            sign in
           </Button>
         </Link>
+        <Button
+          onClick={() => signOut({ variables: { input: { user_id: 1 } } })}
+          type="button"
+          colour="primary"
+          size="M"
+        >
+          sign out
+        </Button>
         <Link to={routes.postCategory}>
           <Button type="button" colour="primary" size="M">
             add new category
-          </Button>
-        </Link>
-        <Link to={routes.postMenu}>
-          <Button type="button" colour="primary" size="M">
-            add new menu
           </Button>
         </Link>
       </Header>
