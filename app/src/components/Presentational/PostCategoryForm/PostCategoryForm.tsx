@@ -32,16 +32,6 @@ const PostCategoryForm: FC = () => {
       variables: {
         input,
       },
-      optimisticResponse: {
-        __typename: "Mutation",
-        postCategory: {
-          id: input.id,
-          name: input.name,
-          menu_id: input.menu_id,
-          category_type: input.category_type,
-          __typename: input.__typename,
-        },
-      },
     });
     setInput(prevInput => ({ ...prevInput, name: "" }));
   };
