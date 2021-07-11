@@ -1,25 +1,35 @@
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
+import { useHistory } from "react-router-dom";
 import type { FC } from "react";
 import { Input, Button } from "@base";
+import { useGlobalContext } from "src/contexts";
 import { useSignInFormMutation } from "./SignInForm.mutation";
 
 const SignInForm: FC = () => {
-  const [signIn] = useSignInFormMutation();
+  const { currentUser, setCurrentUser } = useGlobalContext();
+  const [signIn, { data }] = useSignInFormMutation({
+    onCompleted: completedData => {
+      console.log(completedData);
+      setCurrentUser("completedData.user");
+    },
+  });
   const [loginData, setInput] = useState({ email: "", password: "" });
-
+  console.log(currentUser);
+  const history = useHistory();
   const input = { user: loginData };
+  console.log(data);
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    signIn({
+      variables: {
+        input,
+      },
+    });
+    history.push("/");
+  };
 
   return (
-    <form
-      onSubmit={e => {
-        e.preventDefault();
-        signIn({
-          variables: {
-            input,
-          },
-        });
-      }}
-    >
+    <form onSubmit={handleSubmit}>
       <Input
         onChange={e => setInput({ ...loginData, email: e.target.value })}
         value={loginData.email}
