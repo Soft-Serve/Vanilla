@@ -1,21 +1,13 @@
 import { classnames } from "tailwindcss-classnames";
 
-const base = classnames(
-  "col-span-1",
-  "bg-white",
-  "rounded-lg",
-  "shadow",
-  "divide-y",
-  "divide-gray-200"
-);
+const base = classnames("bg-white", "overflow-hidden", "shadow-lg", "rounded-lg");
 
-const body = classnames("w-full", "flex", "items-center", "justify-between", "border");
+const padding = classnames("px-4", "py-5", "sm:p-6");
 
-const padding = classnames("p-6", "space-x-6");
-
-const buildBodyStyles = (hasPadding?: boolean) =>
-  classnames(body, {
-    [padding]: hasPadding,
+const buildStyles = (withPadding: boolean) => {
+  return classnames(base, {
+    [padding]: withPadding,
   });
+};
 
-export { base, buildBodyStyles };
+export { base, buildStyles };

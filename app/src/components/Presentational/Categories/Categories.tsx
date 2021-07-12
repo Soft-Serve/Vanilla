@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import type { FC } from "react";
 import { useGlobalContext } from "@contexts";
-import { Button, Column, Columns, Grid } from "@base";
+import { Column, Columns, Button } from "@base";
 import { useCategoriesQuery } from "./Categories.query";
 
 const Categories: FC = () => {
@@ -25,24 +25,23 @@ const Categories: FC = () => {
   }, [data, setCategoryID, menuID]);
 
   if (loading) return <p>loading</p>;
-  if (data?.categories) {
+  if (data?.categories && data?.categories.length > 1) {
     return (
-      <Grid size="XL" mobileColumns={3}>
-        <Columns>
-          {data?.categories?.map(category => (
-            <Column key={category.id}>
-              <Button
-                type="button"
-                colour="primary"
-                size="M"
-                onClick={() => setCategoryID(category.id)}
-              >
-                {category.name}
-              </Button>
-            </Column>
-          ))}
-        </Columns>
-      </Grid>
+      <Columns>
+        {data?.categories?.map(category => (
+          <Column key={category.id}>
+            <Button
+              key={category.id}
+              type="button"
+              colour="primary"
+              size="M"
+              onClick={() => setCategoryID(category.id)}
+            >
+              {category.name}
+            </Button>
+          </Column>
+        ))}
+      </Columns>
     );
   }
   return <p>{error?.message}</p>;

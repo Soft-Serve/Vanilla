@@ -1,23 +1,20 @@
 import React from "react";
 import type { FC } from "react";
 import { useDietaryQuery } from "@graphql";
+import { SvgComponent } from "./SvgComponent";
 
 interface Props {
   itemID: number;
 }
 const Dietaries: FC<Props> = ({ itemID }) => {
-  const { data: dietaries } = useDietaryQuery({
+  const { data } = useDietaryQuery({
     variables: {
       itemID,
     },
   });
 
   return (
-    <ul>
-      {dietaries?.dietaries.map(dietary => (
-        <li key={dietary.id}>{dietary.name}</li>
-      ))}
-    </ul>
+    <div className="flex h-10 w-10">{data?.dietaries.map(dietary => SvgComponent(dietary))}</div>
   );
 };
 

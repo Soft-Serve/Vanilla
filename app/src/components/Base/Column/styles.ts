@@ -1,7 +1,7 @@
 import { classnames } from "tailwindcss-classnames";
 
 const column = {
-  base: classnames("flex-grow-0", "flex-shrink-0", "flex-initial", "mx-2"),
+  base: classnames("flex-grow-0", "flex-shrink-0", "flex-initial", "m-2"),
   textCenter: classnames("text-center"),
   textLeft: classnames("text-left"),
 };

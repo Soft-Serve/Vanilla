@@ -1,8 +1,8 @@
-import React from "react";
+import React, { HTMLProps } from "react";
 import type { FC } from "react";
 import { buildStyles } from "./styles";
 
-interface Props {
+interface Props extends HTMLProps<HTMLDivElement> {
   textDirection?: "left" | "center";
 }
 const Column: FC<Props> = ({ children, textDirection = "left" }) => {
