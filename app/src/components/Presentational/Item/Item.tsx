@@ -4,7 +4,7 @@ import { Card, Title } from "@base";
 import { useAllergyContext } from "@contexts";
 import { useDietaryQuery, MenuItem } from "@graphql";
 import intersection from "src/utility/intersection";
-import { Dietaries } from "@presentational";
+import { Dietaries, Description } from "@presentational";
 import { ItemSizes } from "./ItemSizes";
 
 interface Props {
@@ -30,6 +30,7 @@ const Item: FC<Props> = ({ item }) => {
 
   return (
     <Card header={header(item.name)} key={item.id}>
+      <Description description={item.description} />
       <div className="flex justify-between">
         <ItemSizes itemID={item.id} />
         <Dietaries itemID={item.id} />

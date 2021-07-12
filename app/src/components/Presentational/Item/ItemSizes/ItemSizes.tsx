@@ -13,7 +13,7 @@ const ItemSizes: FC<Props> = ({ itemID }) => {
     },
   });
   if (loading) return <p>loading</p>;
-  if (error) return <p>errror</p>;
+  if (error) return <p>error</p>;
   if (data?.itemSizes?.length) {
     return (
       <>

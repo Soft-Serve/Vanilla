@@ -1,5 +1,6 @@
 export { Categories } from "./Categories";
 export { Dietaries } from "./Dietaries";
+export { Description } from "./Description";
 export { Items } from "./Items";
 export { Item } from "./Item";
 export { Page } from "./Page";
