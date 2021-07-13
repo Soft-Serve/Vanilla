@@ -26,6 +26,7 @@ const Item: FC<Props> = ({ item }) => {
 
   return (
     <Card key={item.id} withPadding={false}>
+      <Dietaries itemID={item.id} />
       <div className="flow-root px-2 py-4">
         <div className="-m-3 p-3 flex rounded-lg transition ease-in-out duration-150 justify-items-stretch">
           <div className="block flex-shrink-0 mr-2">
@@ -45,7 +46,6 @@ const Item: FC<Props> = ({ item }) => {
           </div>
         </div>
         <div className="flex justify-between w-full mt-2">
-          <Dietaries itemID={item.id} />
           <Button>add item</Button>
         </div>
       </div>
