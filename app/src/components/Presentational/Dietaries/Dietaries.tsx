@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from "react";
 import type { FC } from "react";
 import { useDietaryQuery } from "@graphql";
@@ -14,7 +15,9 @@ const Dietaries: FC<Props> = ({ itemID }) => {
   });
 
   return (
-    <div className="flex h-10 w-10">{data?.dietaries.map(dietary => SvgComponent(dietary))}</div>
+    <div className="flex p-2 justify-end">
+      {data?.dietaries.map(dietary => SvgComponent(dietary))}
+    </div>
   );
 };
 

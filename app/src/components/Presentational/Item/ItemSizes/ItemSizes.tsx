@@ -12,17 +12,18 @@ const ItemSizes: FC<Props> = ({ itemID }) => {
       itemID,
     },
   });
+
   if (loading) return <p>loading</p>;
   if (error) return <p>errror</p>;
-  if (data?.itemSizes?.length) {
+
+  if (data?.itemSizes) {
     return (
       <>
         {data.itemSizes.map(size => {
           return (
-            <ul key={size.id}>
-              <li>{size.price} $</li>
-              {/* <li>{size.unit}</li> */}
-            </ul>
+            <span key={size.id} className="text-sm font-extrabold text-red-400 ">
+              ${size.price.toFixed(2)}
+            </span>
           );
         })}
       </>

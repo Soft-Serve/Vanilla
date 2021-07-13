@@ -1,5 +1,6 @@
 import React from "react";
 import { SoySVG, GlutenSVG, NutSVG, DairySVG, MeatSVG, ShellfishSVG } from "./svgs";
+import { svg } from "./styles";
 
 type SVG = React.FunctionComponent<
   React.SVGProps<SVGSVGElement> & {
@@ -33,9 +34,10 @@ const SvgComponent = (dietary: Dietary) => {
   if (typeof Components[name] !== "undefined") {
     return React.createElement(Components[dietary.name], {
       key: id,
+      className: svg,
     });
   }
-  return React.createElement(() => <div>The component {name} has not been created yet.</div>, {
+  return React.createElement(() => <div>{name}</div>, {
     key: id,
   });
 };
