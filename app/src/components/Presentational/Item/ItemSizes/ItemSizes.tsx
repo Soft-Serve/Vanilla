@@ -1,6 +1,6 @@
 import React from "react";
 import type { FC } from "react";
-import { useItemSizeQuery } from "./ItemSizes.query";
+import { useItemSizeQuery } from "@shared";
 
 interface Props {
   itemID: number;
@@ -15,19 +15,21 @@ const ItemSizes: FC<Props> = ({ itemID }) => {
 
   const renderPrice = () => {
     if (data?.itemSizes.length === 1) {
-      return data?.itemSizes[0]?.price.toFixed(2);
+      const singlePrice = data?.itemSizes[0]?.price.toFixed(2);
+      return `$ ${singlePrice}`;
     }
 
-    return data?.itemSizes
+    const lowestPrice = data?.itemSizes
       .slice()
       .sort((a, b) => a.price - b.price)[0]
       ?.price?.toFixed(2);
+    return `Starting from $${lowestPrice}`;
   };
 
   if (loading) return <p>loading</p>;
   if (error) return <p>errror</p>;
 
-  return <span className="text-sm font-extrabold text-red-400 ">${renderPrice()}</span>;
+  return <span className="text-sm font-extrabold text-red-400 ">{renderPrice()}</span>;
 };
 
 export { ItemSizes };
