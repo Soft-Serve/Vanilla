@@ -5,6 +5,7 @@ import { useAllergyContext } from "@contexts";
 import { useDietaryQuery, MenuItem } from "@graphql";
 import intersection from "src/utility/intersection";
 import { Dietaries } from "@presentational";
+import { useItemSizeQuery } from "@shared";
 import { ItemSizes } from "./ItemSizes";
 
 interface Props {
@@ -17,12 +18,29 @@ const Item: FC<Props> = ({ item }) => {
       itemID: item.id,
     },
   });
+
+  const {
+    data: sizes,
+    loading: isSizesLoading,
+    error: isSizesError,
+  } = useItemSizeQuery({
+    variables: {
+      itemID: item.id,
+    },
+  });
   const { activeAllergies } = useAllergyContext();
-  if (loading) return <p>loading</p>;
-  if (error) return <p>error</p>;
+
+  const renderButtonText = () => {
+    if (sizes?.itemSizes.length === 1) return "Add Item";
+    return "Explore Sizes";
+  };
+
   if (data?.dietaries && intersection(activeAllergies, data?.dietaries)) {
     return null;
   }
+
+  if (loading || isSizesLoading) return <p>loading</p>;
+  if (error || isSizesError) return <p>error</p>;
 
   return (
     <Card key={item.id} withPadding={false}>
@@ -39,14 +57,14 @@ const Item: FC<Props> = ({ item }) => {
           <div className="min-w-0 flex-1 sm:ml-8">
             <div className="flex justify-between">
               <h4 className="text-base font-medium text-gray-900">{item.name}</h4>
-              <ItemSizes itemID={item.id} />
             </div>
 
             {item.description && <p className="mt-1 text-sm text-gray-500">{item.description}</p>}
           </div>
         </div>
-        <div className="flex justify-between w-full mt-2">
-          <Button>add item</Button>
+        <div className="flex justify-between w-full mt-2 items-center">
+          <ItemSizes itemID={item.id} />
+          <Button>{renderButtonText()}</Button>
         </div>
       </div>
     </Card>
