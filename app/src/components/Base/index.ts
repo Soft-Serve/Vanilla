@@ -14,3 +14,4 @@ export { Columns } from "./Columns";
 export { Column } from "./Column";
 export { BoxSection } from "./BoxSection";
 export { Tabs, Tab } from "./Tabs";
+export { Modal } from "./Modal";

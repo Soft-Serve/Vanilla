@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import type { FC } from "react";
-import { Card, Button } from "@base";
+import { Card, Button, Modal, Pill } from "@base";
 import { useAllergyContext } from "@contexts";
 import { useDietaryQuery, MenuItem } from "@graphql";
 import intersection from "src/utility/intersection";
@@ -13,6 +13,7 @@ interface Props {
 }
 
 const Item: FC<Props> = ({ item }) => {
+  const [isOpen, setIsOpen] = useState(false);
   const { data, error, loading } = useDietaryQuery({
     variables: {
       itemID: item.id,
@@ -39,6 +40,17 @@ const Item: FC<Props> = ({ item }) => {
     return null;
   }
 
+  const renderUnit = (unit: string) => {
+    if (unit === "1") return null;
+    return unit;
+  };
+
+  const handleClick = () => {
+    if (sizes?.itemSizes && sizes.itemSizes.length > 1) {
+      setIsOpen(true);
+    }
+  };
+
   if (loading || isSizesLoading) return <p>loading</p>;
   if (error || isSizesError) return <p>error</p>;
 
@@ -64,7 +76,18 @@ const Item: FC<Props> = ({ item }) => {
         </div>
         <div className="flex justify-between w-full mt-2 items-center">
           <ItemSizes itemID={item.id} />
-          <Button>{renderButtonText()}</Button>
+          <Button onClick={handleClick}>{renderButtonText()}</Button>
+          <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
+            {sizes?.itemSizes.map(size => (
+              <div className="flex justify-between m-2 p2 items-center" key={size.id}>
+                <span className="text-sm font-extrabold text-red-400 m-2 ">
+                  $ {size.price.toFixed(2)}
+                </span>
+                <Pill>{renderUnit(size.unit)}</Pill>
+                <Button>select</Button>
+              </div>
+            ))}
+          </Modal>
         </div>
       </div>
     </Card>
